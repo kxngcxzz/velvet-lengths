@@ -27,13 +27,31 @@ const CATALOGUE={
       ["1b-silver-1b","Black with silver streak",24.23,"tape-in-1b-silver-1b"],["Ba8A-60","Ash brown to platinum balayage",25.39]],
     blurb:"Double-sided seamless skin wefts that lie completely flat against the scalp, so they look like your own roots. Each pack has 20 pieces of soft, shiny Remy human hair that can be straightened and curled. Quick to fit and remove, and reusable with fresh tape for up to 6 months.",
     specs:[["Hair","Remy human hair"],["Method","Double-sided tape-in, seamless skin weft"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","20 pieces"],["Lifespan","Up to 6 months, re-taping as needed"],["Full head","40–60 pieces (2–3 packs)"]]
+  },
+  "u-tip":{
+    name:"U-Tip Keratin Fusion Extensions",eyebrow:"Remy human hair · keratin bond",type:"ext",
+    supplier:"AliExpress 1005009243151539",
+    lens:[12,14,16,18,20],
+    // two price tiers on the listing: solid shades vs highlight/blonde shades
+    costs:{base:[9.66,11.53,13.81,16.32,19.93],premium:[10.93,13.81,16.21,19.37,22.86]},
+    wts:[["50 strands (30g)",1],["100 strands (60g)",2.15,{base:{14:25.15,18:34.74,20:41.95},premium:{20:47.81}}]],
+    colours:[
+      ["1","Jet black","base","u-tip-1"],["1B","Natural black","base","u-tip-1b"],["2","Darkest brown","base","u-tip-2"],
+      ["4","Medium brown","base","u-tip-4"],["6","Chestnut brown","base","u-tip-6"],["99J","Burgundy","base","u-tip-99j"],
+      ["60","Platinum blonde","premium","u-tip-60"],["P4/27","Brown with honey highlights","premium","u-tip-p4-27"],
+      ["P27/613","Honey and bleach blonde mix","premium","u-tip-p27-613"]],
+    blurb:"Pre-bonded U-tips with Italian-style keratin, fused strand by strand for a natural, flexible finish that moves like your own hair. Each strand is 0.6g of soft Remy human hair that can be heat styled, curled and washed as normal. Lasts 3–4 months between refits.",
+    specs:[["Hair","Remy human hair"],["Method","U-tip keratin fusion (hot fusion)"],["Texture","Silky straight"],["Lengths",'12" to 20" (30–50cm)'],["Pack","50 strands (30g) or 100 strands (60g)"],["Lifespan","3–4 months between refits"],["Full head","150–200 strands"]]
   }
+
 };
 
 function costFor(P,c,l,w){
   const pack=P.wts[w],len=P.lens[l];
-  if(pack[2]&&pack[2][len]) return pack[2][len];
-  const base=P.costs?P.costs[l]:P.colours[c][2];
+  const tier=P.colours[c][2],ex=pack[2]&&(pack[2][tier]||pack[2]);
+  if(ex&&typeof ex[len]==="number") return ex[len];
+  const list=P.costs&&(Array.isArray(P.costs)?P.costs:P.costs[tier]);
+  const base=list?list[l]:P.colours[c][2];
   return base*pack[1];
 }
 function priceFor(P,c,l,w){

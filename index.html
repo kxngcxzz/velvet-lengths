@@ -172,7 +172,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
     <a class="logo" href="#" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 120 120" width="40" height="40" style="color:var(--accent);flex:none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="60" cy="60" r="56" stroke-width="2.4"/><path d="M30 26 C38 40 34 52 44 66 C52 78 56 86 60 96M90 26 C82 40 86 52 76 66 C68 78 64 86 60 96" stroke-width="5"/><path d="M36 24 C44 40 42 54 51 68 C56 77 58 84 60 92M84 24 C76 40 78 54 69 68 C64 77 62 84 60 92" stroke-width="2" opacity=".7"/></g></svg><span>Velvet Lengths<small>100% VIRGIN HAIR</small></span></a>
     <nav aria-label="Main">
       <a href="#shop">Wigs</a><a href="#shop">Bundles</a><a href="#shop">Closures &amp; Frontals</a>
-      <a href="product.html?p=nano-ring">Nano Ring Extensions</a><a href="product.html?p=tape-in">Tape-In Extensions</a><a href="#shop">Hair Care</a><a href="#guide">Length Guide</a><a class="sale" href="#shop">Sale</a>
+      <a href="product.html?p=nano-ring">Nano Ring Extensions</a><a href="product.html?p=tape-in">Tape-In Extensions</a><a href="product.html?p=u-tip">U-Tip Extensions</a><a href="#shop">Hair Care</a><a href="#guide">Length Guide</a><a class="sale" href="#shop">Sale</a>
     </nav>
     <div class="icons">
       <a href="#">Search</a><a href="#">Account</a>
@@ -317,18 +317,19 @@ function drawHair(c){
   const sh=x.createLinearGradient(0,0,w,0);sh.addColorStop(.3,"rgba(255,230,210,0)");sh.addColorStop(.5,"rgba(255,230,210,.12)");sh.addColorStop(.7,"rgba(255,230,210,0)");x.fillStyle=sh;x.fillRect(0,0,w,h);
 }
 const products=[
-  {n:"Seamless Tape-In Extensions · 20 pieces",t:"ext",img:"images/tape-in-p18-613.jpg",href:"product.html?p=tape-in",from:51.99,was:67.99,lens:[14,16,18,20,22,24],r:5,c:0,b:"New in"},
-  {n:"Nano Ring Tip Extensions · 100% Virgin Remy",t:"ext",cat:"nano-ring",img:"images/nano-ring-760.jpg",href:"product.html?p=nano-ring",from:66.99,was:86.99,lens:[14,16,18,20,22,24],r:4.8,c:0,b:"New in"},
-  {n:"Body Wave 13×4 HD Lace Front Wig",t:"wig",tex:"body",tone:2,from:189,was:229,lens:[16,18,20,22,24],r:4.9,c:612,b:"Bestseller"},
+  {n:"U-Tip Keratin Fusion Extensions · 50 strands",t:"ext",cat:"u-tip",img:"images/u-tip-p4-27.jpg",href:"product.html?p=u-tip",from:24.99,lens:[12,14,16,18,20],r:5,c:0,b:"New in"},
+  {n:"Seamless Tape-In Extensions · 20 pieces",t:"ext",img:"images/tape-in-p18-613.jpg",href:"product.html?p=tape-in",from:51.99,lens:[14,16,18,20,22,24],r:5,c:0,b:"New in"},
+  {n:"Nano Ring Tip Extensions · 100% Virgin Remy",t:"ext",cat:"nano-ring",img:"images/nano-ring-760.jpg",href:"product.html?p=nano-ring",from:66.99,lens:[14,16,18,20,22,24],r:4.8,c:0,b:"New in"},
+  {n:"Body Wave 13×4 HD Lace Front Wig",t:"wig",tex:"body",tone:2,from:189,lens:[16,18,20,22,24],r:4.9,c:612,b:"Bestseller"},
   {n:"Silky Straight Virgin Bundle",t:"bundle",tex:"straight",tone:1,from:49,lens:[12,14,16,18,20,22,24,26,28,30],r:4.8,c:944},
   {n:"Deep Wave 5×5 HD Closure",t:"closure",tex:"deep",tone:0,from:69,lens:[12,14,16,18,20],r:4.8,c:201,b:"HD lace"},
-  {n:"Kinky Curly Glueless Wig",t:"wig",tex:"kinky",tone:1,from:209,was:249,lens:[16,18,20,22],r:4.9,c:338,b:"New"},
+  {n:"Kinky Curly Glueless Wig",t:"wig",tex:"kinky",tone:1,from:209,lens:[16,18,20,22],r:4.9,c:338,b:"New"},
   {n:"Water Wave Virgin Bundle",t:"bundle",tex:"water",tone:0,from:55,lens:[14,16,18,20,22,24],r:4.7,c:410},
   {n:"Straight 13×4 HD Frontal",t:"closure",tex:"straight",tone:3,from:89,lens:[14,16,18,20],r:4.8,c:176},
   {n:"Loose Wave 5×5 Closure Wig",t:"wig",tex:"loose",tone:2,from:169,lens:[16,18,20,22,24],r:4.8,c:257},
   {n:"Deep Wave Virgin Bundle",t:"bundle",tex:"deep",tone:1,from:52,lens:[12,14,16,18,20,22,24,26],r:4.9,c:521,b:"Bestseller"}
 ];
-const price=(p,l)=>p.cat?priceFor(CATALOGUE[p.cat],0,p.lens.indexOf(l),0):+(p.from+(l-p.lens[0])/2*(p.t==="bundle"?8:p.t==="wig"?20:p.t==="ext"?10:12)).toFixed(2);
+const price=(p,l)=>p.cat?priceFor(CATALOGUE[p.cat],0,p.lens.indexOf(l),0):p.t==="ext"?+(p.from+(l-p.lens[0])/2*8).toFixed(2):+(p.from+(l-p.lens[0])/2*(p.t==="bundle"?8:p.t==="wig"?20:p.t==="ext"?10:12)).toFixed(2);
 const grid=document.getElementById("grid");
 function render(f){
   grid.innerHTML="";
