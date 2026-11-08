@@ -9,7 +9,7 @@ const CATALOGUE={
     supplier:"DIYOMO Official Store (AliExpress 1005012462195766)",
     lens:[14,16,18,20,22,24],costs:[26.71,28.85,30.99,33.13,34.73,38.46],wts:[["50g",1],["100g",1.81,{24:69.45}]],
     colours:[
-      ["01","Jet black",26.71],["02","Darkest brown",26.71],["04","Chestnut brown",26.71,"nano-ring-04"],["07","Light brown",26.71],
+      ["01","Jet black",26.71,"nano-ring-01"],["02","Darkest brown",26.71],["04","Chestnut brown",26.71,"nano-ring-04"],["07","Light brown",26.71],
       ["1660","Brown balayage",26.71],["18613","Ash and bleach blonde",26.71],["760","Ash blonde balayage",26.71,"nano-ring-760"],
       ["99J","Burgundy",26.71,"nano-ring-99j"],["T416","Brown with honey highlights",26.71,"nano-ring-t416"]],
     blurb:"Tiny nano rings hold each strand with no glue, heat or tape. They sit flat and hide easily, even in fine hair. Made from 100% virgin Remy hair with the cuticles aligned, so it stays smooth and tangle-free. With good care it lasts up to 12 months, and it can be straightened, curled or toned.",
