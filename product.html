@@ -162,6 +162,39 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:999px;font-size:14px;z-index:20}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- mobile ---- */
+@media (max-width:600px){
+  .announce{font-size:12px;padding-inline:16px}
+  .bar{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding-block:10px 0}
+  .logo{font-size:22px}.logo svg{width:32px;height:32px}
+  .icons{gap:12px}.icons a{display:none}
+  nav{grid-column:1/-1;order:3;gap:18px;padding-bottom:10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  .hero{gap:28px;padding-block:24px 32px}
+  .hero p{font-size:16px}
+  .hero .ctas .btn{flex:1;justify-content:center}
+  .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+  .proof strong{font-size:22px}
+  .proof div{font-size:12px}
+  .hero-art{aspect-ratio:4/5}
+  section{padding-block:36px}
+  .textures{gap:10px}
+  .tex{font-size:13px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .quick{position:static;opacity:1;transform:none;margin-top:8px;width:100%;padding:11px 12px}
+  .media{overflow:visible;display:flex;flex-direction:column}
+  .media>a,.media>canvas{border-radius:12px;overflow:hidden;aspect-ratio:4/5;display:block}
+  .card h3{font-size:14px}
+  .lengths button{padding:5px 7px}
+  .meta{flex-wrap:wrap}
+  .usp{padding:18px 14px}
+  .news{padding:26px 20px}
+  .news form{max-width:none}
+  .chart svg{min-width:0}
+  .cols{grid-template-columns:1fr 1fr;gap:24px}
+  .cols>div:first-child{grid-column:1/-1}
+}
+@media (max-width:600px) and (hover:none){.card:hover .quick{transform:none}}
 </style>
 </head><body>
 
@@ -204,6 +237,19 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 .buy{display:flex;gap:10px;flex-wrap:wrap}.buy .btn{flex:1;justify-content:center}
 .ship{background:var(--soft);border-radius:12px;padding:16px;font-size:14px;display:grid;gap:6px}
 .specs{width:100%;border-collapse:collapse;font-size:14px}.specs td{border-bottom:1px solid var(--line);padding:9px 0}.specs td:first-child{color:var(--muted);width:42%}
+
+@media (max-width:600px){
+  .pdp{padding-block:16px 36px}
+  .gallery .main{border-radius:12px}
+  .thumbs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .thumbs button{flex:none;width:60px;height:60px}
+  .info{gap:14px}
+  .bigprice{font-size:24px}
+  .opts button{padding:8px 12px}
+  .buy{position:sticky;bottom:0;z-index:4;background:var(--bg);margin-inline:-16px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+  .specs td:first-child{width:38%}
+  #guides{gap:18px}
+}
 </style>
 <main class="wrap">
   <div class="pdp">
