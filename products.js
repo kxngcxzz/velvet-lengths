@@ -37,7 +37,7 @@ const CATALOGUE={
     blurb:"Double-sided seamless skin wefts that lie completely flat against the scalp, so they look like your own roots. Each pack has 20 pieces of soft, shiny Remy human hair that can be straightened and curled. Quick to fit and remove, and reusable with fresh tape for up to 6 months.",
     specs:[["Hair","Remy human hair"],["Method","Double-sided tape-in, seamless skin weft"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","20 pieces"],["Lifespan","Up to 6 months, re-taping as needed"],["Piece size","4cm × 2cm tab, 2.5g per piece"],["How many packs","1 pack for highlights, 2–3 packs for volume and length"]],
     gallery:[["tape-in-range","The colour range"],["tape-in-tape","Double-sided tape close-up"]],
-    guides:[["tape-in-length-guide","Where each length falls, straight and curled"],["tape-in-specs","Piece size, weight and how many packs to choose"]]
+    guides:[["tape-in-length-guide","Where each length falls, straight and curled"]]
   },
   "u-tip":{
     name:"U-Tip Keratin Fusion Extensions",eyebrow:"Remy human hair · keratin bond",type:"ext",
