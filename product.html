@@ -227,6 +227,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
       <table class="specs"><tbody id="specs"></tbody></table>
     </div>
   </div>
+  <div id="guides" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;padding-block:0 56px"></div>
 </main>
 <footer class="site"><div class="wrap">
   <div class="cols">
@@ -248,15 +249,15 @@ const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[
 const $=x=>document.getElementById(x);
 document.title=`${P.name} · Velvet Lengths`;$("name").textContent=P.name;$("crumb").textContent=P.name;$("eyebrow").textContent="New in · "+P.eyebrow;$("blurb").textContent=P.blurb;
 $("specs").innerHTML=P.specs.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("");
-let c=Math.max(0,P.colours.findIndex(x=>x[3])),l=0,w=0,q=1;
+let extra=null,c=Math.max(0,P.colours.findIndex(x=>x[3])),l=0,w=0,q=1;
 const swatch=x=>x[3]?`<img src="images/${x[3]}.jpg" alt="">`:`<span style="display:grid;place-items:center;height:100%;font:500 11px var(--mono);color:var(--muted)">${x[0]}</span>`;
 function opts(el,arr,get,set,label){el.innerHTML="";arr.forEach((v,i)=>{const b=document.createElement("button");b.textContent=label(v);b.setAttribute("aria-pressed",i===get());b.onclick=()=>{set(i);draw()};el.appendChild(b)})}
 function draw(){
   const C=P.colours[c];
-  opts($("cols"),P.colours,()=>c,i=>c=i,v=>v[0]);opts($("lens"),P.lens,()=>l,i=>l=i,v=>v+'"');opts($("wts"),P.wts,()=>w,i=>w=i,v=>v[0]);
-  $("thumbs").innerHTML=P.colours.map((v,i)=>v[3]?`<button aria-pressed="${i===c}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:"").join("");
-  $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{c=+b.dataset.i;draw()});
-  const img=C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
+  opts($("cols"),P.colours,()=>c,i=>{c=i;extra=null},v=>v[0]);opts($("lens"),P.lens,()=>l,i=>l=i,v=>v+'"');opts($("wts"),P.wts,()=>w,i=>w=i,v=>v[0]);
+  $("thumbs").innerHTML=P.colours.map((v,i)=>v[3]?`<button aria-pressed="${i===c&&!extra}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:"").join("")+(P.gallery||[]).map((g,i)=>`<button aria-pressed="${extra===g[0]}" aria-label="${g[1]}" data-g="${g[0]}"><img src="images/${g[0]}.jpg" alt=""></button>`).join("");
+  $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(b.dataset.g){extra=b.dataset.g}else{c=+b.dataset.i;extra=null}draw()});
+  const img=extra||C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
   $("colName").textContent=`${C[0]} · ${C[1]}`+(C[3]?"":" (photo coming soon)");
   const v=priceFor(P,c,l,w);
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("klarna").textContent=`or 3 payments of £${(v*q/3).toFixed(2)} with Klarna`;$("q").textContent=q;
@@ -264,5 +265,6 @@ function draw(){
 $("minus").onclick=()=>{q=Math.max(1,q-1);draw()};$("plus").onclick=()=>{q++;draw()};
 let n=0,t;$("add").onclick=()=>{n+=q;$("cartCount").textContent=n;const el=$("toast");el.textContent=`Added to bag: ${q} × ${P.colours[c][0]}, ${P.lens[l]}", ${P.wts[w][0]}`;el.hidden=false;clearTimeout(t);t=setTimeout(()=>el.hidden=true,2400)};
 draw();
+$("guides").innerHTML=(P.guides||[]).map(g=>`<figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="images/${g[0]}.jpg" alt="${g[1]}" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)"><figcaption class="eyebrow">${g[1]}</figcaption></figure>`).join("");
 </script>
 </body></html>

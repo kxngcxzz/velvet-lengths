@@ -13,7 +13,9 @@ const CATALOGUE={
       ["1660","Ash blonde",26.71,"nano-ring-1660"],["18613","Golden blonde highlights",26.71,"nano-ring-18613"],["760","Honey brown highlights",26.71,"nano-ring-760"],
       ["99J","Burgundy",26.71,"nano-ring-99j"],["T416","Brown with blonde highlights",26.71,"nano-ring-t416"]],
     blurb:"Tiny nano rings hold each strand with no glue, heat or tape. They sit flat and hide easily, even in fine hair. Made from 100% virgin Remy hair with the cuticles aligned, so it stays smooth and tangle-free. With good care it lasts up to 12 months, and it can be straightened, curled or toned.",
-    specs:[["Hair","100% virgin Remy human hair"],["Method","Nano ring / micro bead, straight tip"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","50g or 100g"],["Lifespan","Up to 12 months with care"],["Full head","150–200g (3–4 packs of 50g)"]]
+    specs:[["Hair","100% virgin Remy human hair"],["Method","Nano ring / micro bead, straight tip"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","50g or 100g"],["Lifespan","Up to 12 months with care"],["How many packs","1–2 for length, 3–4 for volume, 5+ for a full head"]],
+    gallery:[["nano-ring-range","The full colour range"],["nano-ring-range-2","Solid shades"],["nano-ring-highlights","Highlight blend"]],
+    guides:[["nano-ring-how-to-fit","How to fit nano ring extensions, step by step"],["nano-ring-guide","Texture, pack size and how many packs to choose"]]
   },
   "tape-in":{
     name:"Seamless Tape-In Extensions",eyebrow:"Remy human hair · skin weft",type:"ext",
