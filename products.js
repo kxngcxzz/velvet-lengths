@@ -27,9 +27,9 @@ const CATALOGUE={
     colours:[
       ["1","Jet black","solid","tape-in-1"],["1b","Natural black","solid","tape-in-1b"],["2","Darkest brown","solid","tape-in-2"],
       ["4","Medium brown","solid","tape-in-4"],["33","Auburn","blend","tape-in-33"],["350","Copper","blend","tape-in-350"],
-      ["2-2-6","Dark brown to chestnut balayage","blend","tape-in-2-2-6"],["1B-4-18","Black to ash brown ombre","blend","tape-in-1b-4-18"],
-      ["P4-27","Brown with honey highlights","blend","tape-in-p4-27"],["4-27-4","Brown with honey highlights","blend","tape-in-4-27-4"],
-      ["6-60-6","Light brown with platinum balayage","blend","tape-in-6-60-6"],["3-8-22","Brown to golden blonde balayage","blend","tape-in-3-8-22"],
+      ["2-2-6","Black root to brown highlights","blend","tape-in-2-2-6"],["1B-4-18","Black to ash brown ombre","blend","tape-in-1b-4-18"],
+      ["P4-27","Brown with honey highlights","blend","tape-in-p4-27"],["4-27-4","Dark root to brown with honey highlights","blend","tape-in-4-27-4"],
+      ["6-60-6","Light brown with ash blonde highlights","blend","tape-in-6-60-6"],["3-8-22","Brown to golden blonde balayage","blend","tape-in-3-8-22"],
       ["4-14-60","Brown to platinum ombre","blend","tape-in-4-14-60"],["60","Platinum blonde","blend","tape-in-60"],
       ["P18-613","Ash and bleach blonde mix","blend","tape-in-p18-613"],["P16-22","Golden blonde highlights","blend","tape-in-p16-22"],
       ["18-22-60","Ash to platinum balayage","blend","tape-in-18-22-60"],["1b-silver-1b","Black with silver streak","blend","tape-in-1b-silver-1b"],
