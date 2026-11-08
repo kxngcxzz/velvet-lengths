@@ -79,7 +79,7 @@ section{padding-block:56px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 16px;font-size:14px}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .card{display:flex;flex-direction:column;gap:10px}
 .media{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:12px;overflow:hidden;background:var(--soft)}
@@ -169,10 +169,9 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 <header>
   <div class="wrap bar">
-    <a class="logo" href="#" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 120 120" width="40" height="40" style="color:var(--accent);flex:none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="60" cy="60" r="56" stroke-width="2.4"/><path d="M30 26 C38 40 34 52 44 66 C52 78 56 86 60 96M90 26 C82 40 86 52 76 66 C68 78 64 86 60 96" stroke-width="5"/><path d="M36 24 C44 40 42 54 51 68 C56 77 58 84 60 92M84 24 C76 40 78 54 69 68 C64 77 62 84 60 92" stroke-width="2" opacity=".7"/></g></svg><span>Velvet Lengths<small>100% VIRGIN HAIR</small></span></a>
+    <a class="logo" href="#" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 120 120" width="40" height="40" style="color:var(--accent);flex:none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="60" cy="60" r="56" stroke-width="2.4"/><path d="M30 26 C38 40 34 52 44 66 C52 78 56 86 60 96M90 26 C82 40 86 52 76 66 C68 78 64 86 60 96" stroke-width="5"/><path d="M36 24 C44 40 42 54 51 68 C56 77 58 84 60 92M84 24 C76 40 78 54 69 68 C64 77 62 84 60 92" stroke-width="2" opacity=".7"/></g></svg><span>Velvet Lengths<small>HUMAN HAIR EXTENSIONS</small></span></a>
     <nav aria-label="Main">
-      <a href="#shop">Wigs</a><a href="#shop">Bundles</a><a href="#shop">Closures &amp; Frontals</a>
-      <a href="product.html?p=nano-ring">Nano Ring Extensions</a><a href="product.html?p=tape-in">Tape-In Extensions</a><a href="product.html?p=u-tip">U-Tip Extensions</a><a href="#shop">Hair Care</a><a href="#guide">Length Guide</a><a class="sale" href="#shop">Sale</a>
+      <a href="product.html?p=nano-ring">Nano Ring</a><a href="product.html?p=tape-in">Tape-In</a><a href="product.html?p=u-tip">U-Tip</a><a href="#shop">Shop all</a><a href="#guide">Length Guide</a><a href="#faq">Help</a>
     </nav>
     <div class="icons">
       <a href="#">Search</a><a href="#">Account</a>
@@ -184,68 +183,44 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 <main>
   <div class="wrap hero">
     <div>
-      <p class="eyebrow">New season · Raw Cambodian collection</p>
+      <p class="eyebrow">New in · Remy human hair extensions</p>
       <h1>Hair that moves<br>like it's <em>yours</em>.</h1>
-      <p>Single-donor virgin bundles, HD lace wigs and frontals. Cuticle-aligned, unprocessed and ready to colour, curl or wear straight from the pack.</p>
-      <div class="ctas"><a class="btn" href="#shop">Shop bestsellers</a><a class="btn ghost" href="#bundle">Build a bundle deal</a></div>
+      <p>Nano ring, tape-in and keratin U-tip extensions in up to 12 shades. Cuticle-aligned human hair you can wash, curl and heat style like your own.</p>
+      <div class="ctas"><a class="btn" href="#shop">Shop bestsellers</a><a class="btn ghost" href="#guide">Find your length</a></div>
       <div class="proof">
-        <div><strong>4.9★</strong>2,300+ reviews</div>
-        <div><strong>12–30"</strong>lengths in stock</div>
-        <div><strong>14 days</strong>hassle-free returns</div>
+        <div><strong>3 methods</strong>nano ring, tape-in, U-tip</div>
+        <div><strong>12–24"</strong>lengths</div>
+        <div><strong>Free</strong>tracked UK delivery</div>
       </div>
     </div>
     <div class="hero-art">
-      <canvas data-tex="body" data-tone="2" aria-hidden="true"></canvas>
-      <div class="tag"><div><span>Featured</span>Body Wave 13×4 HD Lace Wig · 22"</div><b>£239</b></div>
+      <img src="images/nano-ring-760.jpg" alt="Nano ring tip extensions in ash blonde balayage" style="width:100%;height:100%;object-fit:cover;background:#fff">
+      <a class="tag" href="product.html?p=nano-ring"><div><span>Featured</span>Nano Ring Tip Extensions · 50g</div><b>from £66.99</b></a>
     </div>
   </div>
 
   <section class="wrap" aria-labelledby="t-tex">
-    <div class="head"><h2 id="t-tex">Shop by texture</h2><a href="#shop">View all</a></div>
-    <div class="textures">
-      <a class="tex" href="#shop"><canvas data-tex="straight"></canvas>Silky Straight<span>Bone straight</span></a>
-      <a class="tex" href="#shop"><canvas data-tex="body"></canvas>Body Wave<span>Soft S-pattern</span></a>
-      <a class="tex" href="#shop"><canvas data-tex="loose"></canvas>Loose Wave<span>Beach wave</span></a>
-      <a class="tex" href="#shop"><canvas data-tex="deep"></canvas>Deep Wave<span>Defined ripple</span></a>
-      <a class="tex" href="#shop"><canvas data-tex="water"></canvas>Water Wave<span>Wet &amp; wavy</span></a>
-      <a class="tex" href="#shop"><canvas data-tex="kinky"></canvas>Kinky Curly<span>3C–4A curl</span></a>
+    <div class="head"><h2 id="t-tex">Shop by method</h2><a href="#shop">View all</a></div>
+    <div class="textures" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+      <a class="tex" href="product.html?p=nano-ring"><img src="images/nano-ring-04.jpg" alt="" style="width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#fff">Nano Ring<span>No glue, no heat</span></a>
+      <a class="tex" href="product.html?p=tape-in"><img src="images/tape-in-1b-4-18.jpg" alt="" style="width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#fff">Tape-In<span>Flat, seamless wefts</span></a>
+      <a class="tex" href="product.html?p=u-tip"><img src="images/u-tip-6.jpg" alt="" style="width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;background:#fff">U-Tip Keratin<span>Strand-by-strand fusion</span></a>
     </div>
   </section>
 
   <section class="wrap" id="shop" aria-labelledby="t-best">
-    <div class="head"><h2 id="t-best">Bestsellers</h2><a href="#">Shop all hair</a></div>
-    <div class="filters" role="group" aria-label="Filter products">
-      <button class="chip" aria-pressed="true" data-f="all">All</button>
-      <button class="chip" aria-pressed="false" data-f="wig">Wigs</button>
-      <button class="chip" aria-pressed="false" data-f="bundle">Bundles</button>
-      <button class="chip" aria-pressed="false" data-f="ext">Extensions</button>
-      <button class="chip" aria-pressed="false" data-f="closure">Closures &amp; Frontals</button>
-    </div>
+    <div class="head"><h2 id="t-best">Shop extensions</h2></div>
+    
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="wrap" id="bundle">
-    <div class="bundle">
-      <div>
-        <p class="eyebrow">Bundle builder</p>
-        <h2>3 bundles + closure.<br>Save up to 20%.</h2>
-        <p>Pick your texture and lengths. Most full sew-ins take three bundles; go for four if you want 24" and longer to look full at the ends.</p>
-      </div>
-      <div class="builder">
-        <div class="row"><label>Texture</label><div class="seg" data-k="tex"><button aria-pressed="true">Straight</button><button aria-pressed="false">Body Wave</button><button aria-pressed="false">Deep Wave</button></div></div>
-        <div class="row"><label>Bundle lengths</label><div class="seg" data-k="len"><button aria-pressed="false">14/16/18"</button><button aria-pressed="true">18/20/22"</button><button aria-pressed="false">22/24/26"</button></div></div>
-        <div class="row"><label>Add-on</label><div class="seg" data-k="add"><button aria-pressed="false">None</button><button aria-pressed="true">5×5 Closure</button><button aria-pressed="false">13×4 Frontal</button></div></div>
-        <div class="row total"><span>Bundle price</span><span><strong id="bTotal">£0</strong><s id="bWas"></s></span></div>
-        <button class="btn" id="bAdd">Add bundle deal to bag</button>
-      </div>
-    </div>
-  </section>
+  
 
   <div class="wrap"><div class="usps">
-    <div class="usp"><h3>100% virgin human hair</h3><p>Unprocessed, single-donor, cuticles intact.</p></div>
+    <div class="usp"><h3>Real human hair</h3><p>Remy hair with the cuticles aligned, so it stays smooth.</p></div>
     <div class="usp"><h3>Tracked delivery</h3><p>Free tracked delivery in 7–14 days, tracking sent by email.</p></div>
     <div class="usp"><h3>Pay in 3</h3><p>Klarna and Clearpay at checkout, interest-free.</p></div>
-    <div class="usp"><h3>14-day returns</h3><p>Unopened, unworn hair with lace uncut.</p></div>
+    <div class="usp"><h3>14-day returns</h3><p>Unopened, unused hair.</p></div>
   </div></div>
 
   <section class="wrap" id="guide" aria-labelledby="t-guide">
@@ -253,29 +228,22 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
       <div>
         <p class="eyebrow">Length guide</p>
         <h2 id="t-guide" style="font-size:clamp(32px,4vw,48px);margin:10px 0 16px">Where will it fall?</h2>
-        <p>Hair is measured straight, from the weft to the tips. Curly and deep wave textures shrink when worn, so size up about 2" to land at the same point.</p>
+        <p>Hair is measured straight, from the weft to the tips. If you plan to curl your extensions, size up about 2", because curls shorten the hair.</p>
         <a class="btn ghost" href="#">Full sizing &amp; density guide</a>
       </div>
       <div class="chart"><svg id="lenChart" viewBox="0 0 520 300" role="img" aria-label="Hair length guide from 12 to 30 inches"></svg></div>
     </div>
   </section>
 
-  <section class="wrap" aria-labelledby="t-rev">
-    <div class="head"><h2 id="t-rev">Worn &amp; loved</h2><a href="#">Read 2,300+ reviews</a></div>
-    <div class="reviews">
-      <article class="review"><div class="stars">★★★★★</div><blockquote>"Three bundles of the 20/22/24 body wave. No shedding after washing, and it held a curl all week."</blockquote><footer>Amara O. · Verified buyer · Body Wave Bundles</footer></article>
-      <article class="review"><div class="stars">★★★★★</div><blockquote>"The HD lace really melts. I bleached the knots myself and it took toner evenly."</blockquote><footer>Chantelle R. · Verified buyer · 13×4 Frontal Wig</footer></article>
-      <article class="review"><div class="stars">★★★★☆</div><blockquote>"Arrived in 4 days with tracking the whole way. Kinky curly is full and soft. Would order 26" next time."</blockquote><footer>Ife A. · Verified buyer · Kinky Curly 22"</footer></article>
-    </div>
-  </section>
+  
 
-  <section class="wrap" aria-labelledby="t-faq">
+  <section class="wrap" id="faq" aria-labelledby="t-faq">
     <div class="head"><h2 id="t-faq">Questions</h2></div>
     <div class="faq">
       <details open><summary>How long does delivery take?</summary><p>Orders are dispatched within 2–3 working days and usually arrive in 7–14 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p></details>
-      <details><summary>Can I dye or bleach the hair?</summary><p>Yes. Our hair is unprocessed natural colour 1B, so it can be lifted, toned and heat styled. We recommend a strand test and a professional colourist for anything past level 8.</p></details>
-      <details><summary>How many bundles do I need?</summary><p>Three bundles suit most full heads up to 22". For 24" and longer, or for a very full look, choose four. Add a closure or frontal for a leave-out free install.</p></details>
-      <details><summary>What is your returns policy?</summary><p>Return unopened, unworn hair with the lace uncut within 14 days of delivery. Start a return from your account page.</p></details>
+      <details><summary>Can I dye or bleach the hair?</summary><p>Yes, it is real human hair, so it can be toned, curled and heat styled. Darker shades can be lifted by a professional colourist. Always do a strand test first.</p></details>
+      <details><summary>How much hair do I need?</summary><p>For a full head most people need 150–200g: 3–4 packs of nano rings (50g), 2–3 packs of tape-ins (20 pieces each), or 150–200 U-tip strands. For added volume only, half that is usually enough.</p></details>
+      <details><summary>What is your returns policy?</summary><p>Return unopened, unused hair within 14 days of delivery. Start a return from your account page.</p></details>
     </div>
   </section>
 
@@ -287,8 +255,8 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 <footer class="site"><div class="wrap">
   <div class="cols">
-    <div><div class="logo">Velvet Lengths</div><p style="color:var(--muted);max-width:32ch">Premium virgin hair, wigs and extensions. Delivered across the UK and Europe.</p></div>
-    <div><h4>Shop</h4><a href="#">Wigs</a><a href="#">Bundles</a><a href="#">Closures &amp; Frontals</a><a href="#">Clip-ins</a><a href="#">Gift cards</a></div>
+    <div><div class="logo">Velvet Lengths</div><p style="color:var(--muted);max-width:32ch">Human hair extensions: nano ring, tape-in and U-tip. Free tracked UK delivery.</p></div>
+    <div><h4>Shop</h4><a href="product.html?p=nano-ring">Nano Ring</a><a href="product.html?p=tape-in">Tape-In</a><a href="product.html?p=u-tip">U-Tip</a><a href="#">Gift cards</a></div>
     <div><h4>Help</h4><a href="#">Track my order</a><a href="#">Delivery</a><a href="#">Returns</a><a href="#">Hair care</a><a href="#">Contact</a></div>
     <div><h4>Brand</h4><a href="#">Our story</a><a href="#">Ambassadors</a><a href="#">Wholesale</a><a href="#">Instagram</a><a href="#">TikTok</a></div>
   </div>
@@ -320,14 +288,6 @@ const products=[
   {n:"U-Tip Keratin Fusion Extensions · 50 strands",t:"ext",cat:"u-tip",img:"images/u-tip-p4-27.jpg",href:"product.html?p=u-tip",from:24.99,lens:[12,14,16,18,20],r:5,c:0,b:"New in"},
   {n:"Seamless Tape-In Extensions · 20 pieces",t:"ext",img:"images/tape-in-p18-613.jpg",href:"product.html?p=tape-in",from:51.99,lens:[14,16,18,20,22,24],r:5,c:0,b:"New in"},
   {n:"Nano Ring Tip Extensions · 100% Virgin Remy",t:"ext",cat:"nano-ring",img:"images/nano-ring-760.jpg",href:"product.html?p=nano-ring",from:66.99,lens:[14,16,18,20,22,24],r:4.8,c:0,b:"New in"},
-  {n:"Body Wave 13×4 HD Lace Front Wig",t:"wig",tex:"body",tone:2,from:189,lens:[16,18,20,22,24],r:4.9,c:612,b:"Bestseller"},
-  {n:"Silky Straight Virgin Bundle",t:"bundle",tex:"straight",tone:1,from:49,lens:[12,14,16,18,20,22,24,26,28,30],r:4.8,c:944},
-  {n:"Deep Wave 5×5 HD Closure",t:"closure",tex:"deep",tone:0,from:69,lens:[12,14,16,18,20],r:4.8,c:201,b:"HD lace"},
-  {n:"Kinky Curly Glueless Wig",t:"wig",tex:"kinky",tone:1,from:209,lens:[16,18,20,22],r:4.9,c:338,b:"New"},
-  {n:"Water Wave Virgin Bundle",t:"bundle",tex:"water",tone:0,from:55,lens:[14,16,18,20,22,24],r:4.7,c:410},
-  {n:"Straight 13×4 HD Frontal",t:"closure",tex:"straight",tone:3,from:89,lens:[14,16,18,20],r:4.8,c:176},
-  {n:"Loose Wave 5×5 Closure Wig",t:"wig",tex:"loose",tone:2,from:169,lens:[16,18,20,22,24],r:4.8,c:257},
-  {n:"Deep Wave Virgin Bundle",t:"bundle",tex:"deep",tone:1,from:52,lens:[12,14,16,18,20,22,24,26],r:4.9,c:521,b:"Bestseller"}
 ];
 const price=(p,l)=>p.cat?priceFor(CATALOGUE[p.cat],0,p.lens.indexOf(l),0):p.t==="ext"?+(p.from+(l-p.lens[0])/2*8).toFixed(2):+(p.from+(l-p.lens[0])/2*(p.t==="bundle"?8:p.t==="wig"?20:p.t==="ext"?10:12)).toFixed(2);
 const grid=document.getElementById("grid");
@@ -346,23 +306,17 @@ function render(f){
   });
   grid.querySelectorAll("canvas").forEach(drawHair);
 }
-document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".chip").forEach(o=>o.setAttribute("aria-pressed",o===c));render(c.dataset.f)});
+false&&document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{false&&document.querySelectorAll(".chip").forEach(o=>o.setAttribute("aria-pressed",o===c));render(c.dataset.f)});
 let count=0;const toast=document.getElementById("toast");let tt;
 function addToBag(name){count++;document.getElementById("cartCount").textContent=count;toast.textContent=`Added to bag: ${name}`;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2400)}
 
-// bundle builder
-const lenBase=[159,189,229],addOn=[0,69,89],texAdj=[0,6,12];
-const seg=k=>[...document.querySelectorAll(`.seg[data-k="${k}"] button`)].findIndex(b=>b.getAttribute("aria-pressed")==="true");
-function bundle(){const full=lenBase[seg("len")]+addOn[seg("add")]+texAdj[seg("tex")],disc=seg("add")?.8:.88,v=Math.round(full*disc);
-  document.getElementById("bTotal").textContent=`£${v}`;document.getElementById("bWas").textContent=`£${full}`}
-document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{b.parentNode.querySelectorAll("button").forEach(o=>o.setAttribute("aria-pressed",o===b));bundle()});
-document.getElementById("bAdd").onclick=()=>addToBag("Bundle deal");
+
 document.getElementById("cartBtn").onclick=()=>{toast.textContent=count?`${count} item${count>1?"s":""} in your bag`:"Your bag is empty";toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2000)};
 document.getElementById("newsForm").addEventListener("submit",e=>{e.preventDefault();document.getElementById("newsOk").hidden=false});
 
 // length chart: silhouette with fall points
 function chart(){
-  const s=document.getElementById("lenChart"),pts=[[12,"Chin"],[14,"Neck"],[16,"Shoulder"],[18,"Collarbone"],[20,"Armpit"],[22,"Bra strap"],[24,"Mid-back"],[26,"Lower back"],[30,"Waist"]];
+  const s=document.getElementById("lenChart"),pts=[[12,"Chin"],[14,"Neck"],[16,"Shoulder"],[18,"Collarbone"],[20,"Armpit"],[22,"Bra strap"],[24,"Mid-back"]];
   const y=i=>40+(i-12)*12.5;
   let o=`<circle cx="120" cy="34" r="26" fill="var(--soft)" stroke="var(--muted)"/><path d="M78 300 Q80 120 120 64 Q160 120 162 300Z" fill="var(--soft)" stroke="var(--muted)"/>`;
   o+=`<path d="M92 30 Q120 0 148 30 L150 ${y(24)} Q120 ${y(24)+14} 90 ${y(24)}Z" fill="var(--accent)" opacity=".85"/>`;
@@ -370,7 +324,7 @@ function chart(){
   o+=`<text x="268" y="${y(24)+22}" font-family="Figtree, sans-serif" font-size="11" fill="var(--accent)">Shown: 24" straight</text>`;
   s.innerHTML=o;
 }
-render("all");bundle();chart();
+render("all");chart();
 const redraw=()=>document.querySelectorAll("canvas[data-tex]").forEach(drawHair);
 redraw();addEventListener("resize",()=>{clearTimeout(window._r);window._r=setTimeout(redraw,150)});
 document.fonts&&document.fonts.ready.then(redraw);
