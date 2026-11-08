@@ -319,7 +319,7 @@ function drawHair(c){
 }
 const products=[
   {n:"U-Tip Keratin Fusion Extensions · 50 strands",t:"ext",cat:"u-tip",img:"images/u-tip-p27-613.jpg",href:"product.html?p=u-tip",from:24.99,lens:[12,14,16,18,20],r:5,c:0,b:"New in"},
-  {n:"Seamless Tape-In Extensions · 20 pieces",t:"ext",img:"images/tape-in-p18-613.jpg",href:"product.html?p=tape-in",from:51.99,lens:[14,16,18,20,22,24],r:5,c:0,b:"New in"},
+  {n:"Seamless Tape-In Extensions · 20 pieces",t:"ext",cat:"tape-in",img:"images/tape-in-p18-613.jpg",href:"product.html?p=tape-in",from:51.99,lens:[14,16,18,20,22,24],r:5,c:0,b:"New in"},
   {n:"Nano Ring Tip Extensions · 100% Virgin Remy",t:"ext",cat:"nano-ring",img:"images/nano-ring-760.jpg",href:"product.html?p=nano-ring",from:66.99,lens:[14,16,18,20,22,24],r:4.8,c:0,b:"New in"},
 ];
 const price=(p,l)=>p.cat?priceFor(CATALOGUE[p.cat],0,p.lens.indexOf(l),0):p.t==="ext"?+(p.from+(l-p.lens[0])/2*8).toFixed(2):+(p.from+(l-p.lens[0])/2*(p.t==="bundle"?8:p.t==="wig"?20:p.t==="ext"?10:12)).toFixed(2);

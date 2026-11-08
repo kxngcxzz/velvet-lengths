@@ -20,13 +20,20 @@ const CATALOGUE={
   "tape-in":{
     name:"Seamless Tape-In Extensions",eyebrow:"Remy human hair · skin weft",type:"ext",
     supplier:"VeSunny Official Store (AliExpress 4001270122877)",
-    lens:[14,16,18,20,22,24],step:8,wts:[["20 pieces",1]],
+    lens:[14,16,18,20,22,24],
+    // two price tiers from the listing (highest cost seen per length in each tier, so every colour keeps its margin)
+    costs:{solid:[22.26,24.13,27.03,31.73,36.30,42.03],blend:[25.39,30.79,36.82,43.06,46.71,53.68]},
+    wts:[["20 pieces",1]],
     colours:[
-      ["1","Jet black",20.70,"tape-in-1"],["1b","Natural black",22.26,"tape-in-1b"],["2","Darkest brown",22.26,"tape-in-2"],
-      ["33","Auburn",23.30,"tape-in-33"],["350","Copper",23.30,"tape-in-350"],["2-2-6","Dark brown to chestnut balayage",23.40],
-      ["1B-4-18","Black to ash brown ombre",23.55,"tape-in-1b-4-18"],["P4-27","Brown with honey highlights",22.51,"tape-in-p4-27"],
-      ["6-60-6","Light brown with platinum balayage",23.30,"tape-in-6-60-6"],["P18-613","Ash and bleach blonde mix",24.08,"tape-in-p18-613"],
-      ["1b-silver-1b","Black with silver streak",24.23,"tape-in-1b-silver-1b"],["Ba8A-60","Ash brown to platinum balayage",25.39]],
+      ["1","Jet black","solid","tape-in-1"],["1b","Natural black","solid","tape-in-1b"],["2","Darkest brown","solid","tape-in-2"],
+      ["4","Medium brown","solid"],["33","Auburn","blend","tape-in-33"],["350","Copper","blend","tape-in-350"],
+      ["2-2-6","Dark brown to chestnut balayage","blend"],["1B-4-18","Black to ash brown ombre","blend","tape-in-1b-4-18"],
+      ["P4-27","Brown with honey highlights","blend","tape-in-p4-27"],["4-27-4","Brown with honey balayage","blend"],
+      ["6-60-6","Light brown with platinum balayage","blend","tape-in-6-60-6"],["3-8-22","Brown to golden blonde balayage","blend"],
+      ["4-14-60","Brown to platinum ombre","blend"],["60","Platinum blonde","blend"],
+      ["P18-613","Ash and bleach blonde mix","blend","tape-in-p18-613"],["P16-22","Golden blonde highlights","blend"],
+      ["18-22-60","Ash to platinum balayage","blend"],["1b-silver-1b","Black with silver streak","blend","tape-in-1b-silver-1b"],
+      ["Ba8A-60","Ash brown to platinum balayage","blend"]],
     blurb:"Double-sided seamless skin wefts that lie completely flat against the scalp, so they look like your own roots. Each pack has 20 pieces of soft, shiny Remy human hair that can be straightened and curled. Quick to fit and remove, and reusable with fresh tape for up to 6 months.",
     specs:[["Hair","Remy human hair"],["Method","Double-sided tape-in, seamless skin weft"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","20 pieces"],["Lifespan","Up to 6 months, re-taping as needed"],["Full head","40–60 pieces (2–3 packs)"]]
   },
