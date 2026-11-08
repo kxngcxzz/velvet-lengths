@@ -1,11 +1,13 @@
 // Product catalogue. Prices = supplier cost x 2.5, rounded up to £x.99.
-// cost = supplier price for the shortest length; step = extra per 2" of length (estimate, confirm with supplier).
+// costs = supplier price per length (from the listing). Where a product has no costs list, cost = colour price for the
+// shortest length and step = estimated extra per 2" (confirm with supplier).
+// Pack entries: [label, multiplier, {length: exact cost}] - exact costs override the multiplier.
 const sell=c=>Math.ceil(c*2.5)-0.01;
 const CATALOGUE={
   "nano-ring":{
     name:"Nano Ring Tip Extensions",eyebrow:"100% virgin Remy human hair",type:"ext",
     supplier:"DIYOMO Official Store (AliExpress 1005012462195766)",
-    lens:[14,16,18,20,22,24],step:10,wts:[["50g",1],["100g",1.9]],
+    lens:[14,16,18,20,22,24],costs:[26.71,28.85,30.99,33.13,34.73,38.46],wts:[["50g",1],["100g",1.81,{24:69.45}]],
     colours:[
       ["01","Jet black",26.71],["02","Darkest brown",26.71],["04","Chestnut brown",26.71,"nano-ring-04"],["07","Light brown",26.71],
       ["1660","Brown balayage",26.71],["18613","Ash and bleach blonde",26.71],["760","Ash blonde balayage",26.71,"nano-ring-760"],
@@ -27,3 +29,14 @@ const CATALOGUE={
     specs:[["Hair","Remy human hair"],["Method","Double-sided tape-in, seamless skin weft"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","20 pieces"],["Lifespan","Up to 6 months, re-taping as needed"],["Full head","40–60 pieces (2–3 packs)"]]
   }
 };
+
+function costFor(P,c,l,w){
+  const pack=P.wts[w],len=P.lens[l];
+  if(pack[2]&&pack[2][len]) return pack[2][len];
+  const base=P.costs?P.costs[l]:P.colours[c][2];
+  return base*pack[1];
+}
+function priceFor(P,c,l,w){
+  const v=P.costs?sell(costFor(P,c,l,w)):Math.ceil((sell(P.colours[c][2])+l*P.step)*P.wts[w][1])-0.01;
+  return +v.toFixed(2);
+}

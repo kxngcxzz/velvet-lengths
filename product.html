@@ -259,7 +259,7 @@ function draw(){
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{c=+b.dataset.i;draw()});
   const img=C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
   $("colName").textContent=`${C[0]} · ${C[1]}`+(C[3]?"":" (photo coming soon)");
-  const v=Math.ceil((sell(C[2])+l*P.step)*P.wts[w][1])-0.01,was=Math.ceil(v*1.3)-0.01;
+  const v=priceFor(P,c,l,w),was=Math.ceil(v*1.3)-0.01;
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("was").textContent=`£${(was*q).toFixed(2)}`;$("klarna").textContent=`or 3 payments of £${(v*q/3).toFixed(2)} with Klarna`;$("q").textContent=q;
 }
 $("minus").onclick=()=>{q=Math.max(1,q-1);draw()};$("plus").onclick=()=>{q++;draw()};
