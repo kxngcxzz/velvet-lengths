@@ -30,9 +30,9 @@ const CATALOGUE={
       ["2-2-6","Dark brown to chestnut balayage","blend"],["1B-4-18","Black to ash brown ombre","blend","tape-in-1b-4-18"],
       ["P4-27","Brown with honey highlights","blend","tape-in-p4-27"],["4-27-4","Brown with honey balayage","blend"],
       ["6-60-6","Light brown with platinum balayage","blend","tape-in-6-60-6"],["3-8-22","Brown to golden blonde balayage","blend"],
-      ["4-14-60","Brown to platinum ombre","blend"],["60","Platinum blonde","blend"],
+      ["4-14-60","Brown to platinum ombre","blend","tape-in-4-14-60"],["60","Platinum blonde","blend"],
       ["P18-613","Ash and bleach blonde mix","blend","tape-in-p18-613"],["P16-22","Golden blonde highlights","blend"],
-      ["18-22-60","Ash to platinum balayage","blend"],["1b-silver-1b","Black with silver streak","blend","tape-in-1b-silver-1b"],
+      ["18-22-60","Ash to platinum balayage","blend","tape-in-18-22-60"],["1b-silver-1b","Black with silver streak","blend","tape-in-1b-silver-1b"],
       ["Ba8A-60","Ash brown to platinum balayage","blend"]],
     blurb:"Double-sided seamless skin wefts that lie completely flat against the scalp, so they look like your own roots. Each pack has 20 pieces of soft, shiny Remy human hair that can be straightened and curled. Quick to fit and remove, and reusable with fresh tape for up to 6 months.",
     specs:[["Hair","Remy human hair"],["Method","Double-sided tape-in, seamless skin weft"],["Texture","Silky straight"],["Lengths",'14" to 24"'],["Pack","20 pieces"],["Lifespan","Up to 6 months, re-taping as needed"],["Full head","40–60 pieces (2–3 packs)"]]
