@@ -343,10 +343,10 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
   <p style="color:var(--muted);font-size:12px;margin-top:20px">© 2026 Velvet Lengths.</p>
 </div></footer>
 
-<div class="toast" id="toast" hidden></div>
 
 <div class="toast" id="toast" hidden></div>
 <script src="products.js"></script>
+<script src="cart.js"></script>
 <script>
 const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
 const $=x=>document.getElementById(x);
@@ -366,7 +366,7 @@ function draw(){
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("klarna").textContent=`or 3 payments of £${(v*q/3).toFixed(2)} with Klarna`;$("q").textContent=q;
 }
 $("minus").onclick=()=>{q=Math.max(1,q-1);draw()};$("plus").onclick=()=>{q++;draw()};
-let n=0,t;$("add").onclick=()=>{n+=q;$("cartCount").textContent=n;const el=$("toast");el.textContent=`Added to bag: ${q} × ${P.colours[c][0]}, ${P.lens[l]}", ${P.wts[w][0]}`;el.hidden=false;clearTimeout(t);t=setTimeout(()=>el.hidden=true,2400)};
+$("add").onclick=()=>{const C=P.colours[c];Bag.add({id:id,name:P.name,variant:`Colour ${C[0]} · ${P.lens[l]}" · ${P.wts[w][0]}`,price:priceFor(P,c,l,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:q});q=1;draw()};
 draw();
 $("guides").innerHTML=(P.guides||[]).map(g=>`<figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="images/${g[0]}.jpg" alt="${g[1]}" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)"><figcaption class="eyebrow">${g[1]}</figcaption></figure>`).join("");
 

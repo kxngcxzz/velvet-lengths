@@ -321,6 +321,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 <div class="toast" id="toast" hidden></div>
 
 <script src="products.js"></script>
+<script src="cart.js"></script>
 <script>
 const tones=[["#2a1a14","#4a3024"],["#1c1210","#3b2620"],["#3a2418","#6a4630"],["#5a3a24","#9a7048"]];
 const shapes={straight:[0,0],body:[18,.9],loose:[12,.6],deep:[9,2.2],water:[7,3.2],kinky:[5,6]};
@@ -355,17 +356,15 @@ function render(f){
     <div class="meta"><span class="price"></span>${p.c?`<span class="stars" aria-label="${p.r} out of 5">${stars} ${p.c}</span>`:`<span class="stars"><i>New</i></span>`}</div><span class="klarna"></span>`;
     const upd=()=>{const v=price(p,sel),w=p.was?+(v+(p.was-p.from)).toFixed(2):0;el.querySelector(".price").innerHTML=`£${v}${w?`<s>£${w}</s>`:""}`;el.querySelector(".klarna").textContent=`or 3 payments of £${(v/3).toFixed(2)} with Klarna`};
     el.querySelectorAll(".lengths button").forEach(b=>b.onclick=()=>{sel=+b.dataset.l;el.querySelectorAll(".lengths button").forEach(o=>o.setAttribute("aria-pressed",o===b));upd()});
-    el.querySelector(".quick").onclick=()=>addToBag(`${p.n}, ${sel}"`);
+    el.querySelector(".quick").onclick=()=>{const C=p.cat?CATALOGUE[p.cat].colours[0]:null;Bag.add({id:p.cat||p.n,name:p.cat?CATALOGUE[p.cat].name:p.n,variant:(C?`Colour ${C[0]} · `:"")+`${sel}"`+(p.cat?` · ${CATALOGUE[p.cat].wts[0][0]}`:""),price:price(p,sel),img:C&&C[3]?`images/${C[3]}.jpg`:p.img,qty:1})};
     upd();grid.appendChild(el);
   });
   grid.querySelectorAll("canvas").forEach(drawHair);
 }
 false&&document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{false&&document.querySelectorAll(".chip").forEach(o=>o.setAttribute("aria-pressed",o===c));render(c.dataset.f)});
-let count=0;const toast=document.getElementById("toast");let tt;
-function addToBag(name){count++;document.getElementById("cartCount").textContent=count;toast.textContent=`Added to bag: ${name}`;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2400)}
 
 
-document.getElementById("cartBtn").onclick=()=>{toast.textContent=count?`${count} item${count>1?"s":""} in your bag`:"Your bag is empty";toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2000)};
+
 document.getElementById("newsForm").addEventListener("submit",e=>{e.preventDefault();document.getElementById("newsOk").hidden=false});
 
 // length chart: silhouette with fall points
