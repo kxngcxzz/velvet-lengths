@@ -216,6 +216,13 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
   .cols>div:first-child{grid-column:1/-1}
 }
 @media (max-width:600px) and (hover:none){.card:hover .quick{transform:none}}
+
+.swatches-row{display:flex;flex-wrap:wrap;gap:6px}
+.swatches-row button{width:28px;height:28px;border-radius:50%;padding:0;border:1.5px solid var(--line);background:#fff;overflow:hidden;outline-offset:2px}
+.swatches-row button img{width:100%;height:100%;object-fit:cover;transform:scale(1.8)}
+.swatches-row button[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink)}
+.colour-name{font-size:12px;color:var(--muted);margin-top:-4px}
+@media (max-width:600px){.swatches-row button{width:26px;height:26px}}
 </style>
 </head><body>
 
@@ -321,6 +328,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 <div class="toast" id="toast" hidden></div>
 
 <script src="products.js"></script>
+<script src="swatches.js"></script>
 <script src="cart.js"></script>
 <script>
 const tones=[["#2a1a14","#4a3024"],["#1c1210","#3b2620"],["#3a2418","#6a4630"],["#5a3a24","#9a7048"]];
@@ -350,13 +358,22 @@ function render(f){
   grid.innerHTML="";
   products.filter(p=>f==="all"||p.t===f).forEach(p=>{
     const el=document.createElement("article");el.className="card";let sel=p.lens[0];
+    const P=p.cat?CATALOGUE[p.cat]:null,cols=P?P.colours.filter(x=>x[3]):[];
+    let ci=P?Math.max(0,cols.findIndex(x=>p.img.endsWith(x[3]+".jpg"))):0;
     const stars="★".repeat(Math.round(p.r))+"<i>"+"★".repeat(5-Math.round(p.r))+"</i>";
-    el.innerHTML=`<div class="media">${p.img?`<a href="${p.href}"><img src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;background:#fff"></a>`:`<canvas data-tex="${p.tex}" data-tone="${p.tone}" aria-hidden="true"></canvas>`}${p.b?`<span class="badge ${p.b==="Bestseller"?"hot":""}">${p.b}</span>`:""}<button class="btn quick">Add to bag</button></div>
-    <h3>${p.n}</h3><div class="lengths" role="group" aria-label="Length">${p.lens.map(l=>`<button aria-pressed="${l===sel}" data-l="${l}">${l}"</button>`).join("")}</div>
-    <div class="meta"><span class="price"></span>${p.c?`<span class="stars" aria-label="${p.r} out of 5">${stars} ${p.c}</span>`:`<span class="stars"><i>New</i></span>`}</div><span class="klarna"></span>`;
-    const upd=()=>{const v=price(p,sel),w=p.was?+(v+(p.was-p.from)).toFixed(2):0;el.querySelector(".price").innerHTML=`£${v}${w?`<s>£${w}</s>`:""}`;el.querySelector(".klarna").textContent=`or 3 payments of £${(v/3).toFixed(2)} with Klarna`};
+    el.innerHTML=`<div class="media"><a href="${p.href}"><img class="card-img" src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;background:#fff"></a>${p.b?`<span class="badge">${p.b}</span>`:""}<button class="btn quick">Add to bag</button></div>
+    <h3>${P?P.name:p.n}</h3>
+    ${P?`<div class="swatches-row" role="group" aria-label="Colour">${cols.map((x,i)=>`<button aria-pressed="${i===ci}" aria-label="${x[0]}, ${x[1]}" title="${x[0]} · ${x[1]}" data-i="${i}"><span style="display:block;width:100%;height:100%;background:${(g=>`linear-gradient(135deg,${g[0]} 0%,${g[1]} 55%,${g[2]} 100%)`)(SWATCH[x[3]]||["#ccc","#ccc","#ccc"])}"></span></button>`).join("")}</div><div class="colour-name"></div>`:""}
+    <div class="lengths" role="group" aria-label="Length">${p.lens.map(l=>`<button aria-pressed="${l===sel}" data-l="${l}">${l}"</button>`).join("")}</div>
+    <div class="meta"><span class="price"></span><span class="stars"><i>New</i></span></div><span class="klarna"></span>`;
+    const realIdx=()=>P.colours.indexOf(cols[ci]);
+    const cost=()=>P?priceFor(P,realIdx(),P.lens.indexOf(sel),0):price(p,sel);
+    const upd=()=>{const v=cost();el.querySelector(".price").textContent=`£${v.toFixed(2)}`;el.querySelector(".klarna").textContent=`or 3 payments of £${(v/3).toFixed(2)} with Klarna`;
+      if(P){const C=cols[ci];el.querySelector(".card-img").src=`images/${C[3]}.jpg`;el.querySelector(".card-img").alt=`${P.name} in ${C[1]}`;el.querySelector(".colour-name").textContent=`${C[0]} · ${C[1]}`;
+        el.querySelector(".media a").href=`${p.href}`;el.querySelectorAll(".swatches-row button").forEach((b,i)=>b.setAttribute("aria-pressed",i===ci))}};
+    el.querySelectorAll(".swatches-row button").forEach(b=>b.onclick=()=>{ci=+b.dataset.i;upd()});
     el.querySelectorAll(".lengths button").forEach(b=>b.onclick=()=>{sel=+b.dataset.l;el.querySelectorAll(".lengths button").forEach(o=>o.setAttribute("aria-pressed",o===b));upd()});
-    el.querySelector(".quick").onclick=()=>{const C=p.cat?CATALOGUE[p.cat].colours[0]:null;Bag.add({id:p.cat||p.n,name:p.cat?CATALOGUE[p.cat].name:p.n,variant:(C?`Colour ${C[0]} · `:"")+`${sel}"`+(p.cat?` · ${CATALOGUE[p.cat].wts[0][0]}`:""),price:price(p,sel),img:C&&C[3]?`images/${C[3]}.jpg`:p.img,qty:1})};
+    el.querySelector(".quick").onclick=()=>{const C=P?cols[ci]:null;Bag.add({id:p.cat||p.n,name:P?P.name:p.n,variant:(C?`Colour ${C[0]} · `:"")+`${sel}"`+(P?` · ${P.wts[0][0]}`:""),price:cost(),img:C?`images/${C[3]}.jpg`:p.img,qty:1})};
     upd();grid.appendChild(el);
   });
   grid.querySelectorAll("canvas").forEach(drawHair);
