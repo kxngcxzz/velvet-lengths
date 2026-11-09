@@ -114,10 +114,10 @@ const CATALOGUE={
     name:"Aluminium Cutting Comb",eyebrow:"Lightweight salon comb with fine and wide teeth",type:"acc",colourWord:"finishes",
     supplier:"AliExpress 1005007264441773",
     lens:[0],step:0,wts:[["Small · 17.8cm",1],["Large · 21.5cm",1]],
-    colours:[["Gold","Gold",0.99,"metal-comb-gold"],["Rose gold","Rose gold",0.99,"metal-comb-rose-gold"],["Silver","Silver",0.99,"metal-comb-silver"],["Black","Black",0.99,"metal-comb-black"]],
+    colours:[["Gold","Gold",0.99,"metal-comb-gold"],["Rose gold","Rose gold",0.99,"metal-comb-rose-gold"],["Silver","Silver",0.99,"metal-comb-silver"],["Black","Black",0.99,"metal-comb-black"],["Bronze","Bronze",0.99,"metal-comb-bronze"]],
     blurb:"A light, strong aluminium comb with fine teeth at one end and wider teeth at the other. Use it for clean partings and neat sections when fitting extensions, then for smoothing and styling. The metal finish won't hold static and wipes clean easily.",
-    specs:[["Material","Aluminium alloy"],["Small","17.8 × 2.4 × 2cm"],["Large","21.5 × 2.6 × 2.4cm"],["Finishes","Gold, rose gold, silver, black"],["Good for","Parting, sectioning, cutting and styling"]],
-    gallery:[["metal-comb-large","Large size: 21.5cm"]]
+    specs:[["Material","Aluminium alloy"],["Small","17.8 × 2.4 × 2cm"],["Large","21.5 × 2.6 × 2.4cm"],["Finishes","Gold, rose gold, silver, black, bronze"],["Good for","Parting, sectioning, cutting and styling"]],
+    gallery:[["metal-comb-large","Large size in gold: 21.5cm"],["metal-comb-large-rose-gold","Large size in rose gold"],["metal-comb-large-silver","Large size in silver"],["metal-comb-large-black","Large size in black"]]
   }
 };
 
