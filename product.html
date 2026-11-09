@@ -378,10 +378,10 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
 
 <div class="toast" id="toast" hidden></div>
-<script src="products.js?v=202611091939"></script>
-<script src="swatches.js?v=202611091939"></script>
-<script src="cart.js?v=202611091939"></script>
-<script src="nav.js?v=202611091939"></script>
+<script src="products.js?v=202611091943"></script>
+<script src="swatches.js?v=202611091943"></script>
+<script src="cart.js?v=202611091943"></script>
+<script src="nav.js?v=202611091943"></script>
 <script>
 const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
 const $=x=>document.getElementById(x);
@@ -392,7 +392,7 @@ const swatch=x=>x[3]?`<img src="images/${x[3]}.jpg" alt="">`:`<span style="displ
 function opts(el,arr,get,set,label){el.innerHTML="";arr.forEach((v,i)=>{const b=document.createElement("button");b.textContent=label(v);b.setAttribute("aria-pressed",i===get());b.onclick=()=>{set(i);draw()};el.appendChild(b)})}
 function draw(){
   const C=P.colours[c];
-  $("cols").innerHTML=P.colours.map((v,i)=>{const g=(typeof SWATCH!=="undefined"&&SWATCH[v[3]])||["#bbb","#ccc","#ddd"];return `<button aria-pressed="${i===c}" aria-label="${v[0]}, ${v[1]}" title="${v[0]} · ${v[1]}" data-i="${i}"><span style="background:linear-gradient(135deg,${g[0]},${g[1]} 55%,${g[2]})"></span></button>`}).join("");
+  $("cols").innerHTML=P.colours.map((v,i)=>{const g=(v[4])||(typeof SWATCH!=="undefined"&&SWATCH[v[3]])||["#bbb","#ccc","#ddd"];return `<button aria-pressed="${i===c}" aria-label="${v[0]}, ${v[1]}" title="${v[0]} · ${v[1]}" data-i="${i}"><span style="background:linear-gradient(135deg,${g[0]},${g[1]} 55%,${g[2]})"></span></button>`}).join("");
   $("cols").querySelectorAll("button").forEach(b=>b.onclick=()=>{c=+b.dataset.i;extra=null;draw()});opts($("lens"),P.lens,()=>l,i=>l=i,v=>v+'"');opts($("wts"),P.wts,()=>w,i=>w=i,v=>v[0]);
   $("thumbs").innerHTML=[c].map(i=>{const v=P.colours[i];return v[3]?`<button aria-pressed="${!extra}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:""}).join("")+(P.gallery||[]).map((g,i)=>`<button aria-pressed="${extra===g[0]}" aria-label="${g[1]}" data-g="${g[0]}"><img src="images/${g[0]}.jpg" alt=""></button>`).join("");
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(b.dataset.g){extra=b.dataset.g}else{c=+b.dataset.i;extra=null}draw()});
