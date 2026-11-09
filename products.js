@@ -76,6 +76,17 @@ const CATALOGUE={
     specs:[["Material","Copper, coated colour finish"],["Size","2.5mm × 1.5mm × 2mm"],["Pack","1000 beads in a clear pot"],["Use with","Nano ring tip extensions"],["Colours","Black, dark brown, brown, light brown, blonde"]],
     gallery:[["nano-beads-range","All five colours"],["nano-beads-size","Bead size: 2.5mm × 1.5mm × 2mm"],["nano-beads-pots","Beads in their pots"]],
     guides:[["nano-beads-how-to","How to fit a ring extension, step by step"]]
+  },
+  "comb-set":{
+    category:"accessories",
+    name:"10-Piece Salon Comb Set",eyebrow:"Sectioning, parting and styling combs",type:"acc",colourWord:"set",
+    supplier:"AliExpress 1005012311616407",
+    lens:[0],step:0,wts:[["10 combs",1]],
+    colours:[["Black","Black",2.20,"comb-set-main"]],
+    blurb:"Everything you need to section, part and style around your extensions. The set includes tail and needle-tail combs for neat partings when fitting, pick combs for lifting at the root, and wide-tooth combs for gently detangling extensions without pulling on the bonds.",
+    specs:[["Material","Durable PP plastic, anti-static"],["In the set","10 combs"],["Includes","Needle-tail, pointed-tail, wide-tooth tail, metal and plastic five-pin, wide-tooth rake, double-sided, large wide-tooth and multipurpose combs"],["Colour","Black"],["Good for","Sectioning when fitting, detangling extensions, everyday styling"]],
+    gallery:[["comb-set-labelled","What each comb is for"],["comb-set-flatlay","All 10 combs"]],
+    guides:[["comb-set-uses","Picking up, sectioning and colouring with the tail combs"]]
   }
 };
 
