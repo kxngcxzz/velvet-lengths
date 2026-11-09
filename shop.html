@@ -323,9 +323,9 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   <div class="pay"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>SHOP PAY</span><span>KLARNA</span><span>CLEARPAY</span><span>PAYPAL</span></div>
   <p style="color:var(--muted);font-size:12px;margin-top:20px">© 2026 Velvet Lengths.</p>
 </div></footer>
-<script src="products.js?v=202611091835"></script>
-<script src="cart.js?v=202611091835"></script>
-<script src="nav.js?v=202611091835"></script>
+<script src="products.js?v=202611091903"></script>
+<script src="cart.js?v=202611091903"></script>
+<script src="nav.js?v=202611091903"></script>
 <script>
 (()=>{const id=new URLSearchParams(location.search).get("c")||"extensions",C=CATEGORIES.find(x=>x.id===id)||CATEGORIES[0];
 document.title=`${C.name} · Velvet Lengths`;
@@ -333,7 +333,7 @@ shCrumb.textContent="Shop";shTitle.textContent=C.name;shBlurb.textContent=C.blur
 shTabs.innerHTML=CATEGORIES.map(x=>`<a href="shop.html?c=${x.id}" role="tab" aria-selected="${x.id===C.id}">${x.name}</a>`).join("");
 const items=Object.entries(CATALOGUE).filter(([,p])=>p.category===C.id);
 shGrid.innerHTML=items.length?items.map(([k,p])=>{const img=p.colours.find(x=>x[3])[3],from=Math.min(...p.colours.map((_,i)=>priceFor(p,i,0,0)));
- return `<a class="pcard" href="product.html?p=${k}"><div class="im"><img src="images/${img}.jpg" alt="${p.name}" loading="lazy"></div><h2>${p.name}</h2><p>${p.colours.length} shades · ${p.lens[0]}–${p.lens[p.lens.length-1]}"</p><b>from £${from.toFixed(2)}</b></a>`}).join("")
+ return `<a class="pcard" href="product.html?p=${k}"><div class="im"><img src="images/${img}.jpg" alt="${p.name}" loading="lazy"></div><h2>${p.name}</h2><p>${p.colours.length} ${p.colourWord||"shades"}${p.lens[0]?` · ${p.lens[0]}–${p.lens[p.lens.length-1]}"`:""}</p><b>from £${from.toFixed(2)}</b></a>`}).join("")
  :`<div class="empty"><h2>Coming soon</h2><p style="color:var(--muted);margin:0;max-width:44ch">We're adding ${C.name.toLowerCase()} shortly. In the meantime, browse our hair extensions.</p><a class="btn" href="shop.html?c=extensions">Shop hair extensions</a></div>`;})();
 </script>
 </body></html>

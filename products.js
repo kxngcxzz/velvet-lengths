@@ -62,7 +62,19 @@ const CATALOGUE={
     blurb:"Pre-bonded U-tips with Italian-style keratin, fused strand by strand for a natural, flexible finish that moves like your own hair. Each strand is 0.6g of soft Remy human hair that can be heat styled, curled and washed as normal. Lasts 3–4 months between refits.",
     specs:[["Hair","Remy human hair"],["Method","U-tip keratin fusion (hot fusion)"],["Texture","Silky straight"],["Lengths",'12" to 20" (30–50cm)'],["Pack","50 strands (30g) or 100 strands (60g)"],["Lifespan","3–4 months between refits"],["Full head","150–200 strands"]]
   }
-
+,
+  "nano-beads":{
+    category:"accessories",
+    name:"Nano Ring Beads · 1000 pack",eyebrow:"Copper nano rings for fitting and refitting",type:"acc",colourWord:"colours",
+    supplier:"AliExpress 1005009176917186",
+    lens:[0],step:0,wts:[["1000 beads",1]],
+    colours:[
+      ["Black","Black",1.71,"nano-beads-black"],["Dark brown","Dark brown",2.07,"nano-beads-dark-brown"],
+      ["Brown","Brown",1.84,"nano-beads-brown"],["Light brown","Light brown",2.07,"nano-beads-light-brown"],
+      ["Blonde","Blonde",2.07,"nano-beads-blonde"]],
+    blurb:"Tiny copper nano rings used to fit nano ring tip extensions and to refit them when they grow out. Each pot holds 1000 beads, enough for several full heads. Pick the colour closest to your roots so the rings disappear into your hair.",
+    specs:[["Material","Copper, coated colour finish"],["Size","2.5mm × 1.5mm × 2mm"],["Pack","1000 beads in a clear pot"],["Use with","Nano ring tip extensions"],["Colours","Black, dark brown, brown, light brown, blonde"]]
+  }
 };
 
 function costFor(P,c,l,w){

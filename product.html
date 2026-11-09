@@ -334,7 +334,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
       <div class="bigprice"><span id="price"></span></div>
       <p class="klarna" id="klarna"></p>
       <div class="opt"><h2>Colour: <span id="colName"></span></h2><div class="opts dots" id="cols"></div></div>
-      <div class="opt"><h2>Length</h2><div class="opts" id="lens"></div></div>
+      <div class="opt" id="lenOpt"><h2>Length</h2><div class="opts" id="lens"></div></div>
       <div class="opt"><h2>Pack</h2><div class="opts" id="wts"></div></div>
       <div class="buy"><div class="qty"><button id="minus" aria-label="Fewer">−</button><output id="q">1</output><button id="plus" aria-label="More">+</button></div><button class="btn" id="add">Add to bag</button></div>
       <div class="ship"><b>Free tracked UK delivery</b><span>Usually arrives in 7–14 days. Tracking emailed when dispatched.</span><span>Pay in 3 interest-free with Klarna.</span></div>
@@ -378,10 +378,10 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
 
 <div class="toast" id="toast" hidden></div>
-<script src="products.js?v=202611091835"></script>
-<script src="swatches.js?v=202611091835"></script>
-<script src="cart.js?v=202611091835"></script>
-<script src="nav.js?v=202611091835"></script>
+<script src="products.js?v=202611091903"></script>
+<script src="swatches.js?v=202611091903"></script>
+<script src="cart.js?v=202611091903"></script>
+<script src="nav.js?v=202611091903"></script>
 <script>
 const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
 const $=x=>document.getElementById(x);
@@ -397,12 +397,13 @@ function draw(){
   $("thumbs").innerHTML=[c].map(i=>{const v=P.colours[i];return v[3]?`<button aria-pressed="${!extra}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:""}).join("")+(P.gallery||[]).map((g,i)=>`<button aria-pressed="${extra===g[0]}" aria-label="${g[1]}" data-g="${g[0]}"><img src="images/${g[0]}.jpg" alt=""></button>`).join("");
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(b.dataset.g){extra=b.dataset.g}else{c=+b.dataset.i;extra=null}draw()});
   const img=extra||C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
-  $("colName").textContent=`${C[0]} · ${C[1]}`+(C[3]?"":" (photo coming soon)");
+  $("colName").textContent=(C[0]===C[1]?C[0]:`${C[0]} · ${C[1]}`)+(C[3]?"":" (photo coming soon)");
   const v=priceFor(P,c,l,w);
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("klarna").textContent=`or 3 payments of £${(v*q/3).toFixed(2)} with Klarna`;$("q").textContent=q;
 }
 $("minus").onclick=()=>{q=Math.max(1,q-1);draw()};$("plus").onclick=()=>{q++;draw()};
-$("add").onclick=()=>{const C=P.colours[c];Bag.add({id:id,name:P.name,variant:`Colour ${C[0]} · ${P.lens[l]}" · ${P.wts[w][0]}`,price:priceFor(P,c,l,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:q});q=1;draw()};
+$("add").onclick=()=>{const C=P.colours[c];Bag.add({id:id,name:P.name,variant:(P.lens[0]?`Colour ${C[0]} · ${P.lens[l]}" · `:`${C[0]} · `)+P.wts[w][0],price:priceFor(P,c,l,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:q});q=1;draw()};
+$("lenOpt").hidden=!P.lens[0];
 draw();
 $("guides").innerHTML=(P.guides||[]).map(g=>`<figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="images/${g[0]}.jpg" alt="${g[1]}" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)"><figcaption class="eyebrow">${g[1]}</figcaption></figure>`).join("");
 

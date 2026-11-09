@@ -46,7 +46,7 @@
 
   const nav=document.querySelector('nav[aria-label="Main"]');if(!nav)return;
   nav.className="vl-nav";
-  const ddItems=c=>c.items.length?c.items.map(([id,p])=>`<a href="product.html?p=${id}"${cur("product.html?p="+id)}>${p.name.replace(/ Extensions$/,"")}<small>${p.colours.length} shades</small></a>`).join("")+`<hr><a href="${catLink(c)}"${cur(catLink(c))}>Shop all ${c.name.toLowerCase()}</a>`:`<a href="${catLink(c)}"${cur(catLink(c))}>${c.name}<small>Coming soon</small></a>`;
+  const ddItems=c=>c.items.length?c.items.map(([id,p])=>`<a href="product.html?p=${id}"${cur("product.html?p="+id)}>${p.name.replace(/ Extensions$/,"")}<small>${p.colours.length} ${p.colourWord||"shades"}</small></a>`).join("")+`<hr><a href="${catLink(c)}"${cur(catLink(c))}>Shop all ${c.name.toLowerCase()}</a>`:`<a href="${catLink(c)}"${cur(catLink(c))}>${c.name}<small>Coming soon</small></a>`;
   nav.innerHTML=cats.map((c,i)=>c.items.length?`<div class="vl-dd"><button aria-expanded="false" aria-haspopup="true">${c.name}</button><div class="vl-menu">${ddItems(c)}</div></div>`:`<a href="${catLink(c)}"${cur(catLink(c))}>${c.name} <span class="vl-soon">Soon</span></a>`).join("")+
     `<a href="index.html#guide">Length guide</a><div class="vl-dd"><button aria-expanded="false" aria-haspopup="true">Help</button><div class="vl-menu">${help.slice(0,4).map(([h,t])=>`<a href="${h}"${cur(h)}>${t}</a>`).join("")}</div></div>`;
   nav.querySelectorAll(".vl-dd>button").forEach(b=>b.onclick=e=>{e.stopPropagation();const d=b.parentNode,o=!d.classList.contains("open");nav.querySelectorAll(".vl-dd").forEach(x=>{x.classList.remove("open");x.firstChild.setAttribute("aria-expanded","false")});if(o){d.classList.add("open");b.setAttribute("aria-expanded","true")}});
@@ -57,7 +57,7 @@
   const scrim=document.createElement("div");scrim.className="vl-scrim";
   const dr=document.createElement("aside");dr.className="vl-drawer";dr.setAttribute("aria-label","Menu");dr.setAttribute("aria-hidden","true");
   dr.innerHTML=`<header><a class="logo" href="index.html" style="border:0;padding:0;font-size:22px">Velvet Lengths</a><button class="vl-x" aria-label="Close menu">×</button></header>
-    ${cats.map(c=>`<h3>${c.name}</h3>${c.items.length?c.items.map(([id,p])=>`<a href="product.html?p=${id}"${cur("product.html?p="+id)}>${p.name}<small style="color:var(--muted);font-size:12px">${p.colours.length} shades</small></a>`).join("")+`<a href="${catLink(c)}"${cur(catLink(c))}>Shop all</a>`:`<a href="${catLink(c)}"${cur(catLink(c))}>${c.name} <span class="vl-soon">Coming soon</span></a>`}`).join("")}
+    ${cats.map(c=>`<h3>${c.name}</h3>${c.items.length?c.items.map(([id,p])=>`<a href="product.html?p=${id}"${cur("product.html?p="+id)}>${p.name}<small style="color:var(--muted);font-size:12px">${p.colours.length} ${p.colourWord||"shades"}</small></a>`).join("")+`<a href="${catLink(c)}"${cur(catLink(c))}>Shop all</a>`:`<a href="${catLink(c)}"${cur(catLink(c))}>${c.name} <span class="vl-soon">Coming soon</span></a>`}`).join("")}
     <h3>Help</h3>${help.map(([h,t])=>`<a href="${h}"${cur(h)}>${t}</a>`).join("")}`;
   document.body.append(scrim,dr);
   const open=()=>{dr.classList.add("open");scrim.classList.add("open");dr.setAttribute("aria-hidden","false");burger.setAttribute("aria-expanded","true");dr.querySelector(".vl-x").focus()};
