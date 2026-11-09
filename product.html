@@ -230,6 +230,14 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 .rv-form textarea{min-height:110px;resize:vertical}
 .rate{display:flex;gap:4px}.rate button{background:none;border:0;font-size:28px;line-height:1;color:var(--line);padding:2px}.rate button[aria-pressed="true"]{color:var(--gold)}
 .rv-msg{font-size:14px;margin:0}
+
+.opts.dots{gap:8px}
+.opts.dots button{width:36px;height:36px;padding:0;border-radius:50%;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.opts.dots button[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink);background:#fff}
+.opts.dots span{display:block;width:100%;height:100%}
+#guides{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),480px))!important;justify-content:start}
+.pdp{align-items:start}.gallery{position:sticky;top:96px}
+@media (max-width:860px){.gallery{position:static}}
 </style>
 </head><body>
 
@@ -242,7 +250,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
       <a href="product.html?p=nano-ring">Nano Ring</a><a href="product.html?p=tape-in">Tape-In</a><a href="product.html?p=u-tip">U-Tip</a><a href="index.html#shop">Shop all</a><a href="index.html#guide">Length Guide</a><a href="index.html#faq">Help</a>
     </nav>
     <div class="icons">
-      <a href="#">Search</a><a href="#">Account</a>
+      
       <button class="cart" id="cartBtn" aria-label="Cart">Bag <b id="cartCount">0</b></button>
     </div>
   </div>
@@ -299,7 +307,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
       <div class="stars">★★★★★ <i>New, be the first to review</i></div>
       <div class="bigprice"><span id="price"></span></div>
       <p class="klarna" id="klarna"></p>
-      <div class="opt"><h2>Colour: <span id="colName"></span></h2><div class="opts" id="cols"></div></div>
+      <div class="opt"><h2>Colour: <span id="colName"></span></h2><div class="opts dots" id="cols"></div></div>
       <div class="opt"><h2>Length</h2><div class="opts" id="lens"></div></div>
       <div class="opt"><h2>Pack</h2><div class="opts" id="wts"></div></div>
       <div class="buy"><div class="qty"><button id="minus" aria-label="Fewer">−</button><output id="q">1</output><button id="plus" aria-label="More">+</button></div><button class="btn" id="add">Add to bag</button></div>
@@ -346,6 +354,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 <div class="toast" id="toast" hidden></div>
 <script src="products.js"></script>
+<script src="swatches.js"></script>
 <script src="cart.js"></script>
 <script>
 const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
@@ -357,8 +366,9 @@ const swatch=x=>x[3]?`<img src="images/${x[3]}.jpg" alt="">`:`<span style="displ
 function opts(el,arr,get,set,label){el.innerHTML="";arr.forEach((v,i)=>{const b=document.createElement("button");b.textContent=label(v);b.setAttribute("aria-pressed",i===get());b.onclick=()=>{set(i);draw()};el.appendChild(b)})}
 function draw(){
   const C=P.colours[c];
-  opts($("cols"),P.colours,()=>c,i=>{c=i;extra=null},v=>v[0]);opts($("lens"),P.lens,()=>l,i=>l=i,v=>v+'"');opts($("wts"),P.wts,()=>w,i=>w=i,v=>v[0]);
-  $("thumbs").innerHTML=P.colours.map((v,i)=>v[3]?`<button aria-pressed="${i===c&&!extra}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:"").join("")+(P.gallery||[]).map((g,i)=>`<button aria-pressed="${extra===g[0]}" aria-label="${g[1]}" data-g="${g[0]}"><img src="images/${g[0]}.jpg" alt=""></button>`).join("");
+  $("cols").innerHTML=P.colours.map((v,i)=>{const g=(typeof SWATCH!=="undefined"&&SWATCH[v[3]])||["#bbb","#ccc","#ddd"];return `<button aria-pressed="${i===c}" aria-label="${v[0]}, ${v[1]}" title="${v[0]} · ${v[1]}" data-i="${i}"><span style="background:linear-gradient(135deg,${g[0]},${g[1]} 55%,${g[2]})"></span></button>`}).join("");
+  $("cols").querySelectorAll("button").forEach(b=>b.onclick=()=>{c=+b.dataset.i;extra=null;draw()});opts($("lens"),P.lens,()=>l,i=>l=i,v=>v+'"');opts($("wts"),P.wts,()=>w,i=>w=i,v=>v[0]);
+  $("thumbs").innerHTML=[c].map(i=>{const v=P.colours[i];return v[3]?`<button aria-pressed="${!extra}" aria-label="${v[1]}" data-i="${i}">${swatch(v)}</button>`:""}).join("")+(P.gallery||[]).map((g,i)=>`<button aria-pressed="${extra===g[0]}" aria-label="${g[1]}" data-g="${g[0]}"><img src="images/${g[0]}.jpg" alt=""></button>`).join("");
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(b.dataset.g){extra=b.dataset.g}else{c=+b.dataset.i;extra=null}draw()});
   const img=extra||C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
   $("colName").textContent=`${C[0]} · ${C[1]}`+(C[3]?"":" (photo coming soon)");

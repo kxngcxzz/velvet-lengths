@@ -223,6 +223,9 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 .swatches-row button[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink)}
 .colour-name{font-size:12px;color:var(--muted);margin-top:-4px}
 @media (max-width:600px){.swatches-row button{width:26px;height:26px}}
+
+section[id],[id="shop"],[id="guide"],[id="faq"]{scroll-margin-top:96px}
+.card h3{margin-top:4px}
 </style>
 </head><body>
 
@@ -235,7 +238,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
       <a href="product.html?p=nano-ring">Nano Ring</a><a href="product.html?p=tape-in">Tape-In</a><a href="product.html?p=u-tip">U-Tip</a><a href="#shop">Shop all</a><a href="#guide">Length Guide</a><a href="#faq">Help</a>
     </nav>
     <div class="icons">
-      <a href="#">Search</a><a href="#">Account</a>
+      
       <button class="cart" id="cartBtn" aria-label="Cart">Bag <b id="cartCount">0</b></button>
     </div>
   </div>
@@ -246,7 +249,7 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
     <div>
       <p class="eyebrow">New in · Remy human hair extensions</p>
       <h1>Hair that moves<br>like it's <em>yours</em>.</h1>
-      <p>Nano ring, tape-in and keratin U-tip extensions in up to 12 shades. Cuticle-aligned human hair you can wash, curl and heat style like your own.</p>
+      <p>Nano ring, tape-in and keratin U-tip extensions in up to 19 shades. Cuticle-aligned human hair you can wash, curl and heat style like your own.</p>
       <div class="ctas"><a class="btn" href="#shop">Shop now</a><a class="btn ghost" href="#guide">Find your length</a></div>
       <div class="proof">
         <div><strong>3 methods</strong>nano ring, tape-in, U-tip</div>
@@ -290,7 +293,6 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
         <p class="eyebrow">Length guide</p>
         <h2 id="t-guide" style="font-size:clamp(32px,4vw,48px);margin:10px 0 16px">Where will it fall?</h2>
         <p>Hair is measured straight, from the weft to the tips. If you plan to curl your extensions, size up about 2", because curls shorten the hair.</p>
-        <a class="btn ghost" href="#">Full sizing &amp; density guide</a>
       </div>
       <div class="chart"><svg id="lenChart" viewBox="0 0 520 300" role="img" aria-label="Hair length guide from 12 to 30 inches"></svg></div>
     </div>
@@ -365,7 +367,7 @@ function render(f){
     <h3>${P?P.name:p.n}</h3>
     ${P?`<div class="swatches-row" role="group" aria-label="Colour">${cols.map((x,i)=>`<button aria-pressed="${i===ci}" aria-label="${x[0]}, ${x[1]}" title="${x[0]} · ${x[1]}" data-i="${i}"><span style="display:block;width:100%;height:100%;background:${(g=>`linear-gradient(135deg,${g[0]} 0%,${g[1]} 55%,${g[2]} 100%)`)(SWATCH[x[3]]||["#ccc","#ccc","#ccc"])}"></span></button>`).join("")}</div><div class="colour-name"></div>`:""}
     <div class="lengths" role="group" aria-label="Length">${p.lens.map(l=>`<button aria-pressed="${l===sel}" data-l="${l}">${l}"</button>`).join("")}</div>
-    <div class="meta"><span class="price"></span><span class="stars"><i>New</i></span></div><span class="klarna"></span>`;
+    <div class="meta"><span class="price"></span></div><span class="klarna"></span>`;
     const realIdx=()=>P.colours.indexOf(cols[ci]);
     const cost=()=>P?priceFor(P,realIdx(),P.lens.indexOf(sel),0):price(p,sel);
     const upd=()=>{const v=cost();el.querySelector(".price").textContent=`£${v.toFixed(2)}`;el.querySelector(".klarna").textContent=`or 3 payments of £${(v/3).toFixed(2)} with Klarna`;
