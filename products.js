@@ -137,11 +137,11 @@ const CATALOGUE={
     name:"Continuous Mist Spray Bottle · 200ml",eyebrow:"Ultra-fine mist for extensions and wigs",type:"acc",colourWord:"colours",
     supplier:"AliExpress 1005007660366428",
     lens:[0],step:0,wts:[["1 bottle",1]],
-    colours:[["White","White",2.00,"mist-white"],["Lilac","Lilac",2.00,"mist-lilac"],["Pink","Pink",2.00,"mist-pink"],["Black","Black",2.00,"mist-all",["#0d0d0d","#1c1c1c","#333"]],
-      ["Black and clear","Black top, clear bottle",2.00,"mist-black-clear"],["White and clear","White top, clear bottle",2.00,"mist-all",["#f4f4f4","#fafafa","#e6eef0"]],["Pink and aqua","White top, pink to aqua bottle",2.00,"mist-all",["#f2a9bf","#d9c6d6","#8fd3d6"]]],
+    colours:[["White","White",2.00,"mist-white"],["Lilac","Lilac",2.00,"mist-lilac"],["Pink","Pink",2.00,"mist-pink"],["Black","Black",2.00,"mist-black",["#0d0d0d","#1c1c1c","#333"]],
+      ["Black and clear","Black top, clear bottle",2.00,"mist-black-clear"],["White and clear","White top, clear bottle",2.00,"mist-white-clear",["#f4f4f4","#fafafa","#e6eef0"]],["Pink and aqua","White top, pink to aqua bottle",2.00,"mist-pink-aqua",["#f2a9bf","#d9c6d6","#8fd3d6"]]],
     blurb:"Hold the trigger down for a long, even cloud of ultra-fine mist that settles lightly instead of soaking. Perfect for dampening extensions before styling, refreshing curls, or misting in leave-in conditioner without disturbing tape, rings or bonds.",
-    specs:[["Capacity","200ml"],["Spray","Continuous ultra-fine mist"],["Material","Plastic"],["Colours","White, lilac, pink, black, black and clear, white and clear, pink and aqua"],["Good for","Dampening, refreshing and conditioning extensions and wigs"]],
-    gallery:[["mist-all","All seven colours"]]
+    specs:[["Capacity","200ml"],["Size","19.9cm × 7.4cm"],["Spray","Continuous ultra-fine mist"],["Material","Plastic"],["Colours","White, lilac, pink, black, black and clear, white and clear, pink and aqua"],["Good for","Dampening, refreshing and conditioning extensions and wigs"]],
+    gallery:[["mist-all","All seven colours"],["mist-all-2","Side by side"],["mist-size","Size: 19.9cm tall, 7.4cm wide"]]
   }
 };
 
