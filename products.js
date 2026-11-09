@@ -73,7 +73,9 @@ const CATALOGUE={
       ["Brown","Brown",1.84,"nano-beads-brown"],["Light brown","Light brown",2.07,"nano-beads-light-brown"],
       ["Blonde","Blonde",2.07,"nano-beads-blonde"]],
     blurb:"Tiny copper nano rings used to fit nano ring tip extensions and to refit them when they grow out. Each pot holds 1000 beads, enough for several full heads. Pick the colour closest to your roots so the rings disappear into your hair.",
-    specs:[["Material","Copper, coated colour finish"],["Size","2.5mm × 1.5mm × 2mm"],["Pack","1000 beads in a clear pot"],["Use with","Nano ring tip extensions"],["Colours","Black, dark brown, brown, light brown, blonde"]]
+    specs:[["Material","Copper, coated colour finish"],["Size","2.5mm × 1.5mm × 2mm"],["Pack","1000 beads in a clear pot"],["Use with","Nano ring tip extensions"],["Colours","Black, dark brown, brown, light brown, blonde"]],
+    gallery:[["nano-beads-range","All five colours"],["nano-beads-size","Bead size: 2.5mm × 1.5mm × 2mm"],["nano-beads-pots","Beads in their pots"]],
+    guides:[["nano-beads-how-to","How to fit a ring extension, step by step"]]
   }
 };
 
