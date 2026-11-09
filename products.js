@@ -87,6 +87,17 @@ const CATALOGUE={
     specs:[["Material","Durable PP plastic, anti-static"],["In the set","10 combs"],["Includes","Needle-tail, pointed-tail, wide-tooth tail, metal and plastic five-pin, wide-tooth rake, double-sided, large wide-tooth and multipurpose combs"],["Colour","Black"],["Good for","Sectioning when fitting, detangling extensions, everyday styling"]],
     gallery:[["comb-set-labelled","What each comb is for"],["comb-set-flatlay","All 10 combs"]],
     guides:[["comb-set-uses","Picking up, sectioning and colouring with the tail combs"]]
+  },
+  "section-clips":{
+    category:"accessories",
+    name:"Steel Sectioning Clips",eyebrow:"Salon clips for fitting and styling",type:"acc",colourWord:"pack sizes",
+    supplier:"AliExpress 1005007037881713",
+    lens:[0],step:0,wts:[["10 clips",1],["20 clips",1.333]],
+    colours:[["Silver","Silver",1.20,"clips-main"]],
+    blurb:"Strong stainless steel duckbill clips that hold hair firmly out of the way while you fit, colour or style. The slim, smooth jaws grip without snagging, so they're ideal for keeping neat sections when fitting rows of extensions.",
+    specs:[["Material","Stainless steel alloy"],["Colour","Silver"],["Pack","10 or 20 clips"],["Good for","Sectioning when fitting extensions, colouring, cutting and styling"]],
+    gallery:[["clips-row","Clips laid out"],["clips-box","Clips in storage box"]],
+    guides:[["clips-uses","Clips in use for colouring, styling and braiding"]]
   }
 };
 
