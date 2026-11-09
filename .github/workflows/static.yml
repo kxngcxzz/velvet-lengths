@@ -33,11 +33,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Collect site files
+        # Only the website goes live; skills, docs and config stay in the repo.
+        run: |
+          mkdir _site
+          cp *.html *.js *.svg *.png .nojekyll _site/ 2>/dev/null || true
+          cp -r images _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
