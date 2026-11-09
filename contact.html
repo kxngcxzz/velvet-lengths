@@ -307,7 +307,9 @@ a,button,summary,[role="button"]{cursor:pointer}
   <div class="pay"><span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>SHOP PAY</span><span>KLARNA</span><span>CLEARPAY</span><span>PAYPAL</span></div>
   <p style="color:var(--muted);font-size:12px;margin-top:20px">© 2026 Velvet Lengths.</p>
 </div></footer>
+<script src="products.js"></script>
 <script src="cart.js"></script>
+<script src="nav.js"></script>
 <script>
 // Paste a Formspree form address here (e.g. "https://formspree.io/f/abcdwxyz") to receive messages by email.
 const CONTACT_ENDPOINT="";
@@ -316,8 +318,5 @@ document.getElementById("cForm").addEventListener("submit",async e=>{e.preventDe
  if(!CONTACT_ENDPOINT){o.textContent="Our contact form opens soon. Please check back shortly.";return}
  try{const r=await fetch(CONTACT_ENDPOINT,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(f)))});if(!r.ok)throw 0;f.reset();o.textContent="Thanks, your message is on its way. We'll reply within 1–2 working days."}
  catch{o.textContent="Your message didn't send. Check your connection and try again."}});
-</script>
-<script>
-(()=>{const here=location.pathname.split("/").pop()+location.search;document.querySelectorAll("nav a").forEach(a=>{const h=a.getAttribute("href");if(h&&!h.includes("#")&&(h===here||(here.startsWith("product.html")&&h===here)||(here===""&&h==="index.html")))a.setAttribute("aria-current","page")})})();
 </script>
 </body></html>

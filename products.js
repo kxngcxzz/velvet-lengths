@@ -3,8 +3,14 @@
 // shortest length and step = estimated extra per 2" (confirm with supplier).
 // Pack entries: [label, multiplier, {length: exact cost}] - exact costs override the multiplier.
 const sell=c=>Math.ceil(c*2.5)-0.01;
+// Shop categories. Add a product to a category by giving it category:"<id>".
+const CATEGORIES=[
+  {id:"extensions",name:"Hair Extensions",blurb:"Remy human hair in nano ring, tape-in and keratin U-tip methods."},
+  {id:"accessories",name:"Accessories",blurb:"Tools, tape and care for fitting and looking after your extensions."}
+];
 const CATALOGUE={
   "nano-ring":{
+    category:"extensions",
     name:"Nano Ring Tip Extensions",eyebrow:"100% virgin Remy human hair",type:"ext",
     supplier:"DIYOMO Official Store (AliExpress 1005012462195766)",
     lens:[14,16,18,20,22,24],costs:[26.71,28.85,30.99,33.13,34.73,38.46],wts:[["50g",1],["100g",1.81,{24:69.45}]],
@@ -18,6 +24,7 @@ const CATALOGUE={
     guides:[["nano-ring-how-to-fit","How to fit nano ring extensions, step by step"],["nano-ring-guide","Texture, pack size and how many packs to choose"]]
   },
   "tape-in":{
+    category:"extensions",
     name:"Seamless Tape-In Extensions",eyebrow:"Remy human hair · skin weft",type:"ext",
     supplier:"VeSunny Official Store (AliExpress 4001270122877)",
     lens:[14,16,18,20,22,24],
@@ -40,6 +47,7 @@ const CATALOGUE={
     guides:[["tape-in-length-guide","Where each length falls, straight and curled"]]
   },
   "u-tip":{
+    category:"extensions",
     name:"U-Tip Keratin Fusion Extensions",eyebrow:"Remy human hair · keratin bond",type:"ext",
     supplier:"AliExpress 1005009243151539",
     lens:[12,14,16,18,20],

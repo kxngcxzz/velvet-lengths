@@ -10,6 +10,7 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 - [Nano Ring Tip Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=nano-ring)
 - [Seamless Tape-In Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=tape-in)
 - [U-Tip Keratin Fusion Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=u-tip)
+- [Shop by category](https://kxngcxzz.github.io/velvet-lengths/shop.html)
 - [Delivery](https://kxngcxzz.github.io/velvet-lengths/delivery.html)
 - [Returns](https://kxngcxzz.github.io/velvet-lengths/returns.html)
 - [Contact us](https://kxngcxzz.github.io/velvet-lengths/contact.html)
@@ -24,3 +25,9 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 - `logo.html`: logo and brand colours
 
 Hosted on GitHub Pages. Every push to `main` deploys automatically through `.github/workflows/static.yml`.
+
+## Adding products and categories
+
+Products live in `products.js`. Each product has a `category` (`"extensions"` or `"accessories"`).
+Add a new product with `category:"accessories"` and it appears automatically in the menu, the
+hamburger drawer and `shop.html?c=accessories`. New categories go in the `CATEGORIES` list.

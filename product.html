@@ -371,6 +371,7 @@ a,button,summary,[role="button"]{cursor:pointer}
 <script src="products.js"></script>
 <script src="swatches.js"></script>
 <script src="cart.js"></script>
+<script src="nav.js"></script>
 <script>
 const id=new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
 const $=x=>document.getElementById(x);
@@ -413,8 +414,5 @@ $("rvForm").addEventListener("submit",async e=>{e.preventDefault();const m=$("rv
   try{const r=await fetch(REVIEW_ENDPOINT,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(d)});
     if(!r.ok)throw 0;$("rvForm").reset();rating=0;$("rvRate").querySelectorAll("button").forEach(o=>o.setAttribute("aria-pressed","false"));m.textContent="Thank you. Your review will appear once we have checked it.";}
   catch{m.textContent="Your review didn't send. Check your connection and try again."}});
-</script>
-<script>
-(()=>{const here=location.pathname.split("/").pop()+location.search;document.querySelectorAll("nav a").forEach(a=>{const h=a.getAttribute("href");if(h&&!h.includes("#")&&(h===here||(here.startsWith("product.html")&&h===here)||(here===""&&h==="index.html")))a.setAttribute("aria-current","page")})})();
 </script>
 </body></html>

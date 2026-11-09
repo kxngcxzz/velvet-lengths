@@ -289,7 +289,7 @@ a,button,summary,[role="button"]{cursor:pointer}
   </section>
 
   <section class="wrap" id="shop" aria-labelledby="t-best">
-    <div class="head"><h2 id="t-best">Shop extensions</h2></div>
+    <div class="head"><h2 id="t-best">Hair extensions</h2><a href="shop.html?c=extensions">Shop all</a></div>
     
     <div class="grid" id="grid"></div>
   </section>
@@ -347,6 +347,7 @@ a,button,summary,[role="button"]{cursor:pointer}
 <script src="products.js"></script>
 <script src="swatches.js"></script>
 <script src="cart.js"></script>
+<script src="nav.js"></script>
 <script>
 const tones=[["#2a1a14","#4a3024"],["#1c1210","#3b2620"],["#3a2418","#6a4630"],["#5a3a24","#9a7048"]];
 const shapes={straight:[0,0],body:[18,.9],loose:[12,.6],deep:[9,2.2],water:[7,3.2],kinky:[5,6]};
@@ -415,8 +416,5 @@ render("all");chart();
 const redraw=()=>document.querySelectorAll("canvas[data-tex]").forEach(drawHair);
 redraw();addEventListener("resize",()=>{clearTimeout(window._r);window._r=setTimeout(redraw,150)});
 document.fonts&&document.fonts.ready.then(redraw);
-</script>
-<script>
-(()=>{const here=location.pathname.split("/").pop()+location.search;document.querySelectorAll("nav a").forEach(a=>{const h=a.getAttribute("href");if(h&&!h.includes("#")&&(h===here||(here.startsWith("product.html")&&h===here)||(here===""&&h==="index.html")))a.setAttribute("aria-current","page")})})();
 </script>
 </body></html>
