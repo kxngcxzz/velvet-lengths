@@ -118,6 +118,16 @@ const CATALOGUE={
     blurb:"A light, strong aluminium comb with fine teeth at one end and wider teeth at the other. Use it for clean partings and neat sections when fitting extensions, then for smoothing and styling. The metal finish won't hold static and wipes clean easily.",
     specs:[["Material","Aluminium alloy"],["Small","17.8 × 2.4 × 2cm"],["Large","21.5 × 2.6 × 2.4cm"],["Finishes","Gold, rose gold, silver, black, bronze"],["Good for","Parting, sectioning, cutting and styling"]],
     gallery:[["metal-comb-large","Large size in gold: 21.5cm"],["metal-comb-large-rose-gold","Large size in rose gold"],["metal-comb-large-silver","Large size in silver"],["metal-comb-large-black","Large size in black"]]
+  },
+  "vent-brush":{
+    category:"accessories",
+    name:"CALIYI Curved Vent Detangling Brush",eyebrow:"Gentle brushing for extensions, wet or dry",type:"acc",colourWord:"options",
+    supplier:"AliExpress 1005007992616835",
+    lens:[0],step:0,wts:[["1 brush",1]],
+    colours:[["Black","Black",0.99,"vent-brush-black"],["White","White",0.99,"vent-brush-white"],["Pair","Black and white pair",1.68,"vent-brush-pair"]],
+    blurb:"A curved, vented paddle brush with ball-tipped bristles that glide through hair without snagging. The open vents let air through for quicker blow-drying, and the curve follows the shape of your head, so it's gentle around tape, rings and bonds. Use it on wet or dry hair.",
+    specs:[["Brand","CALIYI"],["Size","24.5cm long, 8cm wide head"],["Bristles","Ball-tipped nylon"],["Options","Black, white, or a black and white pair"],["Good for","Detangling extensions, blow-drying, everyday brushing"]],
+    gallery:[["vent-brush-size","Size: 24.5cm × 8cm"]]
   }
 };
 
