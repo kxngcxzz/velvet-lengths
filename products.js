@@ -5,11 +5,12 @@
 const sell=c=>Math.ceil(c*2.5)-0.01;
 // Shop categories. Add a product to a category by giving it category:"<id>".
 const CATEGORIES=[
-  {id:"extensions",name:"Hair Extensions",blurb:"Remy human hair in nano ring, tape-in and keratin U-tip methods."},
-  {id:"accessories",name:"Accessories",blurb:"Tools, tape and care for fitting and looking after your extensions."}
+  {id:"extensions",slug:"hair-extensions",seoTitle:"Human Hair Extensions UK | Velvet Lengths",seoDesc:"Shop Remy human hair extensions: nano ring tips, seamless tape-ins and keratin U-tips in up to 19 shades and 12–24 inches. Free tracked UK delivery.",name:"Hair Extensions",blurb:"Remy human hair in nano ring, tape-in and keratin U-tip methods."},
+  {id:"accessories",slug:"accessories",seoTitle:"Hair Extension Tools & Accessories | Velvet Lengths",seoDesc:"Tools for fitting and caring for hair extensions: nano ring beads, sectioning clips, salon combs, a vent brush and a mist spray bottle. Free UK delivery.",name:"Accessories",blurb:"Tools, tape and care for fitting and looking after your extensions."}
 ];
 const CATALOGUE={
   "nano-ring":{
+    slug:"nano-ring-hair-extensions",seoTitle:"Nano Ring Hair Extensions | Remy Human Hair | Velvet Lengths",seoDesc:"Nano ring tip hair extensions in Remy human hair. 9 shades, 14–24 inches, 50g or 100g packs. No glue, heat or tape. Free tracked UK delivery.",
     category:"extensions",
     name:"Nano Ring Tip Extensions",eyebrow:"100% virgin Remy human hair",type:"ext",
     supplier:"DIYOMO Official Store (AliExpress 1005012462195766)",
@@ -24,6 +25,7 @@ const CATALOGUE={
     guides:[["nano-ring-how-to-fit","How to fit nano ring extensions, step by step"],["nano-ring-guide","Texture, pack size and how many packs to choose"]]
   },
   "tape-in":{
+    slug:"tape-in-hair-extensions",seoTitle:"Seamless Tape-In Hair Extensions | Velvet Lengths",seoDesc:"Seamless tape-in hair extensions in Remy human hair. 19 shades from black to platinum, 14–24 inches, 20 pieces per pack. Free tracked UK delivery.",
     category:"extensions",
     name:"Seamless Tape-In Extensions",eyebrow:"Remy human hair · skin weft",type:"ext",
     supplier:"VeSunny Official Store (AliExpress 4001270122877)",
@@ -47,6 +49,7 @@ const CATALOGUE={
     guides:[["tape-in-length-guide","Where each length falls, straight and curled"]]
   },
   "u-tip":{
+    slug:"u-tip-hair-extensions",seoTitle:"U-Tip Keratin Fusion Hair Extensions | Velvet Lengths",seoDesc:"U-tip keratin fusion hair extensions in Remy human hair. 9 shades, 12–20 inches, 50 or 100 strands. Free tracked UK delivery and Klarna pay in 3.",
     category:"extensions",
     name:"U-Tip Keratin Fusion Extensions",eyebrow:"Remy human hair · keratin bond",type:"ext",
     supplier:"AliExpress 1005009243151539",
@@ -64,6 +67,7 @@ const CATALOGUE={
   }
 ,
   "nano-beads":{
+    slug:"nano-ring-beads",seoTitle:"Nano Rings for Hair Extensions (1000 Pack) | Velvet Lengths",seoDesc:"Copper nano rings for fitting nano ring hair extensions. 1000 beads per pot, 2.5mm, in black, browns and blonde. Free tracked UK delivery.",
     category:"accessories",
     name:"Nano Ring Beads · 1000 pack",eyebrow:"Copper nano rings for fitting and refitting",type:"acc",colourWord:"colours",
     supplier:"AliExpress 1005009176917186",
@@ -78,6 +82,7 @@ const CATALOGUE={
     guides:[["nano-beads-how-to","How to fit a ring extension, step by step"]]
   },
   "comb-set":{
+    slug:"salon-comb-set",seoTitle:"10-Piece Salon Comb Set for Extensions | Velvet Lengths",seoDesc:"10-piece salon comb set for sectioning, parting and detangling hair extensions. Tail, pin and wide-tooth combs in anti-static plastic. Free UK delivery.",
     category:"accessories",
     name:"10-Piece Salon Comb Set",eyebrow:"Sectioning, parting and styling combs",type:"acc",colourWord:"set",
     supplier:"AliExpress 1005012311616407",
@@ -89,6 +94,7 @@ const CATALOGUE={
     guides:[["comb-set-uses","Picking up, sectioning and colouring with the tail combs"]]
   },
   "section-clips":{
+    slug:"steel-sectioning-clips",seoTitle:"Steel Sectioning Hair Clips (10 or 20) | Velvet Lengths",seoDesc:"Stainless steel duckbill sectioning clips for fitting extensions, colouring and styling. Packs of 10 or 20 strong salon clips. Free tracked UK delivery.",
     category:"accessories",
     name:"Steel Sectioning Clips",eyebrow:"Salon clips for fitting and styling",type:"acc",colourWord:"pack sizes",
     supplier:"AliExpress 1005007037881713",
@@ -100,6 +106,7 @@ const CATALOGUE={
     guides:[["clips-uses","Clips in use for colouring, styling and braiding"]]
   },
   "butterfly-clips":{
+    slug:"butterfly-sectioning-clips",seoTitle:"Butterfly Hair Sectioning Clips (12 Pack) | Velvet Lengths",seoDesc:"Large butterfly hair clips with toothed jaws for holding thick sections while fitting extensions, drying and styling. Pack of 12. Free UK delivery.",
     category:"accessories",
     name:"Butterfly Sectioning Clips · 12 pack",eyebrow:"Large clips for holding thick sections",type:"acc",colourWord:"pack",
     supplier:"AliExpress 1005010256124143",
@@ -110,6 +117,7 @@ const CATALOGUE={
     gallery:[["butterfly-clips-size","Size: 8cm × 4.4cm"],["butterfly-clips-open","Toothed jaws for a firm grip"],["butterfly-clips-spring","Strong metal spring"]]
   },
   "metal-comb":{
+    slug:"aluminium-cutting-comb",seoTitle:"Aluminium Cutting Comb | Velvet Lengths",seoDesc:"Lightweight aluminium cutting comb for partings and sectioning. Fine and wide teeth, 5 metallic finishes, small or large size. Free tracked UK delivery.",
     // cost set to an assumed £2.00 (AliExpress showed a £0.99 new-shopper price); update with real logged-in cost
     category:"accessories",
     name:"Aluminium Cutting Comb",eyebrow:"Lightweight salon comb with fine and wide teeth",type:"acc",colourWord:"finishes",
@@ -121,6 +129,7 @@ const CATALOGUE={
     gallery:[["metal-comb-large","Large size in gold: 21.5cm"],["metal-comb-large-rose-gold","Large size in rose gold"],["metal-comb-large-silver","Large size in silver"],["metal-comb-large-black","Large size in black"]]
   },
   "vent-brush":{
+    slug:"curved-vent-detangling-brush",seoTitle:"Curved Vent Brush for Hair Extensions | Velvet Lengths",seoDesc:"CALIYI curved vented detangling brush with ball-tipped bristles, gentle on tape, rings and bonds. Black, white or a pair. Free tracked UK delivery.",brand:"CALIYI",
     // costs assumed (£2.00 single, £3.60 pair); AliExpress showed new-shopper prices £0.99 / £1.68
     category:"accessories",
     name:"CALIYI Curved Vent Detangling Brush",eyebrow:"Gentle brushing for extensions, wet or dry",type:"acc",colourWord:"options",
@@ -132,6 +141,7 @@ const CATALOGUE={
     gallery:[["vent-brush-size","Size: 24.5cm × 8cm"]]
   },
   "mist-bottle":{
+    slug:"continuous-mist-spray-bottle",seoTitle:"Continuous Mist Spray Bottle 200ml | Velvet Lengths",seoDesc:"200ml continuous mist spray bottle for dampening and refreshing hair extensions and wigs. Ultra-fine mist in 7 colours. Free tracked UK delivery.",
     // cost assumed £2.00 (AliExpress showed a £0.99 new-shopper price)
     category:"accessories",
     name:"Continuous Mist Spray Bottle · 200ml",eyebrow:"Ultra-fine mist for extensions and wigs",type:"acc",colourWord:"colours",

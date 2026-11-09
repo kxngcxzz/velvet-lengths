@@ -57,7 +57,7 @@
     document.querySelectorAll("#cartCount").forEach(e=>e.textContent=count);
     const list=$("#bagList");
     if(!items.length){
-      list.innerHTML=`<div class="bag-empty"><p>Your bag is empty.</p><a class="btn" href="index.html#shop">Shop extensions</a></div>`;
+      list.innerHTML=`<div class="bag-empty"><p>Your bag is empty.</p><a class="btn" href="./#shop">Shop extensions</a></div>`;
       $("#bagFoot").hidden=true;return;
     }
     $("#bagFoot").hidden=false;

@@ -7,29 +7,27 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 ## Pages
 
 - [Homepage](https://kxngcxzz.github.io/velvet-lengths/)
-- [Nano Ring Tip Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=nano-ring)
-- [Seamless Tape-In Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=tape-in)
-- [U-Tip Keratin Fusion Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=u-tip)
-- [Shop by category](https://kxngcxzz.github.io/velvet-lengths/shop.html)
-- [Delivery](https://kxngcxzz.github.io/velvet-lengths/delivery.html)
-- [Returns](https://kxngcxzz.github.io/velvet-lengths/returns.html)
-- [Terms of sale](https://kxngcxzz.github.io/velvet-lengths/terms.html)
-- [Privacy policy](https://kxngcxzz.github.io/velvet-lengths/privacy.html)
-- [Contact us](https://kxngcxzz.github.io/velvet-lengths/contact.html)
-- [Logo and brand colours](https://kxngcxzz.github.io/velvet-lengths/logo.html)
+- [Hair extensions](https://kxngcxzz.github.io/velvet-lengths/hair-extensions.html): [Nano ring](https://kxngcxzz.github.io/velvet-lengths/nano-ring-hair-extensions.html), [Tape-in](https://kxngcxzz.github.io/velvet-lengths/tape-in-hair-extensions.html), [U-tip](https://kxngcxzz.github.io/velvet-lengths/u-tip-hair-extensions.html)
+- [Accessories](https://kxngcxzz.github.io/velvet-lengths/accessories.html)
+- [Delivery](https://kxngcxzz.github.io/velvet-lengths/delivery.html), [Returns](https://kxngcxzz.github.io/velvet-lengths/returns.html), [Contact us](https://kxngcxzz.github.io/velvet-lengths/contact.html)
+- [Terms of sale](https://kxngcxzz.github.io/velvet-lengths/terms.html), [Privacy policy](https://kxngcxzz.github.io/velvet-lengths/privacy.html)
+- [Sitemap](https://kxngcxzz.github.io/velvet-lengths/sitemap.xml)
 
 ## Files
 
-- `index.html`: homepage
-- `product.html`: product page (the `?p=` part picks the product)
-- `products.js`: product names, colours, supplier costs and prices (cost × 2.5, rounded up to £x.99)
-- `images/`: product photos
-- `logo.html`: logo and brand colours
+- `products.js`: every product and category: names, colours, supplier costs, prices (cost × 2.5) and SEO titles/descriptions
+- `templates/product.html`, `templates/category.html`: page templates (not published)
+- `scripts/build-pages.js`: builds one page per product and category, plus `sitemap.xml`, `robots.txt`, `404.html` and redirects from the old `product.html?p=` links
+- `index.html`, `delivery.html`, `returns.html`, `contact.html`, `terms.html`, `privacy.html`: hand-written pages
+- `cart.js` (bag), `nav.js` (menus), `swatches.js` (colour dots), `images/`
 
-Hosted on GitHub Pages. Every push to `main` deploys automatically through `.github/workflows/static.yml`.
+## Adding or changing products
 
-## Adding products and categories
+1. Edit `products.js`. Give new products a `category`, a unique `slug` (the page address), a `seoTitle` (60 characters or fewer) and a `seoDesc` (110–160 characters).
+2. Run `node scripts/build-pages.js`. It stops with a clear message if anything is missing or too long.
+3. Commit and push. The deploy also runs the build, so the live site is never out of date.
 
-Products live in `products.js`. Each product has a `category` (`"extensions"` or `"accessories"`).
-Add a new product with `category:"accessories"` and it appears automatically in the menu, the
-hamburger drawer and `shop.html?c=accessories`. New categories go in the `CATEGORIES` list.
+## Hosting and SEO
+
+Hosted on GitHub Pages. Every push to `main` builds and deploys automatically (`.github/workflows/static.yml`).
+If the site moves to its own domain, change `BASE` at the top of `scripts/build-pages.js` and rebuild.

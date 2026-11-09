@@ -1,0 +1,5 @@
+# Velvet Lengths
+User-agent: *
+Allow: /
+
+Sitemap: https://kxngcxzz.github.io/velvet-lengths/sitemap.xml
