@@ -98,6 +98,16 @@ const CATALOGUE={
     specs:[["Material","Stainless steel alloy"],["Colour","Silver"],["Pack","10 or 20 clips"],["Good for","Sectioning when fitting extensions, colouring, cutting and styling"]],
     gallery:[["clips-row","Clips laid out"],["clips-box","Clips in storage box"]],
     guides:[["clips-uses","Clips in use for colouring, styling and braiding"]]
+  },
+  "butterfly-clips":{
+    category:"accessories",
+    name:"Butterfly Sectioning Clips · 12 pack",eyebrow:"Large clips for holding thick sections",type:"acc",colourWord:"pack",
+    supplier:"AliExpress 1005010256124143",
+    lens:[0],step:0,wts:[["12 clips",1]],
+    colours:[["Black","Black",1.40,"butterfly-clips-main"]],
+    blurb:"Large butterfly clips with toothed jaws and a strong spring, made to hold thick sections of hair firmly out of the way. Great for keeping your natural hair and extensions separated while fitting, blow-drying or styling.",
+    specs:[["Material","Plastic with metal spring"],["Size","8cm × 4.4cm"],["Pack","12 clips"],["Colour","Black"],["Good for","Holding thick sections while fitting, drying and styling"]],
+    gallery:[["butterfly-clips-size","Size: 8cm × 4.4cm"],["butterfly-clips-open","Toothed jaws for a firm grip"],["butterfly-clips-spring","Strong metal spring"]]
   }
 };
 
