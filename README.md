@@ -10,6 +10,9 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 - [Nano Ring Tip Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=nano-ring)
 - [Seamless Tape-In Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=tape-in)
 - [U-Tip Keratin Fusion Extensions](https://kxngcxzz.github.io/velvet-lengths/product.html?p=u-tip)
+- [Delivery](https://kxngcxzz.github.io/velvet-lengths/delivery.html)
+- [Returns](https://kxngcxzz.github.io/velvet-lengths/returns.html)
+- [Contact us](https://kxngcxzz.github.io/velvet-lengths/contact.html)
 - [Logo and brand colours](https://kxngcxzz.github.io/velvet-lengths/logo.html)
 
 ## Files
