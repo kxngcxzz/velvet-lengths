@@ -226,6 +226,22 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 section[id],[id="shop"],[id="guide"],[id="faq"]{scroll-margin-top:96px}
 .card h3{margin-top:4px}
+
+/* ui-ux-pro-max pass: contrast, touch targets, feedback, active nav */
+:root{--gold-text:#8a6330}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold-text:#d6ad74}}
+:root[data-theme="dark"]{--gold-text:#d6ad74}
+.logo small,.stars,.bundle .eyebrow{color:var(--gold-text)}
+.btn,.chip,.lengths button,.opts button,.swatches-row button,.bag-qty button,.qty button,nav a{transition:background-color .18s,color .18s,border-color .18s,box-shadow .18s,transform .18s}
+.btn:active{transform:scale(.98)}
+.swatches-row{gap:8px}
+.lengths{gap:8px}
+.lengths button{min-height:32px;min-width:44px}
+.opts{gap:8px}.opts button{min-height:40px}
+.thumbs button{min-width:44px;min-height:44px}
+nav a[aria-current="page"]{border-color:var(--accent);color:var(--accent)}
+a,button,summary,[role="button"]{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head><body>
 
@@ -362,7 +378,7 @@ function render(f){
     const P=p.cat?CATALOGUE[p.cat]:null,cols=P?P.colours.filter(x=>x[3]):[];
     let ci=P?Math.max(0,cols.findIndex(x=>p.img.endsWith(x[3]+".jpg"))):0;
     const stars="★".repeat(Math.round(p.r))+"<i>"+"★".repeat(5-Math.round(p.r))+"</i>";
-    el.innerHTML=`<div class="media"><a href="${p.href}"><img class="card-img" src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;background:#fff"></a>${p.b?`<span class="badge">${p.b}</span>`:""}<button class="btn quick">Add to bag</button></div>
+    el.innerHTML=`<div class="media"><a href="${p.href}"><img class="card-img" loading="lazy" decoding="async" src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;background:#fff"></a>${p.b?`<span class="badge">${p.b}</span>`:""}<button class="btn quick">Add to bag</button></div>
     <h3>${P?P.name:p.n}</h3>
     ${P?`<div class="swatches-row" role="group" aria-label="Colour">${cols.map((x,i)=>`<button aria-pressed="${i===ci}" aria-label="${x[0]}, ${x[1]}" title="${x[0]} · ${x[1]}" data-i="${i}"><span style="display:block;width:100%;height:100%;background:${(g=>`linear-gradient(135deg,${g[0]} 0%,${g[1]} 55%,${g[2]} 100%)`)(SWATCH[x[3]]||["#ccc","#ccc","#ccc"])}"></span></button>`).join("")}</div><div class="colour-name"></div>`:""}
     <div class="lengths" role="group" aria-label="Length">${p.lens.map(l=>`<button aria-pressed="${l===sel}" data-l="${l}">${l}"</button>`).join("")}</div>
@@ -399,5 +415,8 @@ render("all");chart();
 const redraw=()=>document.querySelectorAll("canvas[data-tex]").forEach(drawHair);
 redraw();addEventListener("resize",()=>{clearTimeout(window._r);window._r=setTimeout(redraw,150)});
 document.fonts&&document.fonts.ready.then(redraw);
+</script>
+<script>
+(()=>{const here=location.pathname.split("/").pop()+location.search;document.querySelectorAll("nav a").forEach(a=>{const h=a.getAttribute("href");if(h&&!h.includes("#")&&(h===here||(here.startsWith("product.html")&&h===here)||(here===""&&h==="index.html")))a.setAttribute("aria-current","page")})})();
 </script>
 </body></html>

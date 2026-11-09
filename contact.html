@@ -226,6 +226,22 @@ footer.site{border-top:1px solid var(--line);margin-top:56px;padding-block:44px 
 
 section[id],[id="shop"],[id="guide"],[id="faq"]{scroll-margin-top:96px}
 .card h3{margin-top:4px}
+
+/* ui-ux-pro-max pass: contrast, touch targets, feedback, active nav */
+:root{--gold-text:#8a6330}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold-text:#d6ad74}}
+:root[data-theme="dark"]{--gold-text:#d6ad74}
+.logo small,.stars,.bundle .eyebrow{color:var(--gold-text)}
+.btn,.chip,.lengths button,.opts button,.swatches-row button,.bag-qty button,.qty button,nav a{transition:background-color .18s,color .18s,border-color .18s,box-shadow .18s,transform .18s}
+.btn:active{transform:scale(.98)}
+.swatches-row{gap:8px}
+.lengths{gap:8px}
+.lengths button{min-height:32px;min-width:44px}
+.opts{gap:8px}.opts button{min-height:40px}
+.thumbs button{min-width:44px;min-height:44px}
+nav a[aria-current="page"]{border-color:var(--accent);color:var(--accent)}
+a,button,summary,[role="button"]{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 <style>
 .page{max-width:760px;padding-block:40px 64px}
@@ -300,5 +316,8 @@ document.getElementById("cForm").addEventListener("submit",async e=>{e.preventDe
  if(!CONTACT_ENDPOINT){o.textContent="Our contact form opens soon. Please check back shortly.";return}
  try{const r=await fetch(CONTACT_ENDPOINT,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(f)))});if(!r.ok)throw 0;f.reset();o.textContent="Thanks, your message is on its way. We'll reply within 1–2 working days."}
  catch{o.textContent="Your message didn't send. Check your connection and try again."}});
+</script>
+<script>
+(()=>{const here=location.pathname.split("/").pop()+location.search;document.querySelectorAll("nav a").forEach(a=>{const h=a.getAttribute("href");if(h&&!h.includes("#")&&(h===here||(here.startsWith("product.html")&&h===here)||(here===""&&h==="index.html")))a.setAttribute("aria-current","page")})})();
 </script>
 </body></html>
