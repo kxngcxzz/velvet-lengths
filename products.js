@@ -108,6 +108,16 @@ const CATALOGUE={
     blurb:"Large butterfly clips with toothed jaws and a strong spring, made to hold thick sections of hair firmly out of the way. Great for keeping your natural hair and extensions separated while fitting, blow-drying or styling.",
     specs:[["Material","Plastic with metal spring"],["Size","8cm × 4.4cm"],["Pack","12 clips"],["Colour","Black"],["Good for","Holding thick sections while fitting, drying and styling"]],
     gallery:[["butterfly-clips-size","Size: 8cm × 4.4cm"],["butterfly-clips-open","Toothed jaws for a firm grip"],["butterfly-clips-spring","Strong metal spring"]]
+  },
+  "metal-comb":{
+    category:"accessories",
+    name:"Aluminium Cutting Comb",eyebrow:"Lightweight salon comb with fine and wide teeth",type:"acc",colourWord:"finishes",
+    supplier:"AliExpress 1005007264441773",
+    lens:[0],step:0,wts:[["Small · 17.8cm",1],["Large · 21.5cm",1]],
+    colours:[["Gold","Gold",0.99,"metal-comb-gold"],["Rose gold","Rose gold",0.99,"metal-comb-rose-gold"],["Silver","Silver",0.99,"metal-comb-silver"],["Black","Black",0.99,"metal-comb-black"]],
+    blurb:"A light, strong aluminium comb with fine teeth at one end and wider teeth at the other. Use it for clean partings and neat sections when fitting extensions, then for smoothing and styling. The metal finish won't hold static and wipes clean easily.",
+    specs:[["Material","Aluminium alloy"],["Small","17.8 × 2.4 × 2cm"],["Large","21.5 × 2.6 × 2.4cm"],["Finishes","Gold, rose gold, silver, black"],["Good for","Parting, sectioning, cutting and styling"]],
+    gallery:[["metal-comb-large","Large size: 21.5cm"]]
   }
 };
 
