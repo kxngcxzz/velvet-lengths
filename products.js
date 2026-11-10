@@ -5,7 +5,7 @@
 const sell=c=>Math.ceil(c*2.5)-0.01;
 // Shop categories. Add a product to a category by giving it category:"<id>".
 const CATEGORIES=[
-  {id:"extensions",slug:"hair-extensions",seoTitle:"Human Hair Extensions UK | Velvet Lengths",seoDesc:"Silky straight Remy human hair extensions for European and Asian hair: nano ring, tape-in and keratin U-tip, 12–24 inches. Free tracked UK delivery.",name:"Hair Extensions",blurb:"Silky straight Remy human hair for European and Asian hair types, in nano ring, tape-in and keratin U-tip."},
+  {id:"extensions",slug:"hair-extensions",seoTitle:"Human Hair Extensions UK | Velvet Lengths",seoDesc:"Shop Remy human hair extensions: nano ring tips, seamless tape-ins and keratin U-tips in up to 19 shades and 12–24 inches. Free tracked UK delivery.",name:"Hair Extensions",blurb:"Remy human hair in nano ring, tape-in and keratin U-tip methods."},
   {id:"accessories",slug:"accessories",seoTitle:"Hair Extension Tools & Accessories | Velvet Lengths",seoDesc:"Tools for fitting and caring for hair extensions: nano ring beads, sectioning clips, salon combs, a vent brush and a mist spray bottle. Free UK delivery.",name:"Accessories",blurb:"Rings, clips, combs, a brush and a spray bottle for fitting and looking after extensions."}
 ];
 const CATALOGUE={
