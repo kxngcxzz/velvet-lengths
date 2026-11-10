@@ -2,16 +2,16 @@
 
 Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 
-**Live site:** https://kxngcxzz.github.io/velvet-lengths/
+**Live site:** https://velvetlengths.uk/
 
 ## Pages
 
-- [Homepage](https://kxngcxzz.github.io/velvet-lengths/)
-- [Hair extensions](https://kxngcxzz.github.io/velvet-lengths/hair-extensions.html): [Nano ring](https://kxngcxzz.github.io/velvet-lengths/nano-ring-hair-extensions.html), [Tape-in](https://kxngcxzz.github.io/velvet-lengths/tape-in-hair-extensions.html), [U-tip](https://kxngcxzz.github.io/velvet-lengths/u-tip-hair-extensions.html)
-- [Accessories](https://kxngcxzz.github.io/velvet-lengths/accessories.html)
-- [Delivery](https://kxngcxzz.github.io/velvet-lengths/delivery.html), [Returns](https://kxngcxzz.github.io/velvet-lengths/returns.html), [Contact us](https://kxngcxzz.github.io/velvet-lengths/contact.html)
-- [Terms of sale](https://kxngcxzz.github.io/velvet-lengths/terms.html), [Privacy policy](https://kxngcxzz.github.io/velvet-lengths/privacy.html)
-- [Sitemap](https://kxngcxzz.github.io/velvet-lengths/sitemap.xml)
+- [Homepage](https://velvetlengths.uk/)
+- [Hair extensions](https://velvetlengths.uk/hair-extensions.html): [Nano ring](https://velvetlengths.uk/nano-ring-hair-extensions.html), [Tape-in](https://velvetlengths.uk/tape-in-hair-extensions.html), [U-tip](https://velvetlengths.uk/u-tip-hair-extensions.html)
+- [Accessories](https://velvetlengths.uk/accessories.html)
+- [Delivery](https://velvetlengths.uk/delivery.html), [Returns](https://velvetlengths.uk/returns.html), [Contact us](https://velvetlengths.uk/contact.html)
+- [Terms of sale](https://velvetlengths.uk/terms.html), [Privacy policy](https://velvetlengths.uk/privacy.html)
+- [Sitemap](https://velvetlengths.uk/sitemap.xml)
 
 ## Files
 
@@ -31,4 +31,6 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 ## Hosting and SEO
 
 Hosted on GitHub Pages. Every push to `main` builds and deploys automatically (`.github/workflows/static.yml`).
-If the site moves to its own domain, change `BASE` at the top of `scripts/build-pages.js` and rebuild.
+The site lives at https://velvetlengths.uk. If the address ever changes, change `BASE` at the top of `scripts/build-pages.js` and rebuild.
+
+Link-preview images (`og-image.png`, `images/og/`) are made by `node scripts/make-og-images.js`. Run it after adding a product or changing a photo, then rebuild.

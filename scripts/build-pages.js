@@ -11,10 +11,17 @@ const path = require("path");
 const vm = require("vm");
 
 const ROOT = path.join(__dirname, "..");
-// Change this one line if the site moves to its own domain (keep the trailing slash).
-const BASE = "https://kxngcxzz.github.io/velvet-lengths/";
+// The site's address (keep the trailing slash). Used for canonical links, social tags, structured data and the sitemap.
+const BASE = "https://velvetlengths.uk/";
 const TODAY = new Date().toISOString().slice(0, 10);
 
+const crypto = require("crypto");
+// Link-preview image (made by scripts/make-og-images.js) with a short content hash, so social sites refetch it when it changes.
+function ogImage(file) {
+  const full = path.join(ROOT, file);
+  check(fs.existsSync(full), `missing preview image ${file}: run node scripts/make-og-images.js`);
+  return BASE + file + "?v=" + crypto.createHash("sha1").update(fs.readFileSync(full)).digest("hex").slice(0, 8);
+}
 const read = f => fs.readFileSync(path.join(ROOT, f), "utf8");
 const write = (f, s) => fs.writeFileSync(path.join(ROOT, f), s);
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -53,7 +60,6 @@ function setHead(s, o) {
   if (o.image) {
     s = s.replace(/<meta property="og:image" content="[^"]*">/, () => `<meta property="og:image" content="${o.image}">`)
          .replace(/<meta name="twitter:image" content="[^"]*">/, () => `<meta name="twitter:image" content="${o.image}">`)
-         .replace(/<meta property="og:image:(width|height)" content="[^"]*">\n?/g, "")
          .replace(/<meta property="og:image:alt" content="[^"]*">/, () => `<meta property="og:image:alt" content="${esc(o.imageAlt || o.title)}">`);
   }
   s = s.replace(/<link rel="canonical"[^>]*>\n?/g, "")
@@ -107,6 +113,7 @@ const fromPrice = p => Math.min(...p.colours.map((_, i) => priceFor(p, i, 0, 0))
 const summary = p => `${p.colours.length} ${p.colourWord || "shades"}${p.lens[0] ? ` · ${p.lens[0]}–${p.lens[p.lens.length - 1]}"` : ""}`;
 
 const pages = []; // for sitemap: {url, images:[...]}
+const HOME_OG_ALT = "Nano ring hair extensions next to the Velvet Lengths logo";
 
 // Upsell helpers. choices() must list options in the same order as choices() in cart.js.
 const choices = P => P.colours.flatMap((C, c) => P.wts.map((W, w) => ({ c, w,
@@ -171,7 +178,7 @@ for (const [id, P] of Object.entries(CATALOGUE)) {
   const extra = ld(product) + ld(crumbs([["Home", BASE], [cat.name, BASE + cat.slug + ".html"], [P.name, url]])) +
     `<meta property="product:price:amount" content="${money(price)}">\n<meta property="product:price:currency" content="GBP">\n`;
 
-  let s = setHead(productTpl, { title: P.seoTitle, desc: P.seoDesc, url, ogType: "product", image: BASE + "images/" + img + ".jpg", imageAlt: alt, extra });
+  let s = setHead(productTpl, { title: P.seoTitle, desc: P.seoDesc, url, ogType: "product", image: ogImage(`images/og/${P.slug}.jpg`), imageAlt: `${P.name} from Velvet Lengths`, extra });
   s = swap(s, '<img id="mainImg" src="" alt="">', `<img id="mainImg" src="images/${img}.jpg" alt="${esc(alt)}" width="1000" height="1000">`);
   s = s.replace(/<a id="crumbCat" href="[^"]*">[^<]*<\/a>/, `<a id="crumbCat" href="${cat.slug}.html">${esc(cat.name)}</a>`);
   s = swap(s, '<span id="crumb"></span>', `<span id="crumb">${txt(P.name)}</span>`);
@@ -206,7 +213,7 @@ for (const C of CATEGORIES) {
     mainEntity: { "@type": "ItemList", itemListElement: items.map(([, p], i) => ({ "@type": "ListItem", position: i + 1, url: BASE + p.slug + ".html", name: p.name })) },
   };
   const extra = ld(list) + ld(crumbs([["Home", BASE], [C.name, url]]));
-  let s = setHead(catTpl, { title: C.seoTitle, desc: C.seoDesc, url, extra });
+  let s = setHead(catTpl, { title: C.seoTitle, desc: C.seoDesc, url, extra, image: ogImage(`images/og/${C.slug}.jpg`), imageAlt: `${C.name} from Velvet Lengths` });
   s = s.replace(/<p class="eyebrow" id="shCrumb">[^<]*<\/p>/, '<p class="eyebrow" id="shCrumb">Shop</p>');
   s = s.replace(/(<h1 id="shTitle"[^>]*>)[^<]*(<\/h1>)/, (m, a, b) => a + esc(C.name) + b);
   s = s.replace(/(<p id="shBlurb"[^>]*>)[^<]*(<\/p>)/, (m, a, b) => a + esc(C.blurb) + b);
@@ -235,7 +242,7 @@ for (const C of CATEGORIES) {
   ] };
   s = setHead(s, { title: "Nano Ring, Tape-In & U-Tip Hair Extensions | Velvet Lengths",
     desc: "Shop Remy human hair extensions in the UK: nano ring, tape-in and keratin U-tip in up to 19 shades, plus fitting tools. Free tracked UK delivery.",
-    url: BASE, extra: ld(graph) });
+    url: BASE, extra: ld(graph), image: ogImage("og-image.png"), imageAlt: HOME_OG_ALT });
   write("index.html", s);
   pages.unshift({ url: BASE, images: [], priority: "1.0" });
 }
@@ -247,7 +254,7 @@ const info = {
   "terms.html": ["Terms of Sale | Velvet Lengths", "The terms that apply when you buy hair extensions and accessories from Velvet Lengths, including orders, prices, delivery, cancellations and returns."],
 };
 for (const [f, [title, desc]] of Object.entries(info)) {
-  write(f, setHead(read(f), { title, desc, url: BASE + f }));
+  write(f, setHead(read(f), { title, desc, url: BASE + f, image: ogImage("og-image.png"), imageAlt: HOME_OG_ALT }));
   pages.push({ url: BASE + f, images: [], priority: f === "privacy.html" || f === "terms.html" ? "0.3" : "0.5" });
 }
 

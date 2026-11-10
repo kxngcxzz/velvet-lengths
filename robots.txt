@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kxngcxzz.github.io/velvet-lengths/sitemap.xml
+Sitemap: https://velvetlengths.uk/sitemap.xml
