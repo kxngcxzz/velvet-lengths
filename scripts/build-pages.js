@@ -129,7 +129,7 @@ function pairsSection(id, P) {
         `<div class="pair-buy">${sel}<span class="pair-price">£${money(o.price)}</span><button class="btn" type="button" data-quick-add="${acc}">Add to bag</button></div></div>`;
     }).join("\n");
     return `<section class="pairs" id="pairs" aria-labelledby="t-pairs"><div class="head"><h2 id="t-pairs">Complete your kit</h2></div>` +
-      `<p class="pairs-sub">What you'll need to fit and care for your ${txt(P.name.replace(/ Extensions$/, " extensions").toLowerCase())}.</p><div class="pairs-grid">\n${cards}\n</div></section>`;
+      `<p class="pairs-sub">Tools for fitting and looking after these extensions.</p><div class="pairs-grid">\n${cards}\n</div></section>`;
   }
   const users = Object.entries(CATALOGUE).filter(([, H]) => (H.pairsWith || []).some(([a]) => a === id));
   if (!users.length) return `<section class="pairs" id="pairs" hidden></section>`;
@@ -175,14 +175,13 @@ for (const [id, P] of Object.entries(CATALOGUE)) {
   s = swap(s, '<img id="mainImg" src="" alt="">', `<img id="mainImg" src="images/${img}.jpg" alt="${esc(alt)}" width="1000" height="1000">`);
   s = s.replace(/<a id="crumbCat" href="[^"]*">[^<]*<\/a>/, `<a id="crumbCat" href="${cat.slug}.html">${esc(cat.name)}</a>`);
   s = swap(s, '<span id="crumb"></span>', `<span id="crumb">${txt(P.name)}</span>`);
-  s = swap(s, '<p class="eyebrow" id="eyebrow"></p>', `<p class="eyebrow" id="eyebrow">New in · ${txt(P.eyebrow)}</p>`);
+  s = swap(s, '<p class="eyebrow" id="eyebrow"></p>', `<p class="eyebrow" id="eyebrow">${txt(P.eyebrow)}</p>`);
   s = swap(s, '<h1 id="name"></h1>', `<h1 id="name">${txt(P.name)}</h1>`);
   s = swap(s, '<span id="price"></span>', `<span id="price">£${money(price)}</span>`);
-  s = swap(s, '<p class="klarna" id="klarna"></p>', `<p class="klarna" id="klarna">or 3 payments of £${money(price / 3)} with Klarna</p>`);
   s = swap(s, 'id="blurb"></p>', `id="blurb">${txt(P.blurb)}</p>`);
   s = swap(s, '<tbody id="specs"></tbody>', `<tbody id="specs">${P.specs.map(r => `<tr><td>${txt(r[0])}</td><td>${txt(r[1])}</td></tr>`).join("")}</tbody>`);
   s = s.replace(/(<div id="guides"[^>]*>)<\/div>/, (m, open) => open + (P.guides || []).map(g =>
-    `<figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="images/${g[0]}.jpg" alt="${esc(g[1])}" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)"><figcaption class="eyebrow">${esc(g[1])}</figcaption></figure>`).join("") + "</div>");
+    `<figure><img src="images/${g[0]}.jpg" alt="${esc(g[1])}" loading="lazy"><figcaption class="eyebrow">${txt(g[1])}</figcaption></figure>`).join("") + "</div>");
   s = s.replace(/<section class="pairs" id="pairs"[\s\S]*?<\/section>/, () => pairsSection(id, P));
   check(s.includes('id="pairs"'), "pairs section missing from template");
   s = s.replace(/<script>window\.PRODUCT_ID=[^<]*<\/script>\n/g, "");

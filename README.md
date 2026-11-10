@@ -19,6 +19,7 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 - `templates/product.html`, `templates/category.html`: page templates (not published)
 - `scripts/build-pages.js`: builds one page per product and category, plus `sitemap.xml`, `robots.txt`, `404.html` and redirects from the old `product.html?p=` links
 - `index.html`, `delivery.html`, `returns.html`, `contact.html`, `terms.html`, `privacy.html`: hand-written pages
+- `site.css`: styles shared by every page (each page keeps only its own extra styles)
 - `cart.js` (bag), `nav.js` (menus), `swatches.js` (colour dots), `images/`
 
 ## Adding or changing products

@@ -44,7 +44,7 @@ jobs:
         # No "|| true": if a file is missing the deploy stops and the current live site stays up.
         run: |
           mkdir _site
-          cp *.html *.js *.svg *.png robots.txt sitemap.xml .nojekyll _site/
+          cp *.html *.css *.js *.svg *.png robots.txt sitemap.xml .nojekyll _site/
           cp -r images _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

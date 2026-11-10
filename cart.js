@@ -39,7 +39,7 @@
     padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
   .bag.open{transform:none}
   .bag-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
-  .bag-head h2{font-size:30px}
+  .bag-head h2{font-family:var(--body);font-weight:700;font-size:30px;letter-spacing:-.01em}
   .bag-x{background:none;border:0;color:var(--ink);font-size:28px;line-height:1;padding:4px 8px}
   .bag-list{flex:1;overflow-y:auto;padding:8px 20px;display:flex;flex-direction:column}
   .bag-item{display:grid;grid-template-columns:72px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
@@ -56,7 +56,7 @@
   .bag-row{display:flex;justify-content:space-between;font-size:14px;font-variant-numeric:tabular-nums}
   .bag-row.total{font-size:18px;font-weight:700}
   .bag-foot .btn{justify-content:center}
-  .bag-note{font-size:12px;color:var(--muted);margin:0;text-align:center}
+  .bag-note{font-size:13px;color:var(--muted);margin:0;text-align:center}
   .bag-up{padding:18px 0 8px;display:flex;flex-direction:column;gap:10px}
   .bag-up h3{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
   .bag-up-card{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px}
@@ -79,7 +79,6 @@
       <div class="bag-row"><span>Subtotal</span><span id="bagSub"></span></div>
       <div class="bag-row"><span>UK delivery</span><span>Free</span></div>
       <div class="bag-row total"><span>Total</span><span id="bagTotal"></span></div>
-      <p class="bag-note" id="bagKlarna"></p>
       <button class="btn" id="bagCheckout">Checkout</button>
       <p class="bag-note" id="bagMsg" hidden>Checkout opens soon. Your bag is saved on this device.</p>
     </div>`;
@@ -101,7 +100,6 @@
         <span class="bag-qty"><button data-k="${k}" data-d="-1" aria-label="Fewer">−</button><span>${i.qty}</span><button data-k="${k}" data-d="1" aria-label="More">+</button></span><button class="bag-rm" data-rm="${k}">Remove</button></div>
       <span class="bag-price">${money(i.qty*i.price)}</span></div>`).join("")+upsellHTML();
     $("#bagSub").textContent=money(sub);$("#bagTotal").textContent=money(sub);
-    $("#bagKlarna").textContent=`or 3 payments of ${money(sub/3)} with Klarna`;
     list.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.k];it.qty=Math.max(1,it.qty+ +b.dataset.d);save()});
     list.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{items.splice(+b.dataset.rm,1);save()});
     list.querySelectorAll(".bag-up-card").forEach(card=>{

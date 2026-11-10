@@ -18,7 +18,7 @@
   .vl-menu a{padding:10px 12px;border-radius:8px;font-size:14px;display:flex;flex-direction:column;gap:2px}
   .vl-menu a:hover,.vl-menu a[aria-current]{background:var(--soft)}
   .vl-menu a,.vl-drawer a{border-bottom-color:var(--line)}.vl-menu a{border:0!important}
-  .vl-menu small{color:var(--muted);font-size:12px}
+  .vl-menu small{color:var(--muted);font-size:13px}
   .vl-menu hr{border:0;border-top:1px solid var(--line);margin:6px 4px}
   .vl-soon{font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--soft);color:var(--muted);padding:3px 6px;border-radius:5px}
   .vl-burger{display:none;width:44px;height:44px;border:0;background:none;color:var(--ink);border-radius:10px;align-items:center;justify-content:center;margin-left:-8px}
