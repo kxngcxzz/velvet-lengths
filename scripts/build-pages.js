@@ -236,12 +236,12 @@ for (const C of CATEGORIES) {
   check(faqs.length >= 3, "FAQ items not found on homepage");
   const graph = { "@context": "https://schema.org", "@graph": [
     { "@type": "Organization", "@id": BASE + "#organization", name: "Velvet Lengths", url: BASE, logo: BASE + "apple-touch-icon.png", image: BASE + "og-image.png",
-      description: "Remy human hair extensions and fitting accessories, with free tracked UK delivery." },
+      description: "Silky straight Remy human hair extensions for European and Asian hair types, and fitting accessories, with free tracked UK delivery." },
     { "@type": "WebSite", "@id": BASE + "#website", name: "Velvet Lengths", url: BASE, inLanguage: "en-GB", publisher: { "@id": BASE + "#organization" } },
     { "@type": "FAQPage", "@id": BASE + "#faq", mainEntity: faqs },
   ] };
   s = setHead(s, { title: "Nano Ring, Tape-In & U-Tip Hair Extensions | Velvet Lengths",
-    desc: "Shop Remy human hair extensions in the UK: nano ring, tape-in and keratin U-tip in up to 19 shades, plus fitting tools. Free tracked UK delivery.",
+    desc: "Remy human hair extensions for European and Asian hair types: nano ring, tape-in and keratin U-tip in up to 19 shades. Free tracked UK delivery.",
     url: BASE, extra: ld(graph), image: ogImage("og-image.png"), imageAlt: HOME_OG_ALT });
   write("index.html", s);
   pages.unshift({ url: BASE, images: [], priority: "1.0" });
