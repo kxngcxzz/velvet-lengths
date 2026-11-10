@@ -69,7 +69,7 @@
 
 <p class="eyebrow">Help</p>
 <h1>Contact us</h1>
-<p class="lead">Questions about an order, which shade to pick, or a return? Send us a message and we'll reply within 1–2 working days.</p>
+<p class="lead">Questions about an order, which shade to pick, or a return? Email us at <a href="mailto:hello@velvetlengths.uk">hello@velvetlengths.uk</a> or send a message below, and we'll reply within 1–2 working days.</p>
 <form class="cform" id="cForm" novalidate>
   <label for="cName">Name<input id="cName" name="name" required autocomplete="name"></label>
   <label for="cEmail">Email<input id="cEmail" name="email" type="email" required autocomplete="email"></label>
@@ -100,7 +100,9 @@
 const CONTACT_ENDPOINT="";
 document.getElementById("cForm").addEventListener("submit",async e=>{e.preventDefault();const f=e.target,o=document.getElementById("cOut");o.hidden=false;
  if(!f.checkValidity()){o.textContent="Add your name, email and message, then send again.";return}
- if(!CONTACT_ENDPOINT){o.textContent="Our contact form opens soon. Please check back shortly.";return}
+ if(!CONTACT_ENDPOINT){const d=Object.fromEntries(new FormData(f)),body=`Name: ${d.name}\nEmail: ${d.email}\nOrder number: ${d.order||"none"}\n\n${d.message}`;
+  location.href=`mailto:hello@velvetlengths.uk?subject=${encodeURIComponent(d.topic)}&body=${encodeURIComponent(body)}`;
+  o.textContent="Your email app should open with your message ready to send. If it doesn't, email us at hello@velvetlengths.uk.";return}
  try{const r=await fetch(CONTACT_ENDPOINT,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(f)))});if(!r.ok)throw 0;f.reset();o.textContent="Thanks, your message is on its way. We'll reply within 1–2 working days."}
  catch{o.textContent="Your message didn't send. Check your connection and try again."}});
 </script>

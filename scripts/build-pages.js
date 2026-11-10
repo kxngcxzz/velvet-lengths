@@ -235,7 +235,7 @@ for (const C of CATEGORIES) {
   }));
   check(faqs.length >= 3, "FAQ items not found on homepage");
   const graph = { "@context": "https://schema.org", "@graph": [
-    { "@type": "Organization", "@id": BASE + "#organization", name: "Velvet Lengths", url: BASE, logo: BASE + "apple-touch-icon.png", image: BASE + "og-image.png",
+    { "@type": "Organization", "@id": BASE + "#organization", name: "Velvet Lengths", url: BASE, logo: BASE + "apple-touch-icon.png", image: BASE + "og-image.png", email: "hello@velvetlengths.uk",
       description: "Remy human hair extensions and fitting accessories, with free tracked UK delivery." },
     { "@type": "WebSite", "@id": BASE + "#website", name: "Velvet Lengths", url: BASE, inLanguage: "en-GB", publisher: { "@id": BASE + "#organization" } },
     { "@type": "FAQPage", "@id": BASE + "#faq", mainEntity: faqs },
