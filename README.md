@@ -27,6 +27,13 @@ Website for Velvet Lengths: nano ring, tape-in and U-tip human hair extensions.
 1. Edit `products.js`. Give new products a `category`, a unique `slug` (the page address), a `seoTitle` (60 characters or fewer) and a `seoDesc` (110–160 characters).
 2. Run `node scripts/build-pages.js`. It stops with a clear message if anything is missing or too long.
 3. Commit and push. The deploy also runs the build, so the live site is never out of date.
+4. Run `node scripts/make-shopify-csv.js` and import `shopify/products.csv` in Shopify (Products > Import, with
+   "Overwrite products with matching handles" ticked), so Shopify charges the same prices the site shows.
+
+## Shopify
+
+Shopify only takes payment. `shopify/products.csv` lists every product, option and price from `products.js`, with
+SKUs made by `skuFor()` in `products.js`. The checkout finds each Shopify variant by its SKU, so don't edit SKUs in Shopify.
 
 ## Hosting and SEO
 

@@ -178,6 +178,12 @@ function costFor(P,c,l,w){
   const base=list?list[l]:P.colours[c][2];
   return base*pack[1];
 }
+// Shopify SKU for a product option, e.g. VL-TAPEIN-P18613-18-1. The checkout finds each Shopify variant by this,
+// so scripts/make-shopify-csv.js and the bag must both use this function.
+function skuFor(id,c,l,w){
+  const P=CATALOGUE[id],k=s=>String(s).toUpperCase().replace(/[^A-Z0-9]+/g,"");
+  return ["VL",k(id),k(P.colours[c][0]),P.lens[l]||null,w+1].filter(x=>x!==null).join("-");
+}
 function priceFor(P,c,l,w){
   const v=P.costs?sell(costFor(P,c,l,w)):Math.ceil((sell(P.colours[c][2])+l*P.step)*P.wts[w][1])-0.01;
   return +v.toFixed(2);
