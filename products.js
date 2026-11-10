@@ -10,6 +10,7 @@ const CATEGORIES=[
 ];
 const CATALOGUE={
   "nano-ring":{
+    menu:"Nano Ring", // short name used in the menus
     // Upsell: accessories suggested with this product (id, reason). match: hair colour -> accessory colour.
     pairsWith:[["nano-beads","Rings to fit your tips, matched to your shade"],["section-clips","Hold sections out of the way while fitting"],["comb-set","Tail combs for neat, even partings"],["vent-brush","Brushes gently without catching the rings"]],
     match:{"nano-beads":{"01":"Black","02":"Dark brown","04":"Brown","07":"Light brown","1660":"Blonde","18613":"Blonde","760":"Light brown","99J":"Dark brown","T416":"Brown"}},
@@ -28,6 +29,7 @@ const CATALOGUE={
     guides:[["nano-ring-how-to-fit","How to fit nano ring extensions, step by step"],["nano-ring-guide","Texture, pack size and how many packs to choose"]]
   },
   "tape-in":{
+    menu:"Tape-In", // short name used in the menus
     pairsWith:[["comb-set","Tail combs for neat partings when fitting"],["section-clips","Hold sections flat while you tape"],["vent-brush","Brushes without pulling on the tape"],["mist-bottle","Refresh lengths without soaking the tape"]],
     slug:"tape-in-hair-extensions",seoTitle:"Seamless Tape-In Hair Extensions | Velvet Lengths",seoDesc:"Seamless tape-in hair extensions in Remy human hair. 19 shades from black to platinum, 14–24 inches, 20 pieces per pack. Free tracked UK delivery.",
     category:"extensions",
@@ -53,6 +55,7 @@ const CATALOGUE={
     guides:[["tape-in-length-guide","Where each length falls, straight and curled"]]
   },
   "u-tip":{
+    menu:"U-Tip Keratin", // short name used in the menus
     pairsWith:[["section-clips","Hold sections out of the way while fusing"],["butterfly-clips","Keep thick hair clear of the bonds"],["comb-set","Tail combs for neat partings"],["vent-brush","Brushes gently around the bonds"]],
     slug:"u-tip-hair-extensions",seoTitle:"U-Tip Keratin Fusion Hair Extensions | Velvet Lengths",seoDesc:"U-tip keratin fusion hair extensions in Remy human hair. 9 shades, 12–20 inches, 50 or 100 strands. Free tracked UK delivery on every order.",
     category:"extensions",
@@ -72,6 +75,7 @@ const CATALOGUE={
   }
 ,
   "nano-beads":{
+    menu:"Nano Ring Beads", // short name used in the menus
     slug:"nano-ring-beads",seoTitle:"Nano Rings for Hair Extensions (1000 Pack) | Velvet Lengths",seoDesc:"Copper nano rings for fitting nano ring hair extensions. 1000 beads per pot, 2.5mm, in black, browns and blonde. Free tracked UK delivery.",
     category:"accessories",
     name:"Nano Ring Beads · 1000 pack",eyebrow:"Copper nano rings for fitting and refitting",type:"acc",colourWord:"colours",
@@ -87,6 +91,7 @@ const CATALOGUE={
     guides:[["nano-beads-how-to","How to fit a ring extension, step by step"]]
   },
   "comb-set":{
+    menu:"10-Piece Comb Set", // short name used in the menus
     slug:"salon-comb-set",seoTitle:"10-Piece Salon Comb Set for Extensions | Velvet Lengths",seoDesc:"10-piece salon comb set for sectioning, parting and detangling hair extensions. Tail, pin and wide-tooth combs in anti-static plastic. Free UK delivery.",
     category:"accessories",
     name:"10-Piece Salon Comb Set",eyebrow:"Sectioning, parting and styling combs",type:"acc",colourWord:"set",
@@ -99,6 +104,7 @@ const CATALOGUE={
     guides:[["comb-set-uses","Picking up, sectioning and colouring with the tail combs"]]
   },
   "section-clips":{
+    menu:"Steel Sectioning Clips", // short name used in the menus
     slug:"steel-sectioning-clips",seoTitle:"Steel Sectioning Hair Clips (10 or 20) | Velvet Lengths",seoDesc:"Stainless steel duckbill sectioning clips for fitting extensions, colouring and styling. Packs of 10 or 20 strong salon clips. Free tracked UK delivery.",
     category:"accessories",
     name:"Steel Sectioning Clips",eyebrow:"Salon clips for fitting and styling",type:"acc",colourWord:"pack sizes",
@@ -111,6 +117,7 @@ const CATALOGUE={
     guides:[["clips-uses","Clips in use for colouring, styling and braiding"]]
   },
   "butterfly-clips":{
+    menu:"Butterfly Clips", // short name used in the menus
     slug:"butterfly-sectioning-clips",seoTitle:"Butterfly Hair Sectioning Clips (12 Pack) | Velvet Lengths",seoDesc:"Large butterfly hair clips with toothed jaws for holding thick sections while fitting extensions, drying and styling. Pack of 12. Free UK delivery.",
     category:"accessories",
     name:"Butterfly Sectioning Clips · 12 pack",eyebrow:"Large clips for holding thick sections",type:"acc",colourWord:"pack",
@@ -122,6 +129,7 @@ const CATALOGUE={
     gallery:[["butterfly-clips-size","Size: 8cm × 4.4cm"],["butterfly-clips-open","Toothed jaws for a firm grip"],["butterfly-clips-spring","Strong metal spring"]]
   },
   "metal-comb":{
+    menu:"Aluminium Comb", // short name used in the menus
     slug:"aluminium-cutting-comb",seoTitle:"Aluminium Cutting Comb | Velvet Lengths",seoDesc:"Lightweight aluminium cutting comb for partings and sectioning. Fine and wide teeth, 5 metallic finishes, small or large size. Free tracked UK delivery.",
     // cost set to an assumed £2.00 (AliExpress showed a £0.99 new-shopper price); update with real logged-in cost
     category:"accessories",
@@ -134,6 +142,7 @@ const CATALOGUE={
     gallery:[["metal-comb-large","Large size in gold: 21.5cm"],["metal-comb-large-rose-gold","Large size in rose gold"],["metal-comb-large-silver","Large size in silver"],["metal-comb-large-black","Large size in black"]]
   },
   "vent-brush":{
+    menu:"Vent Brush", // short name used in the menus
     slug:"curved-vent-detangling-brush",seoTitle:"Curved Vent Brush for Hair Extensions | Velvet Lengths",seoDesc:"CALIYI curved vented detangling brush with ball-tipped bristles, gentle on tape, rings and bonds. Black, white or a pair. Free tracked UK delivery.",brand:"CALIYI",
     // costs assumed (£2.00 single, £3.60 pair); AliExpress showed new-shopper prices £0.99 / £1.68
     category:"accessories",
@@ -146,6 +155,7 @@ const CATALOGUE={
     gallery:[["vent-brush-size","Size: 24.5cm × 8cm"]]
   },
   "mist-bottle":{
+    menu:"Mist Spray Bottle", // short name used in the menus
     slug:"continuous-mist-spray-bottle",seoTitle:"Continuous Mist Spray Bottle 200ml | Velvet Lengths",seoDesc:"200ml continuous mist spray bottle for dampening and refreshing hair extensions and wigs. Ultra-fine mist in 7 colours. Free tracked UK delivery.",
     // cost assumed £2.00 (AliExpress showed a £0.99 new-shopper price)
     category:"accessories",
