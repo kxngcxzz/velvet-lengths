@@ -108,6 +108,37 @@ const summary = p => `${p.colours.length} ${p.colourWord || "shades"}${p.lens[0]
 
 const pages = []; // for sitemap: {url, images:[...]}
 
+// Upsell helpers. choices() must list options in the same order as choices() in cart.js.
+const choices = P => P.colours.flatMap((C, c) => P.wts.map((W, w) => ({ c, w,
+  label: (C[0] === C[1] ? C[0] : C[0] + " · " + C[1]) + (P.wts.length > 1 ? " · " + W[0] : ""),
+  price: priceFor(P, c, 0, w) })));
+for (const [id, P] of Object.entries(CATALOGUE)) for (const [acc] of P.pairsWith || [])
+  check(CATALOGUE[acc], `${id} pairsWith unknown product ${acc}`);
+function pairsSection(id, P) {
+  if (P.pairsWith && P.pairsWith.length) {
+    const C0 = P.colours[Math.max(0, P.colours.findIndex(x => x[3]))][0];
+    const cards = P.pairsWith.map(([acc, why]) => {
+      const A = CATALOGUE[acc], opts = choices(A);
+      const want = P.match && P.match[acc] && P.match[acc][C0];
+      const pick = want ? Math.max(0, A.colours.findIndex(x => x[0] === want)) * A.wts.length : 0;
+      const o = opts[pick], img = A.colours[o.c][3] || firstPhoto(A);
+      const sel = opts.length > 1 ? `<select aria-label="Choose an option for ${esc(A.name)}">${opts.map((x, i) =>
+        `<option value="${i}"${i === pick ? " selected" : ""}>${txt(x.label)}</option>`).join("")}</select>` : "";
+      return `<div class="pair" data-pair="${acc}"${P.match && P.match[acc] ? " data-match" : ""}><a class="pair-img" href="${A.slug}.html"><img src="images/${img}.jpg" alt="${esc(A.name)}" loading="lazy" width="300" height="300"></a>` +
+        `<div class="pair-text"><a class="pair-name" href="${A.slug}.html">${txt(A.name)}</a><p>${txt(why)}</p></div>` +
+        `<div class="pair-buy">${sel}<span class="pair-price">£${money(o.price)}</span><button class="btn" type="button" data-quick-add="${acc}">Add to bag</button></div></div>`;
+    }).join("\n");
+    return `<section class="pairs" id="pairs" aria-labelledby="t-pairs"><div class="head"><h2 id="t-pairs">Complete your kit</h2></div>` +
+      `<p class="pairs-sub">What you'll need to fit and care for your ${txt(P.name.replace(/ Extensions$/, " extensions").toLowerCase())}.</p><div class="pairs-grid">\n${cards}\n</div></section>`;
+  }
+  const users = Object.entries(CATALOGUE).filter(([, H]) => (H.pairsWith || []).some(([a]) => a === id));
+  if (!users.length) return `<section class="pairs" id="pairs" hidden></section>`;
+  const cards = users.map(([, H]) => `<div class="pair"><a class="pair-img" href="${H.slug}.html"><img src="images/${firstPhoto(H)}.jpg" alt="${esc(H.name)}" loading="lazy" width="300" height="300"></a>` +
+    `<div class="pair-text"><a class="pair-name" href="${H.slug}.html">${txt(H.name)}</a><p>${txt(summary(H))}</p></div>` +
+    `<div class="pair-buy"><span class="pair-price">from £${money(fromPrice(H))}</span><a class="btn ghost" href="${H.slug}.html">View</a></div></div>`).join("\n");
+  return `<section class="pairs" id="pairs" aria-labelledby="t-pairs"><div class="head"><h2 id="t-pairs">Use it with</h2></div><div class="pairs-grid">\n${cards}\n</div></section>`;
+}
+
 // ---------- product pages ----------
 const productTpl = read("templates/product.html");
 const slugs = new Set();
@@ -152,6 +183,8 @@ for (const [id, P] of Object.entries(CATALOGUE)) {
   s = swap(s, '<tbody id="specs"></tbody>', `<tbody id="specs">${P.specs.map(r => `<tr><td>${txt(r[0])}</td><td>${txt(r[1])}</td></tr>`).join("")}</tbody>`);
   s = s.replace(/(<div id="guides"[^>]*>)<\/div>/, (m, open) => open + (P.guides || []).map(g =>
     `<figure style="margin:0;display:flex;flex-direction:column;gap:10px"><img src="images/${g[0]}.jpg" alt="${esc(g[1])}" loading="lazy" style="width:100%;border-radius:16px;border:1px solid var(--line)"><figcaption class="eyebrow">${esc(g[1])}</figcaption></figure>`).join("") + "</div>");
+  s = s.replace(/<section class="pairs" id="pairs"[\s\S]*?<\/section>/, () => pairsSection(id, P));
+  check(s.includes('id="pairs"'), "pairs section missing from template");
   s = s.replace(/<script>window\.PRODUCT_ID=[^<]*<\/script>\n/g, "");
   s = s.replace(/(<script src="products\.js[^"]*"><\/script>)/, `<script>window.PRODUCT_ID=${JSON.stringify(id)};</script>\n$1`);
   check(s.includes("window.PRODUCT_ID="), "PRODUCT_ID not injected");

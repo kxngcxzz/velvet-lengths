@@ -6,6 +6,29 @@
   const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}render()};
   const money=v=>"£"+v.toFixed(2);
   const esc=t=>String(t).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+  const CAT=typeof CATALOGUE!=="undefined"?CATALOGUE:{};
+  const priceOf=(P,c,w)=>typeof priceFor==="function"?priceFor(P,c,0,w):0;
+  // Every colour/pack choice of an accessory (accessories have no length).
+  const choices=P=>P.colours.flatMap((C,c)=>P.wts.map((W,w)=>({c,w,label:(C[0]===C[1]?C[0]:C[0]+" · "+C[1])+(P.wts.length>1?" · "+W[0]:""),price:priceOf(P,c,w)})));
+  // Builds a bag line exactly like the product page does, so the same item merges into one line.
+  function itemFor(id,c,w,qty){
+    const P=CAT[id];if(!P)return null;const C=P.colours[c];
+    return {id,name:P.name,variant:(P.lens[0]?`Colour ${C[0]} · ${P.lens[0]}" · `:`${C[0]} · `)+P.wts[w][0],
+      price:priceOf(P,c,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:qty||1};
+  }
+  // Accessory colour that suits a hair line in the bag (e.g. nano rings matched to the hair shade).
+  function matchedChoice(accId,hairLine){
+    const H=CAT[hairLine.id],A=CAT[accId];if(!H||!A||!H.match||!H.match[accId])return 0;
+    const code=(/^Colour (.+?) ·/.exec(hairLine.variant)||[])[1];const want=H.match[accId][code];
+    const c=A.colours.findIndex(x=>x[0]===want);return c<0?0:c*A.wts.length;
+  }
+  // Up to 3 accessories that go with the hair in the bag and aren't in it yet.
+  function suggestions(){
+    const inBag=new Set(items.map(i=>i.id)),out=[],seen=new Set();
+    items.forEach(line=>{const H=CAT[line.id];(H&&H.pairsWith||[]).forEach(([acc,why])=>{
+      if(inBag.has(acc)||seen.has(acc)||!CAT[acc])return;seen.add(acc);out.push({acc,why,pick:matchedChoice(acc,line),matched:!!(H.match&&H.match[acc])});});});
+    return out.slice(0,3);
+  }
 
   const css=document.createElement("style");
   css.textContent=`
@@ -34,6 +57,17 @@
   .bag-row.total{font-size:18px;font-weight:700}
   .bag-foot .btn{justify-content:center}
   .bag-note{font-size:12px;color:var(--muted);margin:0;text-align:center}
+  .bag-up{padding:18px 0 8px;display:flex;flex-direction:column;gap:10px}
+  .bag-up h3{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+  .bag-up-card{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .bag-up-card img{width:56px;height:56px;object-fit:cover;border-radius:8px;background:#fff}
+  .bag-up-card a{font:600 13px/1.35 var(--body);color:var(--ink)}
+  .bag-up-card p{margin:2px 0 8px;font-size:12px;color:var(--muted)}
+  .bag-up-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .bag-up-row select{flex:1;min-width:0;font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:7px 8px;background:var(--bg);color:var(--ink);min-height:36px}
+  .bag-up-row b{font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+  .bag-up-add{border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:600 13px var(--body);padding:0 14px;min-height:36px}
+  .bag-up-add:hover{filter:brightness(1.08)}
   @media (prefers-reduced-motion:reduce){.bag,.bag-scrim{transition:none}}`;
   document.head.appendChild(css);
 
@@ -65,11 +99,29 @@
       <img src="${esc(i.img)}" alt="">
       <div><h3>${esc(i.name)}</h3><p>${esc(i.variant)}</p>
         <span class="bag-qty"><button data-k="${k}" data-d="-1" aria-label="Fewer">−</button><span>${i.qty}</span><button data-k="${k}" data-d="1" aria-label="More">+</button></span><button class="bag-rm" data-rm="${k}">Remove</button></div>
-      <span class="bag-price">${money(i.qty*i.price)}</span></div>`).join("");
+      <span class="bag-price">${money(i.qty*i.price)}</span></div>`).join("")+upsellHTML();
     $("#bagSub").textContent=money(sub);$("#bagTotal").textContent=money(sub);
     $("#bagKlarna").textContent=`or 3 payments of ${money(sub/3)} with Klarna`;
     list.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.k];it.qty=Math.max(1,it.qty+ +b.dataset.d);save()});
     list.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{items.splice(+b.dataset.rm,1);save()});
+    list.querySelectorAll(".bag-up-card").forEach(card=>{
+      const sel=card.querySelector("select"),A=CAT[card.dataset.acc],opts=choices(A),price=card.querySelector("b");
+      if(sel)sel.onchange=()=>{price.textContent=money(opts[+sel.value].price)};
+      card.querySelector(".bag-up-add").onclick=()=>{const o=opts[sel?+sel.value:0];addLine(itemFor(card.dataset.acc,o.c,o.w,1));};
+    });
+  }
+  function upsellHTML(){
+    const list=suggestions();if(!list.length)return "";
+    return `<section class="bag-up" aria-label="Complete your kit"><h3>Complete your kit</h3>${list.map(s=>{
+      const A=CAT[s.acc],opts=choices(A),o=opts[s.pick]||opts[0],img=`images/${A.colours[o.c][3]||A.colours.find(x=>x[3])[3]}.jpg`;
+      return `<div class="bag-up-card" data-acc="${esc(s.acc)}"><img src="${esc(img)}" alt="">
+        <div><a href="${esc(A.slug)}.html">${esc(A.name)}</a><p>${esc(s.why)}</p>
+        <div class="bag-up-row">${opts.length>1?`<select aria-label="Choose an option for ${esc(A.name)}">${opts.map((x,i)=>`<option value="${i}"${i===s.pick?" selected":""}>${esc(x.label)}</option>`).join("")}</select>`:""}
+        <b>${money(o.price)}</b><button class="bag-up-add" type="button">Add</button></div></div></div>`;}).join("")}</section>`;
+  }
+  function addLine(item){
+    if(!item)return;const id=item.id+"|"+item.variant,f=items.find(i=>i.key===id);
+    if(f)f.qty+=item.qty;else items.push({...item,key:id});save();
   }
   function open(){panel.classList.add("open");scrim.classList.add("open");panel.setAttribute("aria-hidden","false");$(".bag-x").focus()}
   function close(){panel.classList.remove("open");scrim.classList.remove("open");panel.setAttribute("aria-hidden","true")}
@@ -80,12 +132,19 @@
   addEventListener("storage",e=>{if(e.key===KEY){items=load();render()}});
 
   window.Bag={
-    add(item){
-      const id=item.id+"|"+item.variant,f=items.find(i=>i.key===id);
-      if(f)f.qty+=item.qty;else items.push({...item,key:id});
-      save();open();
-    },
+    add(item){addLine(item);open();},
+    addProduct(id,c,w,qty){addLine(itemFor(id,c||0,w||0,qty));open();},
+    choices:id=>CAT[id]?choices(CAT[id]):[],
+    // Index into choices(accId) that suits a hair product in a given colour code.
+    matchFor(hairId,code,accId){return matchedChoice(accId,{id:hairId,variant:`Colour ${code} · `});},
     open
   };
+  // Quick-add buttons on product pages: <button data-quick-add="id"> inside an element that may hold a <select> of choices.
+  document.addEventListener("click",e=>{
+    const b=e.target.closest("[data-quick-add]");if(!b)return;
+    const id=b.dataset.quickAdd,opts=choices(CAT[id]||{colours:[],wts:[]});if(!opts.length)return;
+    const sel=b.closest("[data-pair]")&&b.closest("[data-pair]").querySelector("select");
+    const o=opts[sel?+sel.value:0];Bag.addProduct(id,o.c,o.w,1);
+  });
   render();
 })();

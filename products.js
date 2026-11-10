@@ -10,6 +10,9 @@ const CATEGORIES=[
 ];
 const CATALOGUE={
   "nano-ring":{
+    // Upsell: accessories suggested with this product (id, reason). match: hair colour -> accessory colour.
+    pairsWith:[["nano-beads","Rings to fit your tips, matched to your shade"],["section-clips","Hold sections out of the way while fitting"],["comb-set","Tail combs for neat, even partings"],["vent-brush","Brushes gently without catching the rings"]],
+    match:{"nano-beads":{"01":"Black","02":"Dark brown","04":"Brown","07":"Light brown","1660":"Blonde","18613":"Blonde","760":"Light brown","99J":"Dark brown","T416":"Brown"}},
     slug:"nano-ring-hair-extensions",seoTitle:"Nano Ring Hair Extensions | Remy Human Hair | Velvet Lengths",seoDesc:"Nano ring tip hair extensions in Remy human hair. 9 shades, 14–24 inches, 50g or 100g packs. No glue, heat or tape. Free tracked UK delivery.",
     category:"extensions",
     name:"Nano Ring Tip Extensions",eyebrow:"100% virgin Remy human hair",type:"ext",
@@ -25,6 +28,7 @@ const CATALOGUE={
     guides:[["nano-ring-how-to-fit","How to fit nano ring extensions, step by step"],["nano-ring-guide","Texture, pack size and how many packs to choose"]]
   },
   "tape-in":{
+    pairsWith:[["comb-set","Tail combs for neat partings when fitting"],["section-clips","Hold sections flat while you tape"],["vent-brush","Brushes without pulling on the tape"],["mist-bottle","Refresh lengths without soaking the tape"]],
     slug:"tape-in-hair-extensions",seoTitle:"Seamless Tape-In Hair Extensions | Velvet Lengths",seoDesc:"Seamless tape-in hair extensions in Remy human hair. 19 shades from black to platinum, 14–24 inches, 20 pieces per pack. Free tracked UK delivery.",
     category:"extensions",
     name:"Seamless Tape-In Extensions",eyebrow:"Remy human hair · skin weft",type:"ext",
@@ -49,6 +53,7 @@ const CATALOGUE={
     guides:[["tape-in-length-guide","Where each length falls, straight and curled"]]
   },
   "u-tip":{
+    pairsWith:[["section-clips","Hold sections out of the way while fusing"],["butterfly-clips","Keep thick hair clear of the bonds"],["comb-set","Tail combs for neat partings"],["vent-brush","Brushes gently around the bonds"]],
     slug:"u-tip-hair-extensions",seoTitle:"U-Tip Keratin Fusion Hair Extensions | Velvet Lengths",seoDesc:"U-tip keratin fusion hair extensions in Remy human hair. 9 shades, 12–20 inches, 50 or 100 strands. Free tracked UK delivery and Klarna pay in 3.",
     category:"extensions",
     name:"U-Tip Keratin Fusion Extensions",eyebrow:"Remy human hair · keratin bond",type:"ext",

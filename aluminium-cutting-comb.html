@@ -267,6 +267,25 @@ h1,h2,h3,.logo{font-weight:500}
 .eyebrow,.badge,.pay span,.cols h4{letter-spacing:.1em!important}
 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .logo small{font-size:10px!important;letter-spacing:.24em!important}
+
+/* complete-your-kit (upsell) and use-with sections */
+.pairs{padding-block:8px 48px}
+.pairs .head{margin-bottom:18px}
+.pairs h2{font-size:clamp(28px,3.4vw,40px)}
+.pairs-sub{color:var(--muted);margin:-8px 0 18px;max-width:60ch}
+.pairs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1000px){.pairs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.pairs-grid{grid-template-columns:1fr}}
+.pair{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pair-img{display:block;aspect-ratio:1;max-width:100%;border-radius:10px;overflow:hidden;background:#fff}
+.pair-img img{width:100%;height:100%;object-fit:cover}
+.pair-name{font:600 15px/1.35 var(--body)}
+.pair p{margin:0;font-size:13px;color:var(--muted)}
+.pair-buy{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.pair-buy select{flex:1 1 100%;min-width:0;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--bg);color:var(--ink);min-height:44px}
+.pair-price{font-weight:700;font-variant-numeric:tabular-nums}
+.pair-buy .btn{margin-left:auto;padding:10px 18px;min-height:44px}
+@media (max-width:480px){.pair{flex-direction:row;flex-wrap:wrap;align-items:flex-start}.pair-img{width:88px;flex:none}.pair-text{flex:1 1 0;min-width:0}.pair-buy{flex:1 1 100%}}
 </style>
 </head><body>
 
@@ -345,6 +364,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
       <table class="specs"><tbody id="specs"><tr><td>Material</td><td>Aluminium alloy</td></tr><tr><td>Small</td><td>17.8 × 2.4 × 2cm</td></tr><tr><td>Large</td><td>21.5 × 2.6 × 2.4cm</td></tr><tr><td>Finishes</td><td>Gold, rose gold, silver, black, bronze</td></tr><tr><td>Good for</td><td>Parting, sectioning, cutting and styling</td></tr></tbody></table>
     </div>
   </div>
+  <section class="pairs" id="pairs" hidden></section>
   <div id="guides" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;padding-block:0 56px"></div>
   <section class="reviews-wrap" aria-labelledby="t-rv">
     <div>
@@ -383,10 +403,10 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
 <div class="toast" id="toast" hidden></div>
 <script>window.PRODUCT_ID="metal-comb";</script>
-<script src="products.js?v=202611091948"></script>
-<script src="swatches.js?v=202611091948"></script>
-<script src="cart.js?v=202611091948"></script>
-<script src="nav.js?v=202611091948"></script>
+<script src="products.js?v=202611100426"></script>
+<script src="swatches.js?v=202611100426"></script>
+<script src="cart.js?v=202611100426"></script>
+<script src="nav.js?v=202611100426"></script>
 <script>
 const id=window.PRODUCT_ID||new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
 const $=x=>document.getElementById(x);
@@ -395,6 +415,15 @@ $("specs").innerHTML=P.specs.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`)
 let extra=null,c=Math.max(0,P.colours.findIndex(x=>x[3])),l=0,w=0,q=1;
 const swatch=x=>x[3]?`<img src="images/${x[3]}.jpg" alt="">`:`<span style="display:grid;place-items:center;height:100%;font:500 11px var(--mono);color:var(--muted)">${x[0]}</span>`;
 function opts(el,arr,get,set,label){el.innerHTML="";arr.forEach((v,i)=>{const b=document.createElement("button");b.textContent=label(v);b.setAttribute("aria-pressed",i===get());b.onclick=()=>{set(i);draw()};el.appendChild(b)})}
+// "Complete your kit": keep matched accessories (e.g. nano rings) in step with the chosen hair shade.
+function syncPairs(code){
+  document.querySelectorAll("#pairs [data-pair]").forEach(el=>{
+    const s=el.querySelector("select");if(!s||!window.Bag)return;const opts=Bag.choices(el.dataset.pair);
+    if(el.hasAttribute("data-match")){s.value=String(Bag.matchFor(id,code,el.dataset.pair));}
+    const pr=el.querySelector(".pair-price");if(pr&&opts[+s.value])pr.textContent="£"+opts[+s.value].price.toFixed(2);
+    s.onchange=()=>{if(opts[+s.value])pr.textContent="£"+opts[+s.value].price.toFixed(2)};
+  });
+}
 function draw(){
   const C=P.colours[c];
   $("cols").innerHTML=P.colours.map((v,i)=>{const g=(v[4])||(typeof SWATCH!=="undefined"&&SWATCH[v[3]])||["#bbb","#ccc","#ddd"];return `<button aria-pressed="${i===c}" aria-label="${v[0]}, ${v[1]}" title="${v[0]} · ${v[1]}" data-i="${i}"><span style="background:linear-gradient(135deg,${g[0]},${g[1]} 55%,${g[2]})"></span></button>`}).join("");
@@ -403,6 +432,7 @@ function draw(){
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(b.dataset.g){extra=b.dataset.g}else{c=+b.dataset.i;extra=null}draw()});
   const img=extra||C[3]||P.colours.find(x=>x[3])[3];$("mainImg").src=`images/${img}.jpg`;$("mainImg").alt=C[0]===C[1]?`${P.name} in ${C[1].toLowerCase()}`:`${P.name} in ${C[0]} ${C[1].toLowerCase()}`;
   $("colName").textContent=(C[0]===C[1]?C[0]:`${C[0]} · ${C[1]}`)+(C[3]?"":" (photo coming soon)");
+  syncPairs(C[0]);
   const v=priceFor(P,c,l,w);
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("klarna").textContent=`or 3 payments of £${(v*q/3).toFixed(2)} with Klarna`;$("q").textContent=q;
 }
