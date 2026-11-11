@@ -229,9 +229,9 @@ details p{color:var(--muted);margin:10px 0 0;max-width:65ch}
 </div></footer>
 
 
-<script src="products.js?v=202611102038"></script>
+<script src="products.js?v=202611111612"></script>
 <script src="swatches.js?v=202611100449"></script>
-<script src="cart.js?v=202611100449"></script>
+<script src="cart.js?v=202611111612"></script>
 <script src="nav.js?v=202611102113"></script>
 <script>
 // Homepage product cards, built from products.js. [product id, photo shown first]
@@ -254,7 +254,7 @@ FEATURED.forEach(([id,photo])=>{
     el.querySelectorAll(".lengths button").forEach((b,i)=>b.setAttribute("aria-pressed",i===li));};
   el.querySelectorAll(".swatches-row button").forEach(b=>b.onclick=()=>{ci=+b.dataset.i;upd()});
   el.querySelectorAll(".lengths button").forEach(b=>b.onclick=()=>{li=+b.dataset.l;upd()});
-  el.querySelector(".quick").onclick=()=>{const C=cols[ci];Bag.add({id,name:P.name,variant:`Colour ${C[0]} · ${P.lens[li]}" · ${P.wts[0][0]}`,price:cost(),img:`images/${C[3]}.jpg`,qty:1})};
+  el.querySelector(".quick").onclick=()=>{const C=cols[ci];Bag.add({id,sku:skuFor(id,realIdx(),li,0),name:P.name,variant:`Colour ${C[0]} · ${P.lens[li]}" · ${P.wts[0][0]}`,price:cost(),img:`images/${C[3]}.jpg`,qty:1})};
   upd();grid.appendChild(el);
 });
 {const N=CATALOGUE["nano-ring"];document.getElementById("heroPrice").textContent=`from £${Math.min(...N.colours.map((_,i)=>priceFor(N,i,0,0))).toFixed(2)}`;}

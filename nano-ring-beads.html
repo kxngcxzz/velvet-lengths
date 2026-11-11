@@ -197,9 +197,9 @@
 
 
 <script>window.PRODUCT_ID="nano-beads";</script>
-<script src="products.js?v=202611102038"></script>
+<script src="products.js?v=202611111612"></script>
 <script src="swatches.js?v=202611100449"></script>
-<script src="cart.js?v=202611100449"></script>
+<script src="cart.js?v=202611111612"></script>
 <script src="nav.js?v=202611102113"></script>
 <script>
 const id=window.PRODUCT_ID||new URLSearchParams(location.search).get("p")||"nano-ring",P=CATALOGUE[id]||CATALOGUE["nano-ring"];
@@ -229,7 +229,7 @@ function draw(){
   $("price").textContent=`£${(v*q).toFixed(2)}`;$("q").textContent=q;
 }
 $("minus").onclick=()=>{q=Math.max(1,q-1);draw()};$("plus").onclick=()=>{q++;draw()};
-$("add").onclick=()=>{const C=P.colours[c];Bag.add({id:id,name:P.name,variant:(P.lens[0]?`Colour ${C[0]} · ${P.lens[l]}" · `:`${C[0]} · `)+P.wts[w][0],price:priceFor(P,c,l,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:q});q=1;draw()};
+$("add").onclick=()=>{const C=P.colours[c];Bag.add({id:id,sku:skuFor(id,c,l,w),name:P.name,variant:(P.lens[0]?`Colour ${C[0]} · ${P.lens[l]}" · `:`${C[0]} · `)+P.wts[w][0],price:priceFor(P,c,l,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:q});q=1;draw()};
 $("lenOpt").hidden=!P.lens[0];$("cols").closest(".opt").hidden=P.colours.length<2;$("wts").closest(".opt").hidden=P.wts.length<2;
 draw();
 

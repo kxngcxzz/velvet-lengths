@@ -14,7 +14,7 @@
   function itemFor(id,c,w,qty){
     const P=CAT[id];if(!P)return null;const C=P.colours[c];
     return {id,name:P.name,variant:(P.lens[0]?`Colour ${C[0]} · ${P.lens[0]}" · `:`${C[0]} · `)+P.wts[w][0],
-      price:priceOf(P,c,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:qty||1};
+      price:priceOf(P,c,w),img:`images/${C[3]||P.colours.find(x=>x[3])[3]}.jpg`,qty:qty||1,sku:typeof skuFor==="function"?skuFor(id,c,0,w):undefined};
   }
   // Accessory colour that suits a hair line in the bag (e.g. nano rings matched to the hair shade).
   function matchedChoice(accId,hairLine){
@@ -125,7 +125,37 @@
   function close(){panel.classList.remove("open");scrim.classList.remove("open");panel.setAttribute("aria-hidden","true")}
   $(".bag-x").onclick=close;scrim.onclick=close;
   document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
-  $("#bagCheckout").onclick=()=>{$("#bagMsg").hidden=false};
+  // ---- Checkout: Shopify takes payment. Each bag line is matched to its Shopify variant by SKU (skuFor in products.js),
+  // a Shopify cart is created through the Storefront API, and the customer goes to Shopify's checkout page.
+  // SHOP.token is the PUBLIC Storefront API token from Shopify admin > Sales channels > Headless (safe to publish).
+  const SHOP={domain:"ruyp0k-ux.myshopify.com",token:"",api:"2026-10"};
+  const sf=(query,variables)=>fetch(`https://${SHOP.domain}/api/${SHOP.api}/graphql.json`,{method:"POST",
+    headers:{"Content-Type":"application/json","X-Shopify-Storefront-Access-Token":SHOP.token},body:JSON.stringify({query,variables})})
+    .then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{if(j.errors)throw new Error(j.errors[0].message);return j.data});
+  const say=t=>{const m=$("#bagMsg");m.textContent=t;m.hidden=false};
+  $("#bagCheckout").onclick=async()=>{
+    if(!items.length)return;
+    if(!SHOP.token){say("Checkout opens soon. Your bag is saved on this device.");return}
+    const btn=$("#bagCheckout"),label=btn.textContent;btn.disabled=true;btn.textContent="Opening checkout…";$("#bagMsg").hidden=true;
+    try{
+      if(items.some(i=>!i.sku))throw new Error("old bag");
+      const handles=[...new Set(items.map(i=>CAT[i.id]&&CAT[i.id].slug))];
+      const q="query{"+handles.map((h,n)=>`p${n}:product(handle:${JSON.stringify(h)}){variants(first:250){nodes{id sku availableForSale}}}`).join(" ")+"}";
+      const data=await sf(q),ids={};
+      Object.values(data).forEach(p=>p&&p.variants.nodes.forEach(v=>{if(v.availableForSale)ids[v.sku]=v.id}));
+      const missing=items.filter(i=>!ids[i.sku]);
+      if(missing.length)throw new Error("unavailable: "+missing.map(i=>i.name).join(", "));
+      const res=await sf("mutation($lines:[CartLineInput!]!){cartCreate(input:{lines:$lines}){cart{checkoutUrl} userErrors{message}}}",
+        {lines:items.map(i=>({merchandiseId:ids[i.sku],quantity:i.qty}))});
+      const c=res.cartCreate;if(!c.cart||c.userErrors.length)throw new Error(c.userErrors.map(e=>e.message).join("; ")||"no cart");
+      location.href=c.cart.checkoutUrl;
+    }catch(e){
+      btn.disabled=false;btn.textContent=label;
+      say(String(e.message).startsWith("unavailable")?"Something in your bag is out of stock right now. Remove it and try again, or contact us."
+        :String(e.message)==="old bag"?"Please remove the items in your bag and add them again, then check out."
+        :"Checkout didn't open. Check your connection and try again, or contact us at hello@velvetlengths.uk.");
+    }
+  };
   document.querySelectorAll("#cartBtn").forEach(b=>b.onclick=open);
   addEventListener("storage",e=>{if(e.key===KEY){items=load();render()}});
 
