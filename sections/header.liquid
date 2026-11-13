@@ -5,7 +5,7 @@
       <span>Velvet Lengths<small>HUMAN HAIR EXTENSIONS</small></span>
     </a>
     <nav aria-label="Main">
-      {%- if section.settings.menu.links.size > 0 -%}
+      {%- if section.settings.use_menu and section.settings.menu.links.size > 0 -%}
         {%- for link in section.settings.menu.links -%}
           <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
         {%- endfor -%}
@@ -28,6 +28,7 @@
 {
   "name": "Header",
   "settings": [
+    { "type": "checkbox", "id": "use_menu", "label": "Use a Shopify menu instead of the built-in links", "default": false },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
   ],
   "enabled_on": { "groups": ["header"] }
