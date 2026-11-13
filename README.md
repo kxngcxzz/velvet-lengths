@@ -25,3 +25,12 @@ repository root, which is what Shopify's GitHub integration needs.
 
 - `node scripts/make-shopify-csv.js` rebuilds `shopify/products.csv` from `products.js`.
 - `node scripts/make-theme-data.js` rebuilds `snippets/swatch-data.liquid` (the colour dots on product pages).
+
+## Keeping your search rankings
+
+- Import `shopify/redirects.csv` (Content > Menus > View URL redirects > Import) so every old `.html` address sends visitors and Google to its new Shopify address (301).
+- Product SEO titles and descriptions come in with `shopify/products.csv`.
+- Set the collection SEO by hand (collection > Search engine listing > Edit):
+  - **Hair extensions:** title `Human Hair Extensions UK | Velvet Lengths`; description `Shop Remy human hair extensions: nano ring tips, seamless tape-ins and keratin U-tips in up to 19 shades and 12–24 inches. Free tracked UK delivery.`
+  - **Accessories:** title `Hair Extension Tools & Accessories | Velvet Lengths`; description `Tools for fitting and caring for hair extensions: nano ring beads, sectioning clips, salon combs, a vent brush and a mist spray bottle. Free UK delivery.`
+- Shopify builds `/sitemap.xml` itself. Submit it in Google Search Console once the site is live.
