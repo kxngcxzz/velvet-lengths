@@ -14,6 +14,13 @@
     "faq_HEgt7U": {
       "type": "faq",
       "blocks": {
+        "item_3a9MDm": {
+          "type": "item",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders are dispatched within 2–3 working days and usually arrive in 7–14 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p>"
+          }
+        },
         "item_wjwApC": {
           "type": "item",
           "settings": {
@@ -23,6 +30,7 @@
         }
       },
       "block_order": [
+        "item_3a9MDm",
         "item_wjwApC"
       ],
       "name": "FAQs",
