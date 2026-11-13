@@ -14,6 +14,20 @@
     "faq_HEgt7U": {
       "type": "faq",
       "blocks": {
+        "item_MG8TyW": {
+          "type": "item",
+          "settings": {
+            "question": "Which fitting method should I choose?",
+            "answer": "<p>Nano ring extensions are fixed with a small ring, with no glue, heat or tape. Tape-ins are thin wefts that attach with tape. U-tips are bonded to your hair with keratin. If you’re unsure, message us and we’ll help you choose.</p>"
+          }
+        },
+        "item_weCB4p": {
+          "type": "item",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "<p>Return unopened, unused hair within 14 days of delivery. See our Returns page for how to send it back.</p>"
+          }
+        },
         "item_GHGnLg": {
           "type": "item",
           "settings": {
@@ -37,6 +51,8 @@
         }
       },
       "block_order": [
+        "item_MG8TyW",
+        "item_weCB4p",
         "item_GHGnLg",
         "item_3a9MDm",
         "item_wjwApC"
