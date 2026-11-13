@@ -6,7 +6,7 @@
         "eyebrow": "Help",
         "heading": "Contact us",
         "lead": "Questions about an order, which shade to pick, or a return? Email us at <a href=\"mailto:hello@velvetlengths.uk\">hello@velvetlengths.uk</a> or send a message below, and we'll reply within 1–2 working days.",
-        "after": "<div class=\"note\">Matching a shade? Describe your natural colour, or tell us which two of our shades you're between, and we'll suggest the closest match.</div>\n<p>Before you write, our <a href=\"/pages/delivery\">delivery</a>, <a href=\"/pages/returns\">returns</a> and <a href=\"./#faq\">FAQs</a> pages may already have the answer.</p>"
+        "after": "<div class=\"note\">Matching a shade? Describe your natural colour, or tell us which two of our shades you're between, and we'll suggest the closest match.</div>\n<p>Before you write, our <a href=\"/pages/delivery\">delivery</a>, <a href=\"/pages/returns\">returns</a> and <a href=\"/#faq\">FAQs</a> pages may already have the answer.</p>"
       }
     }
   },

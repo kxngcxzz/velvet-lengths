@@ -1,10 +1,10 @@
-<section class="wrap" aria-labelledby="t-tex-{{ section.id }}">
-  <div class="head"><h2 id="t-tex-{{ section.id }}">{{ section.settings.heading | escape }}</h2><a href="{{ routes.collections_url }}/hair-extensions">View all</a></div>
+<section class="wrap" aria-labelledby="t-tex">
+  <div class="head"><h2 id="t-tex">{{ section.settings.heading | escape }}</h2><a href="{{ routes.collections_url }}/hair-extensions">View all</a></div>
   <div class="textures">
-    <a class="tex" href="/products/nano-ring-hair-extensions"><img src="{{ 'nano-ring-04.jpg' | asset_url }}" alt="" width="300" height="300" loading="lazy">Nano Ring<span>Fitted with small rings</span></a>
-    <a class="tex" href="/products/tape-in-hair-extensions"><img src="{{ 'tape-in-1b-4-18.jpg' | asset_url }}" alt="" width="300" height="300" loading="lazy">Tape-In<span>Thin wefts with tape</span></a>
-    <a class="tex" href="/products/u-tip-hair-extensions"><img src="{{ 'u-tip-60.jpg' | asset_url }}" alt="" width="300" height="300" loading="lazy">U-Tip<span>Bonded with keratin</span></a>
-    <a class="tex" href="{{ routes.collections_url }}/accessories"><img src="{{ 'comb-set-main.jpg' | asset_url }}" alt="" width="300" height="300" loading="lazy">Accessories<span>Clips, combs and more</span></a>
+    <a class="tex" href="{{ routes.root_url }}products/nano-ring-hair-extensions"><img src="{{ 'nano-ring-04.jpg' | asset_url }}" alt="" width="1000" height="1000" loading="lazy">Nano Ring<span>Fitted with small rings</span></a>
+    <a class="tex" href="{{ routes.root_url }}products/tape-in-hair-extensions"><img src="{{ 'tape-in-1b-4-18.jpg' | asset_url }}" alt="" width="1000" height="1000" loading="lazy">Tape-In<span>Thin wefts with tape</span></a>
+    <a class="tex" href="{{ routes.root_url }}products/u-tip-hair-extensions"><img src="{{ 'u-tip-60.jpg' | asset_url }}" alt="" width="1000" height="1000" loading="lazy">U-Tip<span>Bonded with keratin</span></a>
+    <a class="tex" href="{{ routes.collections_url }}/accessories"><img src="{{ 'comb-set-main.jpg' | asset_url }}" alt="" width="1000" height="1000" loading="lazy">Accessories<span>Clips, combs and more</span></a>
   </div>
 </section>
 
@@ -14,6 +14,7 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by method" }
   ],
+  "disabled_on": { "groups": ["header", "footer"] },
   "presets": [{ "name": "Shop by method" }]
 }
 {% endschema %}

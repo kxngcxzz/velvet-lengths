@@ -1,8 +1,9 @@
-<div class="wrap page" style="text-align:center;padding-block:96px">
-  <p class="eyebrow">404</p>
-  <h1>Page not found</h1>
-  <p class="lead" style="margin-inline:auto">That page doesn't exist or has moved.</p>
-  <a class="btn" href="{{ routes.root_url }}">Back to home</a>
+<div class="wrap page">
+  <p class="eyebrow">Error 404</p>
+  <h1>We couldn't find that page</h1>
+  <p class="lead">The link may be out of date, or the page may have moved. Try one of these instead.</p>
+  <div class="facts"><div><b><a href="{{ routes.collections_url }}/hair-extensions">Hair extensions</a></b><span>Nano ring, tape-in and U-tip</span></div><div><b><a href="{{ routes.collections_url }}/accessories">Accessories</a></b><span>Beads, clips, combs and more</span></div><div><b><a href="/pages/contact">Contact us</a></b><span>We reply within 1&ndash;2 working days</span></div></div>
+  <p><a class="btn" href="{{ routes.root_url }}" style="text-decoration:none">Back to the homepage</a></p>
 </div>
 
 {% schema %}

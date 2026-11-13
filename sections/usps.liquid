@@ -1,13 +1,8 @@
-<div class="wrap">
-  <div class="usps">
-    {%- for block in section.blocks -%}
-      <div class="usp" {{ block.shopify_attributes }}>
-        <h3>{{ block.settings.title | escape }}</h3>
-        <p>{{ block.settings.text | escape }}</p>
-      </div>
-    {%- endfor -%}
-  </div>
-</div>
+<div class="wrap"><div class="usps">
+  {%- for block in section.blocks -%}
+    <div class="usp" {{ block.shopify_attributes }}><h3>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></div>
+  {%- endfor -%}
+</div></div>
 
 {% schema %}
 {
@@ -22,7 +17,8 @@
       ]
     }
   ],
-  "max_blocks": 4,
+  "max_blocks": 3,
+  "disabled_on": { "groups": ["header", "footer"] },
   "presets": [{ "name": "Highlights", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }] }]
 }
 {% endschema %}

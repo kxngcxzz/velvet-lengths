@@ -11,10 +11,36 @@
       "settings": {}
     },
     "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "hair-extensions"
-      }
+      "type": "featured-products",
+      "blocks": {
+        "p0": {
+          "type": "product",
+          "settings": {
+            "product": "u-tip-hair-extensions",
+            "shade": "P27/613"
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "product": "tape-in-hair-extensions",
+            "shade": "P18-613"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "product": "nano-ring-hair-extensions",
+            "shade": "760"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "settings": {}
     },
     "usps": {
       "type": "usps",
@@ -30,7 +56,7 @@
           "type": "item",
           "settings": {
             "title": "Free tracked delivery",
-            "text": "Dispatched in 2\u20133 working days and usually with you in 7\u201314."
+            "text": "Dispatched in 2–3 working days and usually with you in 7–14."
           }
         },
         "u2": {
@@ -59,7 +85,7 @@
           "type": "item",
           "settings": {
             "question": "How long does delivery take?",
-            "answer": "<p>Orders are dispatched within 2\u20133 working days and usually arrive in 7\u201314 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p>"
+            "answer": "<p>Orders are dispatched within 2–3 working days and usually arrive in 7–14 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p>"
           }
         },
         "q1": {
@@ -73,14 +99,21 @@
           "type": "item",
           "settings": {
             "question": "How much hair do I need?",
-            "answer": "<p>For a full head most people need 150\u2013250g: 5 or more packs of nano rings (50g), 2\u20133 packs of tape-ins (20 pieces each), or 150\u2013200 U-tip strands. For added volume only, half that is usually enough.</p>"
+            "answer": "<p>For a full head most people need 150–250g: 5 or more packs of nano rings (50g), 2–3 packs of tape-ins (20 pieces each), or 150–200 U-tip strands. For added volume only, half that is usually enough.</p>"
           }
         },
         "q3": {
           "type": "item",
           "settings": {
             "question": "What is your returns policy?",
-            "answer": "<p>Return unopened, unused hair within 14 days of delivery. See our <a href=\"returns.html\" style=\"text-decoration:underline\">returns policy</a> for how to send it back.</p>"
+            "answer": "<p>Return unopened, unused hair within 14 days of delivery. See our <a href=\"/pages/returns\">returns policy</a> for how to send it back.</p>"
+          }
+        },
+        "q4": {
+          "type": "item",
+          "settings": {
+            "question": "Which fitting method should I choose?",
+            "answer": "<p>Nano ring extensions are fixed with a small ring, with no glue, heat or tape. Tape-ins are thin wefts that attach with tape. U-tips are bonded to your hair with keratin. If you’re unsure, message us and we’ll help you choose.</p>"
           }
         }
       },
@@ -88,7 +121,8 @@
         "q0",
         "q1",
         "q2",
-        "q3"
+        "q3",
+        "q4"
       ],
       "settings": {}
     }

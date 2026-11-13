@@ -1,31 +1,33 @@
-<section class="wrap" aria-labelledby="CollectionHeading">
-  <div class="head">
-    <div>
-      <p class="eyebrow">Shop</p>
-      <h1 id="CollectionHeading" style="font-size:clamp(40px,6vw,64px)">{{ collection.title | escape }}</h1>
-      {%- if collection.description != blank -%}<p style="color:var(--muted);max-width:60ch">{{ collection.description | strip_html }}</p>{%- endif -%}
-    </div>
-  </div>
-
-  {%- paginate collection.products by 24 -%}
-    {%- if collection.products.size > 0 -%}
-      <div class="grid">
-        {%- for product in collection.products -%}
-          {% render 'product-card', product: product %}
-        {%- endfor -%}
-      </div>
-      {%- if paginate.pages > 1 -%}
-        <nav class="pagination" aria-label="Pagination">
-          {%- if paginate.previous %}<a href="{{ paginate.previous.url }}">&larr; Previous</a>{% endif -%}
-          <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
-          {%- if paginate.next %}<a href="{{ paginate.next.url }}">Next &rarr;</a>{% endif -%}
-        </nav>
+<div class="wrap" style="padding-block:32px 64px">
+  <p class="eyebrow" id="shCrumb">Shop</p>
+  <h1 id="shTitle" style="font-size:clamp(40px,6vw,64px);margin:8px 0 10px">{{ collection.title | escape }}</h1>
+  {%- if collection.description != blank -%}
+    <p id="shBlurb" style="color:var(--muted);font-size:17px;max-width:60ch;margin:0 0 28px">{{ collection.description | strip_html | escape }}</p>
+  {%- endif -%}
+  <nav class="cat-tabs" id="shTabs" aria-label="Categories">
+    {%- assign tabs = 'hair-extensions,accessories' | split: ',' -%}
+    {%- for h in tabs -%}
+      {%- assign tab = collections[h] -%}
+      {%- if tab.id -%}<a href="{{ tab.url }}"{% if tab.handle == collection.handle %} aria-current="page"{% endif %}>{{ tab.title | escape }}</a>{%- endif -%}
+    {%- endfor -%}
+  </nav>
+  {%- paginate collection.products by 48 -%}
+    <div class="cat-grid" id="shGrid">
+      {%- if collection.products.size > 0 -%}
+        {%- render 'ordered-products', coll: collection, mode: 'pcard' -%}
+      {%- else -%}
+        <div class="empty"><h2>Coming soon</h2><p style="color:var(--muted);margin:0;max-width:44ch">We're adding {{ collection.title | downcase | escape }} shortly. In the meantime, browse our hair extensions.</p><a class="btn" href="{{ routes.collections_url }}/hair-extensions">Shop hair extensions</a></div>
       {%- endif -%}
-    {%- else -%}
-      <p class="colour-name">No products in this collection yet.</p>
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="Pagination">
+        {%- if paginate.previous %}<a href="{{ paginate.previous.url }}">&larr; Previous</a>{% endif -%}
+        <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+        {%- if paginate.next %}<a href="{{ paginate.next.url }}">Next &rarr;</a>{% endif -%}
+      </nav>
     {%- endif -%}
   {%- endpaginate -%}
-</section>
+</div>
 
 {% schema %}
 {

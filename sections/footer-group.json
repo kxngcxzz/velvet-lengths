@@ -1,74 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "footer",
   "name": "Footer group",
   "sections": {
-    "faq_HEgt7U": {
-      "type": "faq",
-      "blocks": {
-        "item_MG8TyW": {
-          "type": "item",
-          "settings": {
-            "question": "Which fitting method should I choose?",
-            "answer": "<p>Nano ring extensions are fixed with a small ring, with no glue, heat or tape. Tape-ins are thin wefts that attach with tape. U-tips are bonded to your hair with keratin. If you’re unsure, message us and we’ll help you choose.</p>"
-          }
-        },
-        "item_weCB4p": {
-          "type": "item",
-          "settings": {
-            "question": "What is your returns policy?",
-            "answer": "<p>Return unopened, unused hair within 14 days of delivery. See our Returns page for how to send it back.</p>"
-          }
-        },
-        "item_GHGnLg": {
-          "type": "item",
-          "settings": {
-            "question": "How much hair do I need?",
-            "answer": "<p>For a full head most people need 150–250g: 5 or more packs of nano rings (50g), 2–3 packs of tape-ins (20 pieces each), or 150–200 U-tip strands. For added volume only, half that is usually enough.</p>"
-          }
-        },
-        "item_3a9MDm": {
-          "type": "item",
-          "settings": {
-            "question": "How long does delivery take?",
-            "answer": "<p>Orders are dispatched within 2–3 working days and usually arrive in 7–14 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p>"
-          }
-        },
-        "item_wjwApC": {
-          "type": "item",
-          "settings": {
-            "question": "Can I dye or bleach the hair?",
-            "answer": "<p>Yes, it is real human hair, so it can be toned, curled and heat styled. Darker shades can be lifted by a professional colourist. Always do a strand test first.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_MG8TyW",
-        "item_weCB4p",
-        "item_GHGnLg",
-        "item_3a9MDm",
-        "item_wjwApC"
-      ],
-      "name": "FAQs",
-      "settings": {
-        "heading": "FAQs"
-      }
-    },
-    "footer": {
-      "type": "footer",
-      "settings": {}
-    }
+    "footer": { "type": "footer", "settings": {} }
   },
-  "order": [
-    "faq_HEgt7U",
-    "footer"
-  ]
+  "order": ["footer"]
 }

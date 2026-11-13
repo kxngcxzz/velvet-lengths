@@ -4,7 +4,7 @@
 
   {%- if cart.item_count == 0 -%}
     <p class="lead">Your bag is empty.</p>
-    <a class="btn" href="{{ routes.collections_url }}/hair-extensions">Shop extensions</a>
+    <a class="btn" href="{{ routes.root_url }}#shop">Shop extensions</a>
   {%- else -%}
     <form action="{{ routes.cart_url }}" method="post" id="CartForm">
       <ul class="cart-items">

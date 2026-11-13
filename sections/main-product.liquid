@@ -1,80 +1,148 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
   assign start_media = current_variant.featured_media | default: product.featured_media
+  assign start_alt = start_media.alt | default: product.title
+  assign cat = collection
+  unless cat
+    assign cat = product.collections | where: 'handle', 'hair-extensions' | first
+  endunless
+  unless cat
+    assign cat = product.collections | where: 'handle', 'accessories' | first
+  endunless
+  unless cat
+    assign cat = product.collections.first
+  endunless
 -%}
-<div class="wrap pdp" data-product-section data-handle="{{ product.handle }}">
-  <div class="gallery">
-    <div class="main" data-main-media>
-      {%- for media in product.media -%}
-        {%- if media.media_type == 'image' -%}
-          {%- assign media_alt = media.alt | default: product.title -%}
-          <div class="mimg" data-media-id="{{ media.id }}"{% unless media.id == start_media.id %} hidden{% endunless %}>
-            {{ media | image_url: width: 1100 | image_tag: loading: 'lazy', widths: '450, 700, 900, 1100', sizes: '(min-width: 860px) 50vw, 100vw', alt: media_alt }}
+{%- capture eyebrow -%}{% render 'product-static', product: product, part: 'eyebrow' %}{%- endcapture -%}
+{%- capture blurb -%}{% render 'product-static', product: product, part: 'blurb' %}{%- endcapture -%}
+{%- capture specs -%}{% render 'product-static', product: product, part: 'specs' %}{%- endcapture -%}
+{%- capture guides -%}{% render 'product-static', product: product, part: 'guides' %}{%- endcapture -%}
+{%- capture pairs_str -%}{% render 'product-static', product: product, part: 'pairs' %}{%- endcapture -%}
+{%- capture usedby_str -%}{% render 'product-static', product: product, part: 'usedby' %}{%- endcapture -%}
+{%- liquid
+  assign eyebrow = eyebrow | strip
+  assign blurb = blurb | strip
+  assign specs = specs | strip
+  assign guides = guides | strip
+  assign pairs = pairs_str | strip | split: ';;'
+  assign usedby = usedby_str | strip | split: ','
+-%}
+<div class="wrap" data-product data-handle="{{ product.handle }}">
+  <div class="pdp">
+    <div class="gallery">
+      <div class="main">
+        {%- if start_media -%}
+          <img id="mainImg" src="{{ start_media | image_url: width: 1000 }}" alt="{{ start_alt | escape }}" width="1000" height="1000">
+        {%- endif -%}
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+    <div class="info">
+      <p class="crumb"><a href="{{ routes.root_url }}">Home</a> / {% if cat %}<a id="crumbCat" href="{{ cat.url }}">{{ cat.title | escape }}</a> / {% endif %}<span id="crumb">{{ product.title | escape }}</span></p>
+      {%- if eyebrow != blank -%}<p class="eyebrow" id="eyebrow">{{ eyebrow }}</p>{%- endif -%}
+      <h1 id="name">{{ product.title | escape }}</h1>
+      <p class="stars" style="margin:0"><i>No reviews yet. Be the first to review this product.</i></p>
+      <div class="bigprice"><span id="price">{{ current_variant.price | money }}</span></div>
+      <div id="opts" style="display:contents"></div>
+      {%- form 'product', product, id: 'ProductForm', class: 'pform', novalidate: 'novalidate' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" id="variantId">
+        <input type="hidden" name="quantity" value="1" id="qtyInput">
+        <div class="buy"><div class="qty"><button type="button" id="minus" aria-label="Fewer">&minus;</button><output id="q">1</output><button type="button" id="plus" aria-label="More">+</button></div><button class="btn" id="add" type="submit"{% unless current_variant.available %} disabled{% endunless %}>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</button></div>
+      {%- endform -%}
+      <div class="ship"><b>Free tracked UK delivery</b><span>Usually arrives in 7&ndash;14 days. Tracking emailed when dispatched.</span></div>
+      {%- if blurb != blank -%}
+        <p style="margin:0;color:var(--muted)" id="blurb">{{ blurb }}</p>
+      {%- elsif product.description != blank -%}
+        <div class="rte pdescr">{{ product.description }}</div>
+      {%- endif -%}
+      {%- if specs != blank -%}<table class="specs"><tbody id="specs">{{ specs }}</tbody></table>{%- endif -%}
+    </div>
+  </div>
+
+  {%- if pairs.size > 0 -%}
+    <section class="pairs" id="pairs" aria-labelledby="t-pairs"><div class="head"><h2 id="t-pairs">Complete your kit</h2></div><p class="pairs-sub">Tools for fitting and looking after these extensions.</p><div class="pairs-grid">
+      {%- for pair in pairs -%}
+        {%- assign bits = pair | split: '||' -%}
+        {%- assign acc = all_products[bits[0]] -%}
+        {%- if acc.id -%}
+          {%- assign acc_first = acc.selected_or_first_available_variant -%}
+          <div class="pair" data-pair="{{ acc.handle }}">
+            <a class="pair-img" href="{{ acc.url }}">{% if acc.featured_image %}<img src="{{ acc.featured_image | image_url: width: 300 }}" alt="{{ acc.title | escape }}" loading="lazy" width="300" height="300">{% endif %}</a>
+            <div class="pair-text"><a class="pair-name" href="{{ acc.url }}">{{ acc.title | escape }}</a><p>{{ bits[1] }}</p></div>
+            <div class="pair-buy">
+              {%- if acc.variants.size > 1 -%}
+                <select aria-label="Choose an option for {{ acc.title | escape }}">
+                  {%- for v in acc.variants -%}
+                    <option value="{{ v.id }}" data-price="{{ v.price }}" data-o1="{{ v.option1 | escape }}" data-o="{{ v.options | join: '||' | escape }}"{% if v.id == acc_first.id %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title | replace: ' / ', ' · ' | escape }}</option>
+                  {%- endfor -%}
+                </select>
+              {%- endif -%}
+              <span class="pair-price">{{ acc_first.price | money }}</span><button class="btn" type="button" data-quick-add="{{ acc_first.id }}">Add to bag</button>
+            </div>
           </div>
         {%- endif -%}
       {%- endfor -%}
+    </div></section>
+  {%- elsif usedby.size > 0 -%}
+    <section class="pairs" id="pairs" aria-labelledby="t-pairs"><div class="head"><h2 id="t-pairs">Use it with</h2></div><div class="pairs-grid">
+      {%- for h in usedby -%}
+        {%- assign hair = all_products[h] -%}
+        {%- if hair.id -%}
+          {%- capture hair_summary -%}{% render 'product-static', product: hair, part: 'summary' %}{%- endcapture -%}
+          <div class="pair">
+            <a class="pair-img" href="{{ hair.url }}">{% if hair.featured_image %}<img src="{{ hair.featured_image | image_url: width: 300 }}" alt="{{ hair.title | escape }}" loading="lazy" width="300" height="300">{% endif %}</a>
+            <div class="pair-text"><a class="pair-name" href="{{ hair.url }}">{{ hair.title | escape }}</a><p>{{ hair_summary | strip }}</p></div>
+            <div class="pair-buy"><span class="pair-price">from {{ hair.price_min | money }}</span><a class="btn ghost" href="{{ hair.url }}">View</a></div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div></section>
+  {%- endif -%}
+
+  <div id="guides">{{ guides }}</div>
+
+  <section class="reviews-wrap" aria-labelledby="t-rv">
+    <div>
+      <h2 id="t-rv">Reviews</h2>
+      <div class="rv-list" id="rvOwn"><p class="rv-note">No Velvet Lengths reviews yet. Be the first to share how yours looks.</p></div>
     </div>
-    {%- if product.media.size > 1 -%}
-      <div class="thumbs">
-        {%- for media in product.media limit: 8 -%}
-          {%- if media.media_type == 'image' -%}
-            <button type="button" data-thumb="{{ media.id }}" aria-pressed="{% if media.id == start_media.id %}true{% else %}false{% endif %}" aria-label="Show photo {{ forloop.index }}">
-              {{ media | image_url: width: 144 | image_tag: loading: 'lazy', widths: '72, 144', alt: '' }}
-            </button>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-  </div>
-
-  <div class="info">
-    <p class="crumb"><a href="{{ routes.root_url }}">Home</a>{% if collection %} / <a href="{{ collection.url }}">{{ collection.title | escape }}</a>{% endif %} / <span>{{ product.title | escape }}</span></p>
-    {%- if product.type != blank -%}<p class="eyebrow">{{ product.type | escape }}</p>{%- endif -%}
-    <h1>{{ product.title | escape }}</h1>
-    <div class="bigprice">
-      <span data-price>{{ current_variant.price | money }}</span>
-      <s class="colour-name" data-compare{% unless current_variant.compare_at_price > current_variant.price %} hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
-    </div>
-
-    {%- form 'product', product, id: 'ProductForm', class: 'pform', novalidate: 'novalidate' -%}
-      <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
-      {%- unless product.has_only_default_variant -%}
-        {%- for option in product.options_with_values -%}
-          <fieldset class="opt" data-option-index="{{ forloop.index0 }}">
-            <legend><h2>{{ option.name | escape }}: <span data-selected>{{ option.selected_value | escape }}</span></h2></legend>
-            <div class="opts">
-              {%- for value in option.values -%}
-                {%- assign input_id = 'opt-' | append: section.id | append: '-' | append: forloop.parentloop.index0 | append: '-' | append: forloop.index0 -%}
-                <input class="opt-input" type="radio" id="{{ input_id }}" name="{{ option.name | escape }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
-                <label class="opt-label" for="{{ input_id }}" data-value="{{ value | escape }}">{{ value | escape }}</label>
-              {%- endfor -%}
-            </div>
-          </fieldset>
-        {%- endfor -%}
-      {%- endunless -%}
-
-      <div class="buy">
-        <div class="qty">
-          <button type="button" data-qty-minus aria-label="Fewer">&minus;</button>
-          <input type="number" name="quantity" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantity" data-qty>
-          <button type="button" data-qty-plus aria-label="More">+</button>
-        </div>
-        <button class="btn" type="submit" data-add{% unless current_variant.available %} disabled{% endunless %}>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</button>
-      </div>
+    {%- form 'contact', class: 'rv-form', id: 'rvForm', novalidate: 'novalidate' -%}
+      <h3 style="font:600 18px var(--body);margin:0">Write a review</h3>
+      {%- if form.posted_successfully? -%}
+        <p class="rv-ok" role="status">Thank you. Your review will appear once we have checked it.</p>
+      {%- endif -%}
+      {%- if form.errors -%}<div role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <p class="rv-note" style="margin:0">Bought from us? Tell other customers what you think. We check every review before it goes live.</p>
+      <div><span style="font-size:13px;font-weight:600">Your rating</span><div class="rate" id="rvRate" role="group" aria-label="Rating"></div></div>
+      <input type="hidden" name="contact[rating]" id="rvRating" value="">
+      <input type="hidden" name="contact[product]" value="{{ product.title | escape }}">
+      <label for="rvName">Name<input id="rvName" name="contact[name]" required autocomplete="given-name"></label>
+      <label for="rvEmail">Email (not shown)<input id="rvEmail" name="contact[email]" type="email" required autocomplete="email"></label>
+      <label for="rvColour">Colour and length bought<input id="rvColour" name="contact[variant]" placeholder="e.g. 760, 20&quot;"></label>
+      <label for="rvText">Your review<textarea id="rvText" name="contact[body]" required></textarea></label>
+      <button class="btn" type="submit" style="justify-content:center">Send review</button>
+      <p class="rv-msg" id="rvMsg" hidden></p>
     {%- endform -%}
-
-    <div class="ship"><b>Free tracked UK delivery</b><span>Usually arrives in 7&ndash;14 days. Tracking emailed when dispatched.</span></div>
-    <div class="rte pdescr">{{ product.description }}</div>
-  </div>
+  </section>
 </div>
 
-{%- capture guides_html -%}{% render 'product-guides', product: product %}{%- endcapture -%}
-{%- if guides_html contains '<figure' -%}
-  <div class="wrap" id="guides">{{ guides_html }}</div>
-{%- endif -%}
-
-<script type="application/json" data-product-json>{{ product | json }}</script>
+<script type="application/json" id="productJson">{"title":{{ product.title | json }},"options":{{ product.options | json }},"media":[
+  {%- assign first_media = true -%}
+  {%- for m in product.media -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless first_media -%},{%- endunless -%}{%- assign first_media = false -%}
+      {"id":{{ m.id }},"alt":{{ m.alt | json }},"src":{{ m | image_url: width: 1000 | json }},"thumb":{{ m | image_url: width: 144 | json }}}
+    {%- endif -%}
+  {%- endfor -%}
+],"variants":[
+  {%- for v in product.variants -%}
+    {"id":{{ v.id }},"price":{{ v.price }},"available":{{ v.available | json }},"options":{{ v.options | json }},"media":{% if v.featured_media %}{{ v.featured_media.id }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+]}</script>
 <script type="application/ld+json">{{ product | structured_data }}</script>
+{%- if cat -%}
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":{{ shop.url | json }}},{"@type":"ListItem","position":2,"name":{{ cat.title | json }},"item":{{ shop.url | append: cat.url | json }}},{"@type":"ListItem","position":3,"name":{{ product.title | json }},"item":{{ shop.url | append: product.url | json }}}]}</script>
+{%- endif -%}
 
 {% schema %}
 {

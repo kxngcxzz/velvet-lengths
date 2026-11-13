@@ -1,0 +1,25 @@
+{%- capture menu_name -%}{% render 'product-static', product: product, part: 'menu' %}{%- endcapture -%}
+{%- assign menu_name = menu_name | strip -%}
+{%- case mode -%}
+  {%- when 'menu' -%}
+    <a href="{{ product.url }}"{% if request.path == product.url %} aria-current="page"{% endif %}>{{ menu_name }}
+      {%- if coll.handle == 'hair-extensions' -%}
+        {%- assign n = product.options_with_values.first.values.size -%}
+        <small>{{ n }} {% if n == 1 %}shade{% else %}shades{% endif %}</small>
+      {%- endif -%}
+    </a>
+  {%- when 'drawer' -%}
+    <a href="{{ product.url }}"{% if request.path == product.url %} aria-current="page"{% endif %}>{{ menu_name }}</a>
+  {%- when 'pcard' -%}
+    {%- capture summary -%}{% render 'product-static', product: product, part: 'summary' %}{%- endcapture -%}
+    <a class="pcard" href="{{ product.url }}">
+      <div class="im">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 860px) 400px, 50vw', alt: product.title }}
+        {%- endif -%}
+      </div>
+      <h2>{{ product.title | escape }}</h2>
+      <p>{{ summary | strip }}</p>
+      <b>from {{ product.price_min | money }}</b>
+    </a>
+{%- endcase -%}

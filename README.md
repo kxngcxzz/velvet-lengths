@@ -1,36 +1,43 @@
 # Velvet Lengths: Shopify theme
 
-This branch (`shopify-theme`) is a Shopify Online Store 2.0 theme built from the static site on `main`.
-The theme files (`layout/`, `sections/`, `templates/`, `snippets/`, `assets/`, `config/`, `locales/`) sit at the
-repository root, which is what Shopify's GitHub integration needs.
+This branch (`shopify-theme`) is the Shopify Online Store 2.0 version of the site on `main`. It is connected to the
+store through Shopify's GitHub integration, so anything pushed here goes to the theme within a few minutes, and
+anything saved in Shopify's theme editor is committed back here by Shopify.
 
-## Set up the store
+The theme looks and behaves like the original site: same styles, menus, light/dark switch, bag panel, product pages,
+"Complete your kit" suggestions, length guide and FAQs. The differences are that prices, stock and photos come from
+Shopify, the bag is the Shopify cart, and Checkout goes to Shopify's checkout.
 
-1. **Import products:** Shopify admin > Products > Import, upload `shopify/products.csv`, tick "Overwrite products with matching handles".
-   Photos are fetched from the `images/` folder on the `main` branch, so keep that branch.
-2. **Create two collections** (Products > Collections), each *automated* with the condition "Product type is equal to":
-   - `Hair extensions` (handle `hair-extensions`), product type `Hair extensions`
-   - `Accessories` (handle `accessories`), product type `Accessories`
-3. **Menu:** Content > Menus > Main menu. Add Nano Ring, Tape-In and U-Tip (their product pages), Accessories (collection), Contact (page).
-   If the menu is empty the theme shows a built-in set of links.
-4. **Pages** (Content > Pages), each with its own template in the right-hand "Theme template" box:
-   - `Delivery` (handle `delivery`), template `page.delivery`
-   - `Returns` (handle `returns`), template `page.returns`
-   - `Contact` (handle `contact`), template `page.contact`
-5. **Policies:** Settings > Policies. Paste the text from `shopify/policies.html`.
-6. **Connect the theme:** Online Store > Themes > Add theme > Connect from GitHub > this repo, branch `shopify-theme`. Preview it, then publish.
-7. Remove the storefront password (Online Store > Preferences) when you are ready to sell.
+## What lives where
 
-## Regenerating data
+- `assets/theme.css`: the original site's styles, unchanged, with a short Shopify-only block at the end.
+- `assets/theme.js`: menus, bag, product cards, product page and length guide (ported from `nav.js`, `cart.js` and the page scripts).
+- `assets/vl-data.js`, `snippets/product-static.liquid`, `snippets/vl-order.liquid`: **generated** from `products.js` and
+  `swatches.js` (colours, colour dots, short menu names, specs, guides, pairings, product order). No costs are included.
+- `sections/`: `hero`, `method-grid`, `featured-products`, `usps`, `length-guide`, `faq` make up the homepage (`templates/index.json`).
+  They can only be added to pages, not to the header or footer.
+- `templates/page.delivery.json`, `page.returns.json`, `page.contact.json`: the information pages. Their text is in these files.
 
-- `node scripts/make-shopify-csv.js` rebuilds `shopify/products.csv` from `products.js`.
-- `node scripts/make-theme-data.js` rebuilds `snippets/swatch-data.liquid` (the colour dots on product pages).
+## Changing products
 
-## Keeping your search rankings
+1. Edit `products.js`.
+2. Run `node scripts/make-shopify-csv.js`, then import `shopify/products.csv` in Shopify (Products > Import, tick
+   "Overwrite products with matching handles"). Photos are fetched from `images/` on the `main` branch, so keep that branch.
+3. Run `node scripts/make-theme-data.js` so the theme's colour dots, menus and pairings match.
+4. Commit and push.
 
-- Import `shopify/redirects.csv` (Content > Menus > View URL redirects > Import) so every old `.html` address sends visitors and Google to its new Shopify address (301).
-- Product SEO titles and descriptions come in with `shopify/products.csv`.
-- Set the collection SEO by hand (collection > Search engine listing > Edit):
-  - **Hair extensions:** title `Human Hair Extensions UK | Velvet Lengths`; description `Shop Remy human hair extensions: nano ring tips, seamless tape-ins and keratin U-tips in up to 19 shades and 12–24 inches. Free tracked UK delivery.`
-  - **Accessories:** title `Hair Extension Tools & Accessories | Velvet Lengths`; description `Tools for fitting and caring for hair extensions: nano ring beads, sectioning clips, salon combs, a vent brush and a mist spray bottle. Free UK delivery.`
-- Shopify builds `/sitemap.xml` itself. Submit it in Google Search Console once the site is live.
+A product added only in Shopify still works: it gets plain option buttons and shows its Shopify description.
+
+## Store set-up the theme relies on
+
+- Collections with the handles `hair-extensions` and `accessories` (the menus and category pages list their products).
+- Pages with the handles `delivery`, `returns` and `contact`, using the templates `page.delivery`, `page.returns` and `page.contact`.
+- Terms of service and Privacy policy under Settings > Policies (the footer links to them). Text is in `shopify/policies.html`.
+- Reviews and contact messages are sent to the shop's email through Shopify's contact form.
+
+## Keeping search rankings
+
+- Import `shopify/redirects.csv` (Content > Menus > View URL redirects > Import) so every old `.html` address goes to its new Shopify address.
+- Product SEO titles and descriptions come in with `shopify/products.csv`. Set the two collections' SEO by hand
+  (collection > Search engine listing): `Human Hair Extensions UK | Velvet Lengths` and `Hair Extension Tools & Accessories | Velvet Lengths`.
+- Shopify builds `/sitemap.xml` itself. Submit it in Google Search Console once the store is open.

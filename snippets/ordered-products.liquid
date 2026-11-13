@@ -1,0 +1,14 @@
+{%- comment -%}
+  Lists a collection's products in the shop's own order (snippets/vl-order.liquid), then any others.
+  mode: 'menu' (desktop dropdown link), 'drawer' (phone menu link) or 'pcard' (category page card).
+{%- endcomment -%}
+{%- capture order_str -%}{% render 'vl-order' %}{%- endcapture -%}
+{%- assign order = order_str | strip | split: ',' -%}
+{%- for h in order -%}
+  {%- for p in coll.products -%}
+    {%- if p.handle == h -%}{% render 'ordered-product-item', product: p, mode: mode, coll: coll %}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- for p in coll.products -%}
+  {%- unless order contains p.handle -%}{% render 'ordered-product-item', product: p, mode: mode, coll: coll %}{%- endunless -%}
+{%- endfor -%}

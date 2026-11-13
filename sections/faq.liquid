@@ -1,14 +1,18 @@
-<section class="wrap" id="faq" aria-labelledby="t-faq-{{ section.id }}">
-  <div class="head"><h2 id="t-faq-{{ section.id }}">{{ section.settings.heading | escape }}</h2></div>
+<section class="wrap" id="faq" aria-labelledby="t-faq">
+  <div class="head"><h2 id="t-faq">{{ section.settings.heading | escape }}</h2></div>
   <div class="faq">
     {%- for block in section.blocks -%}
-      <details{% if forloop.first %} open{% endif %} {{ block.shopify_attributes }}>
-        <summary>{{ block.settings.question | escape }}</summary>
-        <div class="faq-answer">{{ block.settings.answer }}</div>
-      </details>
+      <details{% if forloop.first %} open{% endif %} {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}</summary><div class="faq-answer">{{ block.settings.answer }}</div></details>
     {%- endfor -%}
   </div>
 </section>
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {%- for block in section.blocks -%}
+      {"@type":"Question","name":{{ block.settings.question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.answer | strip_html | strip | json }}}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]}</script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -26,6 +30,7 @@
       ]
     }
   ],
+  "disabled_on": { "groups": ["header", "footer"] },
   "presets": [{ "name": "FAQs", "blocks": [{ "type": "item" }] }]
 }
 {% endschema %}

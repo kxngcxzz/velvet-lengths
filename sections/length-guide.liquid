@@ -1,7 +1,7 @@
-<section class="wrap" id="guide" aria-labelledby="t-guide-{{ section.id }}">
+<section class="wrap" id="guide" aria-labelledby="t-guide">
   <div class="guide">
     <div class="guide-intro">
-      <h2 id="t-guide-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <h2 id="t-guide">{{ section.settings.heading | escape }}</h2>
       <p>Lengths are measured straight, from the bond or tape to the tips. Where the hair falls depends on your height and where it's fitted, so treat this as a rough guide. If you'll wear it curled, go about 2 inches longer.</p>
       <p>Tap a length to see it on the diagram.</p>
     </div>
@@ -30,6 +30,7 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Length guide" }
   ],
+  "disabled_on": { "groups": ["header", "footer"] },
   "presets": [{ "name": "Length guide" }]
 }
 {% endschema %}
