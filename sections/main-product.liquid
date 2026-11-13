@@ -68,6 +68,11 @@
   </div>
 </div>
 
+{%- capture guides_html -%}{% render 'product-guides', product: product %}{%- endcapture -%}
+{%- if guides_html contains '<figure' -%}
+  <div class="wrap" id="guides">{{ guides_html }}</div>
+{%- endif -%}
+
 <script type="application/json" data-product-json>{{ product | json }}</script>
 <script type="application/ld+json">{{ product | structured_data }}</script>
 
