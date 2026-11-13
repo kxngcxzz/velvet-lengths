@@ -1,0 +1,79 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign start_media = current_variant.featured_media | default: product.featured_media
+-%}
+<div class="wrap pdp" data-product-section data-handle="{{ product.handle }}">
+  <div class="gallery">
+    <div class="main" data-main-media>
+      {%- for media in product.media -%}
+        {%- if media.media_type == 'image' -%}
+          {%- assign media_alt = media.alt | default: product.title -%}
+          <div class="mimg" data-media-id="{{ media.id }}"{% unless media.id == start_media.id %} hidden{% endunless %}>
+            {{ media | image_url: width: 1100 | image_tag: loading: 'lazy', widths: '450, 700, 900, 1100', sizes: '(min-width: 860px) 50vw, 100vw', alt: media_alt }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <div class="thumbs">
+        {%- for media in product.media limit: 8 -%}
+          {%- if media.media_type == 'image' -%}
+            <button type="button" data-thumb="{{ media.id }}" aria-pressed="{% if media.id == start_media.id %}true{% else %}false{% endif %}" aria-label="Show photo {{ forloop.index }}">
+              {{ media | image_url: width: 144 | image_tag: loading: 'lazy', widths: '72, 144', alt: '' }}
+            </button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="info">
+    <p class="crumb"><a href="{{ routes.root_url }}">Home</a>{% if collection %} / <a href="{{ collection.url }}">{{ collection.title | escape }}</a>{% endif %} / <span>{{ product.title | escape }}</span></p>
+    {%- if product.type != blank -%}<p class="eyebrow">{{ product.type | escape }}</p>{%- endif -%}
+    <h1>{{ product.title | escape }}</h1>
+    <div class="bigprice">
+      <span data-price>{{ current_variant.price | money }}</span>
+      <s class="colour-name" data-compare{% unless current_variant.compare_at_price > current_variant.price %} hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
+    </div>
+
+    {%- form 'product', product, id: 'ProductForm', class: 'pform', novalidate: 'novalidate' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <fieldset class="opt" data-option-index="{{ forloop.index0 }}">
+            <legend><h2>{{ option.name | escape }}: <span data-selected>{{ option.selected_value | escape }}</span></h2></legend>
+            <div class="opts">
+              {%- for value in option.values -%}
+                {%- assign input_id = 'opt-' | append: section.id | append: '-' | append: forloop.parentloop.index0 | append: '-' | append: forloop.index0 -%}
+                <input class="opt-input" type="radio" id="{{ input_id }}" name="{{ option.name | escape }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                <label class="opt-label" for="{{ input_id }}" data-value="{{ value | escape }}">{{ value | escape }}</label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <div class="buy">
+        <div class="qty">
+          <button type="button" data-qty-minus aria-label="Fewer">&minus;</button>
+          <input type="number" name="quantity" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantity" data-qty>
+          <button type="button" data-qty-plus aria-label="More">+</button>
+        </div>
+        <button class="btn" type="submit" data-add{% unless current_variant.available %} disabled{% endunless %}>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</button>
+      </div>
+    {%- endform -%}
+
+    <div class="ship"><b>Free tracked UK delivery</b><span>Usually arrives in 7&ndash;14 days. Tracking emailed when dispatched.</span></div>
+    <div class="rte pdescr">{{ product.description }}</div>
+  </div>
+</div>
+
+<script type="application/json" data-product-json>{{ product | json }}</script>
+<script type="application/ld+json">{{ product | structured_data }}</script>
+
+{% schema %}
+{
+  "name": "Product page",
+  "settings": []
+}
+{% endschema %}

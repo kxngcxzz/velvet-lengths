@@ -1,0 +1,31 @@
+<section class="wrap" id="faq" aria-labelledby="t-faq-{{ section.id }}">
+  <div class="head"><h2 id="t-faq-{{ section.id }}">{{ section.settings.heading | escape }}</h2></div>
+  <div class="faq">
+    {%- for block in section.blocks -%}
+      <details{% if forloop.first %} open{% endif %} {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question | escape }}</summary>
+        <div class="faq-answer">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "FAQs" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQs", "blocks": [{ "type": "item" }] }]
+}
+{% endschema %}

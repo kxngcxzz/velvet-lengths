@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "info-page",
+      "settings": {
+        "eyebrow": "Help",
+        "heading": "Delivery",
+        "lead": "Every order ships free with tracking. Here's what to expect after you check out.",
+        "body": "<div class=\"facts\"><div><b>Free</b><span>tracked UK delivery on every order</span></div><div><b>2–3 days</b><span>to dispatch after you order</span></div><div><b>7–14 days</b><span>usual delivery time</span></div></div>\n<h2>How it works</h2>\n<ol><li>You place your order and get a confirmation email.</li><li>We prepare and dispatch your hair within 2–3 working days.</li><li>We email you a tracking link as soon as it ships.</li><li>Your parcel usually arrives within 7–14 days of ordering.</li></ol>\n<h2>Tracking your order</h2>\n<p>Use the tracking link in your dispatch email to follow your parcel. If you can't find it, check your spam folder, or <a href=\"/pages/contact\">contact us</a> with your order number and we'll send it again.</p>\n<h2>Delays</h2>\n<p>Busy periods such as Black Friday and Christmas can add a few days. If your order hasn't arrived 21 days after you placed it, <a href=\"/pages/contact\">get in touch</a> and we'll chase it for you.</p>\n<h2>Where we deliver</h2>\n<p>We currently deliver to UK addresses only. There's nothing extra to pay on arrival.</p>\n<div class=\"note\">Need it for a set date, like an appointment with your stylist? Order at least 3 weeks ahead to be safe.</div>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

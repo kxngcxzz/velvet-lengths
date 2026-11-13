@@ -1,0 +1,35 @@
+<section class="wrap" id="guide" aria-labelledby="t-guide-{{ section.id }}">
+  <div class="guide">
+    <div class="guide-intro">
+      <h2 id="t-guide-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <p>Lengths are measured straight, from the bond or tape to the tips. Where the hair falls depends on your height and where it's fitted, so treat this as a rough guide. If you'll wear it curled, go about 2 inches longer.</p>
+      <p>Tap a length to see it on the diagram.</p>
+    </div>
+    <figure class="guide-fig">
+      <svg id="lenFig" viewBox="40 0 360 345" aria-hidden="true"></svg>
+      <figcaption id="lenCap" aria-live="polite">20" usually falls at the armpit.</figcaption>
+    </figure>
+    <table class="lengths-table">
+      <thead><tr><th scope="col">Length</th><th scope="col">Usually falls at</th></tr></thead>
+      <tbody>
+        <tr><td><button type="button" class="len-pick" data-len="12" aria-pressed="false">12"</button></td><td>Chin</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="14" aria-pressed="false">14"</button></td><td>Neck</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="16" aria-pressed="false">16"</button></td><td>Shoulders</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="18" aria-pressed="false">18"</button></td><td>Collarbone</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="20" aria-pressed="true">20"</button></td><td>Armpit</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="22" aria-pressed="false">22"</button></td><td>Bra strap</td></tr>
+        <tr><td><button type="button" class="len-pick" data-len="24" aria-pressed="false">24"</button></td><td>Mid-back</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Length guide",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Length guide" }
+  ],
+  "presets": [{ "name": "Length guide" }]
+}
+{% endschema %}

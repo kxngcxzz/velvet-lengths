@@ -1,0 +1,28 @@
+<div class="wrap">
+  <div class="usps">
+    {%- for block in section.blocks -%}
+      <div class="usp" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title | escape }}</h3>
+        <p>{{ block.settings.text | escape }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Highlights",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Highlight",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Highlight" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Add a short sentence." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Highlights", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}

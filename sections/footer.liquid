@@ -1,0 +1,40 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="logo">Velvet Lengths</div>
+        <p style="color:var(--muted);max-width:32ch">Human hair extensions: nano ring, tape-in and U-tip. Free tracked UK delivery.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="/products/nano-ring-hair-extensions">Nano Ring</a>
+        <a href="/products/tape-in-hair-extensions">Tape-In</a>
+        <a href="/products/u-tip-hair-extensions">U-Tip</a>
+        <a href="{{ routes.collections_url }}/accessories">Accessories</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="/pages/delivery">Delivery</a>
+        <a href="/pages/returns">Returns</a>
+        <a href="/pages/contact">Contact us</a>
+        <a href="/#faq">FAQs</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">Terms of sale</a>
+        <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Privacy policy</a>
+        <a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">Refund policy</a>
+        <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">Shipping policy</a>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin-top:20px">&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

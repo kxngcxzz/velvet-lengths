@@ -1,0 +1,47 @@
+<div class="wrap page" style="max-width:900px">
+  <p class="eyebrow">Your order</p>
+  <h1>Bag</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <p class="lead">Your bag is empty.</p>
+    <a class="btn" href="{{ routes.collections_url }}/hair-extensions">Shop extensions</a>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" id="CartForm">
+      <ul class="cart-items">
+        {%- for item in cart.items -%}
+          <li class="cart-item">
+            <a class="cart-img" href="{{ item.url }}">
+              {%- if item.image -%}{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', alt: item.image.alt }}{%- endif -%}
+            </a>
+            <div class="cart-info">
+              <a href="{{ item.url }}"><b>{{ item.product.title | escape }}</b></a>
+              {%- unless item.product.has_only_default_variant -%}<span class="colour-name">{{ item.variant.title | escape }}</span>{%- endunless -%}
+              <a class="cart-remove" href="{{ item.url_to_remove }}">Remove</a>
+            </div>
+            <div class="cart-qty">
+              <label class="sr" for="Qty-{{ item.index }}">Quantity for {{ item.product.title | escape }}</label>
+              <input id="Qty-{{ item.index }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
+            </div>
+            <div class="cart-price price">{{ item.final_line_price | money }}</div>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="cart-total">
+        <div class="meta"><span>Subtotal</span><span class="price">{{ cart.total_price | money }}</span></div>
+        <p class="colour-name">Free tracked UK delivery. Taxes and any extra delivery costs are shown at checkout.</p>
+        <div class="buy">
+          <button class="btn ghost" type="submit" name="update">Update bag</button>
+          <button class="btn" type="submit" name="checkout">Checkout</button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Bag page",
+  "settings": []
+}
+{% endschema %}

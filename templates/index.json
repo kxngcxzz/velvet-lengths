@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "tag_product": "nano-ring-hair-extensions"
+      }
+    },
+    "methods": {
+      "type": "method-grid",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "hair-extensions"
+      }
+    },
+    "usps": {
+      "type": "usps",
+      "blocks": {
+        "u0": {
+          "type": "item",
+          "settings": {
+            "title": "Remy human hair",
+            "text": "The cuticles all run the same way, so the hair stays smooth and tangles less."
+          }
+        },
+        "u1": {
+          "type": "item",
+          "settings": {
+            "title": "Free tracked delivery",
+            "text": "Dispatched in 2\u20133 working days and usually with you in 7\u201314."
+          }
+        },
+        "u2": {
+          "type": "item",
+          "settings": {
+            "title": "14-day returns",
+            "text": "Send back unopened, unused hair for a full refund."
+          }
+        }
+      },
+      "block_order": [
+        "u0",
+        "u1",
+        "u2"
+      ],
+      "settings": {}
+    },
+    "guide": {
+      "type": "length-guide",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q0": {
+          "type": "item",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders are dispatched within 2\u20133 working days and usually arrive in 7\u201314 days in the UK. Delivery is free. You get a tracking link by email as soon as your order ships.</p>"
+          }
+        },
+        "q1": {
+          "type": "item",
+          "settings": {
+            "question": "Can I dye or bleach the hair?",
+            "answer": "<p>Yes, it is real human hair, so it can be toned, curled and heat styled. Darker shades can be lifted by a professional colourist. Always do a strand test first.</p>"
+          }
+        },
+        "q2": {
+          "type": "item",
+          "settings": {
+            "question": "How much hair do I need?",
+            "answer": "<p>For a full head most people need 150\u2013250g: 5 or more packs of nano rings (50g), 2\u20133 packs of tape-ins (20 pieces each), or 150\u2013200 U-tip strands. For added volume only, half that is usually enough.</p>"
+          }
+        },
+        "q3": {
+          "type": "item",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "<p>Return unopened, unused hair within 14 days of delivery. See our <a href=\"returns.html\" style=\"text-decoration:underline\">returns policy</a> for how to send it back.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "methods",
+    "featured",
+    "usps",
+    "guide",
+    "faq"
+  ]
+}

@@ -8,7 +8,7 @@ const path = require("path");
 const vm = require("vm");
 
 const ROOT = path.join(__dirname, "..");
-const SITE = "https://velvetlengths.uk/";
+const SITE = "https://raw.githubusercontent.com/kxngcxzz/velvet-lengths/main/"; // images stay on main
 const { CATEGORIES, CATALOGUE, costFor, priceFor, skuFor } = vm.runInNewContext(
   fs.readFileSync(path.join(ROOT, "products.js"), "utf8") + "\n;({CATEGORIES, CATALOGUE, costFor, priceFor, skuFor})"
 );

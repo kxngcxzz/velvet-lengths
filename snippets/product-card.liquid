@@ -1,0 +1,15 @@
+{%- assign card_alt = product.featured_media.alt | default: product.title -%}
+<article class="card">
+  <div class="media">
+    <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 600 | image_tag: class: 'card-img', loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 1000px) 380px, 50vw', alt: card_alt }}
+      {%- endif -%}
+    </a>
+  </div>
+  <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+  <div class="meta">
+    <span class="price">{% if product.price_varies %}from {% endif %}{{ product.price_min | money }}</span>
+    {%- unless product.available %}<span class="colour-name">Sold out</span>{% endunless -%}
+  </div>
+</article>

@@ -1,5 +1,0 @@
-# Velvet Lengths
-User-agent: *
-Allow: /
-
-Sitemap: https://velvetlengths.uk/sitemap.xml
