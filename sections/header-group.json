@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "header",
   "name": "Header group",
@@ -22,31 +13,10 @@
       "settings": {
         "menu": "main-menu"
       }
-    },
-    "hero_aPGDcz": {
-      "type": "hero",
-      "name": "Hero",
-      "settings": {
-        "heading": "Remy human hair extensions",
-        "text": "Nano ring, tape-in and keratin U-tip extensions in up to 19 shades and 12 to 24 inches, plus the tools to fit them. Free tracked delivery on every UK order.",
-        "cta_label": "Shop extensions",
-        "cta_link": "",
-        "cta2_label": "Length guide",
-        "tag_product": ""
-      }
-    },
-    "length_guide_RWGBQ8": {
-      "type": "length-guide",
-      "name": "Length guide",
-      "settings": {
-        "heading": "Length guide"
-      }
     }
   },
   "order": [
     "announcement",
-    "header",
-    "hero_aPGDcz",
-    "length_guide_RWGBQ8"
+    "header"
   ]
 }
