@@ -128,7 +128,7 @@
   // ---- Checkout: Shopify takes payment. Each bag line is matched to its Shopify variant by SKU (skuFor in products.js),
   // a Shopify cart is created through the Storefront API, and the customer goes to Shopify's checkout page.
   // SHOP.token is the PUBLIC Storefront API token from Shopify admin > Sales channels > Headless (safe to publish).
-  const SHOP={domain:"ruyp0k-ux.myshopify.com",token:"",api:"2026-10"};
+  const SHOP={domain:"ruyp0k-ux.myshopify.com",token:"fd616de52b2cfaf7a55c0523d2eed848",api:"2026-10"};
   const sf=(query,variables)=>fetch(`https://${SHOP.domain}/api/${SHOP.api}/graphql.json`,{method:"POST",
     headers:{"Content-Type":"application/json","X-Shopify-Storefront-Access-Token":SHOP.token},body:JSON.stringify({query,variables})})
     .then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{if(j.errors)throw new Error(j.errors[0].message);return j.data});
